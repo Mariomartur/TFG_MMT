@@ -8,7 +8,7 @@ sparql = SPARQLWrapper(endpoint)
 # Se sacan las propiedades una a una
 sparql.setQuery("""
                 SELECT DISTINCT ?propiedad WHERE {
-                ?juego ?propiedad ?valor
+                ?entidad ?propiedad ?valor
                 }
                 """)
 

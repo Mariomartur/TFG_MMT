@@ -277,6 +277,6 @@ def traducir_ids(lista_valores):
 
 
 if __name__ == "__main__":
-    respuesta = procesar_consulta("¿Quien desarrollo Fire Emblem: Shadow Dragon and the Blade of Light?")
+    respuesta = procesar_consulta("¿Qué películas dirigió Christopher Nolan?")
     print("\n--- RESPUESTA DEL LLM ---")
     print(respuesta)

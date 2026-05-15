@@ -15,7 +15,7 @@ def buscar_id_entidad(nombre_entidad):
         "limit": 10
     }
     headers = {
-        'User-Agent': 'MMT_TFG_Bot/1.0 (mario.tfg@example.com)'
+        'User-Agent': 'MMT_TFG_Bot/1.0 (m.martinezturpin@um.es)'
     }
     
     try:
