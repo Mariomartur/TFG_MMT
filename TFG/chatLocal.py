@@ -9,18 +9,18 @@ with open("mapeo_propiedades.json", "r", encoding="utf-8") as f:
     mapeoProp = json.load(f)
     textoMapeo = json.dumps(mapeoProp, indent=2)
 
-def consultar_llm(prompt):
-    response = ollama.chat(model='llama3', messages=[{'role': 'user', 'content': prompt}],
+def consultar_llm(prompt, modelo='llama3'):
+    response = ollama.chat(model=modelo, messages=[{'role': 'user', 'content': prompt}],
                            options={'temperature':0.0})
     return response['message']['content']
 
-def consultar_llm_stream(prompt):
-    response = ollama.chat(model='llama3', messages=[{'role': 'user', 'content': prompt}],
+def consultar_llm_stream(prompt, modelo='llama3'):
+    response = ollama.chat(model=modelo, messages=[{'role': 'user', 'content': prompt}],
                            options={'temperature':0.0}, stream=True)
     for chunk in response:
         yield chunk['message']['content']
 
-def extraer_entidad(consulta, historial):
+def extraer_entidad(consulta, historial, modelo='llama3'):
     texto_historial = ""
     for msg in historial[-4:]:
         rol = "Usuario" if msg["rol"] == "user" else "Asistente"
@@ -51,14 +51,14 @@ def extraer_entidad(consulta, historial):
     Frase actual: "{consulta}"
     Respuesta:
     """
-    entidad_buscada = consultar_llm(prompt_base).strip()
+    entidad_buscada = consultar_llm(prompt_base, modelo).strip()
     
     if "Respuesta:" in entidad_buscada:
         entidad_buscada = entidad_buscada.split("Respuesta:")[-1].strip()
     return entidad_buscada
 
 
-def generar_sparql(consulta, id_entidad, textoMapeo, error_previo="", query_previo=""):
+def generar_sparql(consulta, id_entidad, textoMapeo, error_previo="", query_previo="", modelo='llama3'):
     contexto_error = ""
     if error_previo:
         contexto_error = f"""
@@ -95,7 +95,7 @@ def generar_sparql(consulta, id_entidad, textoMapeo, error_previo="", query_prev
     8. Piensa primero tu lógica en voz alta, y luego devuelve SOLO el código SPARQL dentro de un bloque ```sparql ... ```
     """
 
-    respuesta_sparql = consultar_llm(prompt_sparql)
+    respuesta_sparql = consultar_llm(prompt_sparql, modelo)
     
     razonamiento = respuesta_sparql.split("```")[0].strip()
     if razonamiento:
@@ -103,7 +103,7 @@ def generar_sparql(consulta, id_entidad, textoMapeo, error_previo="", query_prev
         
     return traducir_sparql(respuesta_sparql)
 
-def procesar_consulta(consulta, historial=None, st_callback=None):
+def procesar_consulta(consulta, historial=None, st_callback=None, modelo='llama3'):
     if historial is None:
         historial = []
         
@@ -117,7 +117,7 @@ def procesar_consulta(consulta, historial=None, st_callback=None):
         
     print(f"\n--- Procesando: '{consulta}' ---".encode('ascii', 'replace').decode('ascii'))
 
-    entidad_buscada = extraer_entidad(consulta, historial)
+    entidad_buscada = extraer_entidad(consulta, historial, modelo)
     notify(f"🔍 **Entidad detectada:** `{entidad_buscada}`")
 
     candidato = buscar_id_entidad(entidad_buscada)
@@ -138,7 +138,7 @@ def procesar_consulta(consulta, historial=None, st_callback=None):
     error_previo = ""
 
     while intentos_sparql < max_intentos:
-        query_limpia = generar_sparql(consulta, id_entidad, textoMapeo, error_previo, query_limpia)
+        query_limpia = generar_sparql(consulta, id_entidad, textoMapeo, error_previo, query_limpia, modelo)
         notify(f"💻 **SPARQL Generado (Intento {intentos_sparql + 1}):**\n```sparql\n{query_limpia}\n```")
         
         resultados, error_db = ejecutar_sparql_local(query_limpia)
@@ -182,7 +182,7 @@ def procesar_consulta(consulta, historial=None, st_callback=None):
     Regla opcional: no te rias al inicio de las respuestas
     """
     
-    for chunk in consultar_llm_stream(prompt_nat):
+    for chunk in consultar_llm_stream(prompt_nat, modelo):
         yield chunk
 
 

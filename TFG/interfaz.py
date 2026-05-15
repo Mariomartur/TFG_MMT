@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 from chatLocal import procesar_consulta
 
 # Configuración básica de la página
@@ -119,6 +120,7 @@ if pregunta := st.chat_input("Ej: ¿Quién protagonizó El Club de la Lucha?"):
         message_placeholder = st.empty()
         full_response = ""
         
+        start_time = time.time()
         with st.status("🧠 Pensando...", expanded=True) as status:
             def update_status(texto):
                 status.write(texto)
@@ -129,15 +131,17 @@ if pregunta := st.chat_input("Ej: ¿Quién protagonizó El Club de la Lucha?"):
             try:
                 first_chunk = next(generador)
                 # Contraer el panel de estado una vez resuelto si no es error
+                tiempo_t = time.time() - start_time
                 if not first_chunk.startswith("No he ") and not first_chunk.startswith("❌") and "La consulta se generó" not in first_chunk:
-                    status.update(label="✅ Consulta resuelta", state="complete", expanded=False)
+                    status.update(label=f"✅ Consulta resuelta en {tiempo_t:.2f}s", state="complete", expanded=False)
                 else:
-                    status.update(label="❌ Consulta fallida", state="error", expanded=True)
+                    status.update(label=f"❌ Consulta fallida en {tiempo_t:.2f}s", state="error", expanded=True)
                 
                 full_response += first_chunk
                 message_placeholder.markdown(full_response + "▌")
             except StopIteration:
-                status.update(label="✅ Consulta resuelta", state="complete", expanded=False)
+                tiempo_t = time.time() - start_time
+                status.update(label=f"✅ Consulta resuelta en {tiempo_t:.2f}s", state="complete", expanded=False)
                 
         for chunk in generador:
             full_response += chunk
