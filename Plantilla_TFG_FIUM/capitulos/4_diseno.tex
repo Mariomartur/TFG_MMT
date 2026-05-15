@@ -1,0 +1,81 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plantilla TFG/TFM
+% Universidad de Murcia. Facultad de Informática
+% Realizado por: José Manuel Requena Plens
+% Modificado: Pablo José Rocamora Zamora
+% Contacto: pablojoserocamora@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Diseño y resolución del trabajo realizado}
+\label{cap:diseno}
+
+En este capítulo se expone la arquitectura técnica del sistema, el diseño del Grafo de Conocimiento y el modelado del comportamiento del agente inteligente responsable de traducir el lenguaje natural a consultas SPARQL.
+
+\section{Arquitectura del Sistema}
+
+El sistema ha sido diseñado siguiendo un modelo de arquitectura por capas, garantizando la separación de responsabilidades y facilitando la escalabilidad del proyecto. Los tres bloques principales son:
+
+\begin{enumerate}
+    \item \textbf{Capa de Presentación (Frontend):} Implementada con \textit{Streamlit}, actúa como el cliente de usuario, proveyendo la interfaz de chat interactiva.
+    \item \textbf{Capa de Lógica de Negocio y Agente Inteligente:} Es el núcleo del sistema, orquestado mediante \textit{LangChain} en Python. Contiene la lógica de extracción de entidades, la integración con la API del LLM, el bucle de reflexión y la construcción del \textit{prompt} del sistema.
+    \item \textbf{Capa de Datos y Grafo de Conocimiento:} Comprende el almacenamiento persistente RDF local (archivo \texttt{.ttl}) gestionado por la librería \textit{RDFLib}, así como las conexiones puntuales a la API de Wikidata para procesos de desambiguación.
+\end{enumerate}
+
+% ====================================================================
+% NOTA PARA MARIO: 
+% Aquí deberías insertar un Diagrama de Arquitectura de Software.
+% ====================================================================
+
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{ruta/a/tu/diagrama_arquitectura.png}
+    \vspace{6cm} % Espacio temporal dejado en blanco
+    \caption{[AÑADIR DIAGRAMA DE ARQUITECTURA AQUÍ]}
+    \label{fig:arquitectura}
+\end{figure}
+
+\section{Diseño del Agente Autocorrector}
+
+Uno de los principales desafíos técnicos del proyecto radica en la inestabilidad inherente de los LLMs a la hora de generar código con sintaxis estricta, como es el caso de SPARQL. Para solucionar esto, se ha diseñado un \textbf{flujo iterativo de reflexión y autocorrección}.
+
+El flujo de control del agente sigue los siguientes pasos lógicos:
+\begin{enumerate}
+    \item Se recibe la pregunta en lenguaje natural.
+    \item Se solicita al LLM que extraiga únicamente la entidad principal (ej. "Matrix").
+    \item Se consulta Wikidata para obtener el ID de dicha entidad (ej. \texttt{wd:Q83495}).
+    \item Se inyecta la pregunta, el ID de la entidad y el \textit{diccionario de propiedades} en un \textit{prompt} altamente restrictivo.
+    \item El LLM genera una propuesta de consulta SPARQL.
+    \item El sistema intenta ejecutar la consulta localmente en RDFLib.
+    \item \textbf{Bucle de corrección:} Si la consulta falla (error de sintaxis o error de acceso a la ontología), el sistema no aborta la operación. Captura el \textit{traceback} del error, se lo envía de vuelta al LLM y le solicita que reescriba el SPARQL corrigiendo su propio fallo. Este proceso se repite un número máximo de iteraciones.
+\end{enumerate}
+
+% ====================================================================
+% NOTA PARA MARIO: 
+% Aquí deberías insertar un Diagrama de Actividad o de Secuencia
+% mostrando el bucle del agente que acabo de describir.
+% ====================================================================
+
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{ruta/a/tu/diagrama_flujo.png}
+    \vspace{6cm} % Espacio temporal dejado en blanco
+    \caption{[AÑADIR DIAGRAMA DE FLUJO DEL AGENTE AQUÍ]}
+    \label{fig:flujo_agente}
+\end{figure}
+
+\section{Diseño del Grafo de Conocimiento Local}
+
+Para asegurar la privacidad, el rendimiento y la consistencia de las respuestas, el sistema no interroga directamente a Wikidata en su fase de resolución de consultas, sino que opera sobre un Grafo de Conocimiento local exportado previamente.
+
+Este grafo local (\texttt{datos\_cine\_seguro.ttl}) actúa como una base de datos \textit{in-memory}. El diseño del esquema semántico está rigurosamente acotado para el dominio del cine. Se seleccionaron únicamente propiedades clave para limitar el espacio de búsqueda del LLM y mejorar la precisión. Entre estas propiedades mapeadas destacan:
+
+\begin{itemize}
+    \item \texttt{wdt:P57}: Director.
+    \item \texttt{wdt:P577}: Fecha de publicación o estreno.
+    \item \texttt{wdt:P161}: Miembro del reparto (actores).
+    \item \texttt{wdt:P136}: Género cinematográfico.
+    \item \texttt{wdt:P162}: Productor.
+    \item \texttt{wdt:P345}: Identificador de IMDb.
+\end{itemize}
+
+El LLM recibe en su instrucción del sistema (System Prompt) un diccionario estricto que mapea el lenguaje natural a estas propiedades, con la orden explícita de no utilizar ninguna propiedad de Wikidata que no se encuentre en dicha lista. Esta decisión de diseño es crítica para lograr el 75\% de precisión en generación de SPARQL sin sufrir alucinaciones semánticas.

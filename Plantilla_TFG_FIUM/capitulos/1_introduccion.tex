@@ -1,0 +1,53 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plantilla TFG/TFM
+% Universidad de Murcia. Facultad de Informática
+% Realizado por: José Manuel Requena Plens
+% Modificado: Pablo José Rocamora Zamora
+% Contacto: pablojoserocamora@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Introducción}
+\label{cap:introduccion}
+
+En la actualidad, el acceso a grandes volúmenes de información estructurada y no estructurada se ha convertido en un desafío fundamental en el ámbito de las Ciencias de la Computación. En el contexto de la Web Semántica, los Grafos de Conocimiento (\textit{Knowledge Graphs}) ofrecen un marco robusto para representar información mediante tripletas (Sujeto, Predicado, Objeto), permitiendo realizar consultas complejas mediante el lenguaje estándar SPARQL. Sin embargo, la barrera técnica que supone dominar este lenguaje limita el acceso a esta información para usuarios no expertos.
+
+Por otro lado, el auge de los Modelos de Lenguaje de Gran Escala (LLMs) ha transformado la forma en que interactuamos con los sistemas de información, permitiendo interfaces conversacionales en lenguaje natural. No obstante, los LLMs sufren de problemas inherentes como las alucinaciones (generación de información plausible pero falsa) y la dificultad para recuperar datos precisos y actualizados de dominios específicos.
+
+Este Trabajo de Fin de Grado (TFG) aborda la convergencia de ambas tecnologías mediante el desarrollo de un agente conversacional (chatbot) especializado en el dominio cinematográfico. El sistema combina la fluidez y capacidad de comprensión del lenguaje natural de los LLMs con la precisión factual de un Grafo de Conocimiento propio basado en Wikidata. Para lograrlo, se ha diseñado un agente capaz de interpretar la intención del usuario, mapear entidades a identificadores semánticos y generar autónomamente consultas SPARQL válidas, corrigiéndose a sí mismo en caso de error.
+
+\section{Motivación}
+
+La motivación principal de este proyecto surge de la necesidad de facilitar la exploración de datos semánticos sin requerir conocimientos técnicos previos. Extraer información concreta de un grafo RDF con millones de nodos (como es el caso del dominio del cine en Wikidata) resulta una tarea ardua. 
+
+Si bien los LLMs pueden responder preguntas de cultura general sobre cine, su conocimiento es estático y propenso a errores. Integrar un LLM como interfaz a un Grafo de Conocimiento mediante una arquitectura basada en la generación de SPARQL no solo asegura la veracidad de la respuesta, sino que permite trazar el origen del dato y justificar la respuesta.
+
+Además, este proyecto busca explorar la complejidad técnica que supone dominar y restringir la salida de un LLM. Lograr que un modelo de lenguaje actúe no como un mero generador de texto libre, sino como un agente lógico que respeta esquemas estrictos (ontologías) y corrige iterativamente su propio código SPARQL ante errores sintácticos, representa un reto de ingeniería de software y de \textit{prompt engineering} altamente motivador.
+
+\section{Objetivos}
+
+El objetivo general de este proyecto es diseñar, desarrollar y evaluar un sistema de pregunta-respuesta (QA) conversacional basado en Grafos de Conocimiento capaz de traducir consultas en lenguaje natural a consultas SPARQL precisas y ejecutables sobre una base de datos propia.
+
+Para alcanzar este fin, se definen los siguientes objetivos específicos:
+
+\begin{itemize}
+    \item \textbf{Precisión en la Generación de SPARQL:} Desarrollar un agente autónomo que maximice la precisión al traducir lenguaje natural a SPARQL, siendo capaz de gestionar un bucle de autocorrección (reflexión) para enmendar errores sintácticos o semánticos generados en intentos previos.
+    \item \textbf{Manejo Avanzado de Datos RDF:} Extraer, procesar y almacenar un conjunto significativo de datos provenientes de Wikidata en formato \textit{Turtle} para conformar un Grafo de Conocimiento local optimizado, demostrando soltura en el manejo de tecnologías de la Web Semántica.
+    \item \textbf{Control y Restricción del LLM:} Diseñar un marco robusto de \textit{prompting} estructurado y mapeo de propiedades que permita "restringir" y guiar el razonamiento del modelo de lenguaje, minimizando las alucinaciones y forzándolo a utilizar únicamente las propiedades y entidades definidas en el contexto.
+    \item \textbf{Evaluación Cuantitativa:} Implementar un marco de evaluación automática que permita medir objetivamente el rendimiento del sistema en términos de extracción de entidades correctas y generación de consultas SPARQL válidas frente a un conjunto de pruebas.
+\end{itemize}
+
+\section{Estructura de la Memoria}
+
+El resto de esta memoria se estructura de la siguiente manera:
+
+En el \textbf{Capítulo 2} se presenta el Estado del Arte, donde se exploran los fundamentos teóricos de la Web Semántica, los Modelos de Lenguaje y las arquitecturas de Generación Aumentada por Recuperación (RAG) e Inteligencia Artificial Agéntica. 
+
+El \textbf{Capítulo 3} detalla el Análisis del sistema, describiendo los requisitos técnicos y los casos de uso principales.
+
+El \textbf{Capítulo 4} expone el Diseño de la solución, abordando la arquitectura del sistema, el diseño del Grafo de Conocimiento y el flujo de ejecución del agente iterativo.
+
+El \textbf{Capítulo 5} describe la Implementación del proyecto, profundizando en las decisiones de programación, el entorno tecnológico utilizado (Python, LangChain, Streamlit) y el despliegue del sistema mediante Docker.
+
+En el \textbf{Capítulo 6} se presenta la Evaluación del sistema, analizando las métricas obtenidas tras someter al agente a diversas baterías de pruebas automatizadas.
+
+Finalmente, el \textbf{Capítulo 7} recoge las Conclusiones extraídas del desarrollo, evaluando el grado de cumplimiento de los objetivos y proponiendo líneas de trabajo futuro.

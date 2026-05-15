@@ -1,0 +1,18 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plantilla TFG/TFM
+% Universidad de Murcia. Facultad de Informática
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter*{Resumen}
+
+El presente Trabajo de Fin de Grado aborda el diseño, desarrollo y evaluación de un agente conversacional inteligente especializado en el dominio cinematográfico. El objetivo principal ha sido combinar la flexibilidad de los Modelos de Lenguaje de Gran Escala (LLMs) con la precisión factual de los Grafos de Conocimiento (\textit{Knowledge Graphs}) de la Web Semántica, mitigando así el problema recurrente de las alucinaciones en sistemas de inteligencia artificial generativa.
+
+Para lograrlo, se ha implementado una arquitectura basada en el paradigma de Generación Aumentada por Recuperación (RAG), evolucionada hacia un sistema de Inteligencia Artificial Agéntica utilizando el \textit{framework} LangChain. A diferencia de un chatbot tradicional, el sistema no responde directamente basándose en sus pesos internos, sino que traduce dinámicamente las consultas del usuario en lenguaje natural a consultas estructuradas en el lenguaje estándar SPARQL.
+
+El proyecto incluye la construcción de un Grafo de Conocimiento local en formato RDF (\textit{Turtle}), extraído a partir de Wikidata, que garantiza tiempos de respuesta rápidos y consistencia en los datos sin depender de APIs externas limitantes. El agente ha sido dotado de un bucle iterativo de reflexión que le permite detectar y autocorregir errores sintácticos al ejecutar sus propias consultas contra la base de datos local.
+
+Las pruebas realizadas arrojan una precisión del 80\% en la extracción y desambiguación de entidades, y un 75\% de éxito en la generación autónoma de código SPARQL ejecutable. Los resultados confirman que restringir estrictamente el espacio de búsqueda del LLM mediante \textit{prompts} altamente estructurados y diccionarios de propiedades es una estrategia técnica altamente efectiva para desarrollar interfaces de datos transparentes y fiables.
+
+\vspace{1cm}
+\textbf{Palabras clave:} Web Semántica, Grafos de Conocimiento, SPARQL, Modelos de Lenguaje, RAG, LangChain, Inteligencia Artificial.

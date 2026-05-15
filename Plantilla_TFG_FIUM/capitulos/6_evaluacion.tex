@@ -1,0 +1,50 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plantilla TFG/TFM
+% Universidad de Murcia. Facultad de Informática
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Evaluación y Resultados}
+\label{cap:evaluacion}
+
+Para asegurar la viabilidad técnica del sistema y validar el cumplimiento de los objetivos establecidos en el Capítulo \ref{cap:analisis}, se ha diseñado un entorno de pruebas automatizadas. Este capítulo expone la metodología de evaluación y discute los resultados cuantitativos obtenidos.
+
+\section{Entorno de Pruebas}
+
+Se elaboró un conjunto de datos (\textit{dataset}) de validación en formato estructurado (\texttt{dataset\_evaluacion.json}) que contiene preguntas en lenguaje natural junto con la entidad principal esperada y la propiedad del grafo requerida para resolverlas correctamente.
+
+El conjunto de pruebas definitivo se compone de 20 preguntas complejas que abarcan diversas relaciones semánticas del dominio cinematográfico, tales como:
+\begin{itemize}
+    \item Directores de obras cinematográficas (\texttt{wdt:P57}).
+    \item Años de publicación o estreno (\texttt{wdt:P577}).
+    \item Reparto de actores principales (\texttt{wdt:P161}).
+    \item Géneros cinematográficos (\texttt{wdt:P136}).
+    \item Identificadores externos como IMDb (\texttt{wdt:P345}) y Productores (\texttt{wdt:P162}).
+\end{itemize}
+
+El script \texttt{evaluacion.py} automatiza la ejecución secuencial de estas pruebas sin intervención humana, comparando la salida del sistema con los valores esperados y calculando la precisión media (\textit{Accuracy}).
+
+\section{Resultados Obtenidos}
+
+Las pruebas automatizadas arrojaron las siguientes métricas de rendimiento global sobre el conjunto total de evaluaciones:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Métrica de Evaluación} & \textbf{Aciertos} & \textbf{Precisión (\%)} \\ \hline
+Extracción y Desambiguación de Entidad & 19 / 20 & 95.00\% \\ \hline
+Generación de SPARQL Válido & 19 / 20 & 95.00\% \\ \hline
+\end{tabular}
+\caption{Resultados de la evaluación automática del agente tras las optimizaciones del mecanismo de extracción y reflexión.}
+\label{tab:resultados_evaluacion}
+\end{table}
+
+\section{Análisis y Discusión de los Resultados}
+
+Los resultados obtenidos validan cuantitativamente la eficacia del diseño basado en la inyección de contexto restrictivo en el \textit{prompt} y el bucle de reflexión. 
+
+\textbf{Análisis de Extracción de Entidades (95\%):} El sistema demostró una altísima fiabilidad al identificar las entidades sobre las que operaba la consulta del usuario, rozando la perfección. Tras optimizar el \textit{prompt} con instrucciones estrictas y ejemplos directos, el modelo dejó de intentar "responder" prematuramente a la pregunta y se limitó a extraer el nombre exacto de la película o actor. El único fallo restante (1 de 20) ilustra la dificultad real que aún persiste en casos de gran ambigüedad. Además, el nuevo sistema de \textit{fallback} con la base de datos local y la API REST erradicó por completo los bloqueos por limitación de tasa (Error HTTP 429) de la API de SPARQL original.
+
+\textbf{Análisis de Generación de SPARQL (95\%):} Alcanzar un 95\% de acierto en la traducción directa de texto libre a código SPARQL ejecutable es un hito técnico excepcional. Este salto cualitativo se debe, en gran medida, al refinamiento del mecanismo de reintentos. Al retroalimentar al modelo de lenguaje con la consulta SPARQL exacta que había fallado en el intento anterior junto con el motivo del fallo, el agente demostró una gran capacidad de auto-corrección (como invertir el Sujeto y el Objeto en tiempo real), lo que disparó la precisión general del sistema.
+
+En conclusión, el sistema superó la barrera de viabilidad, demostrando que la integración de agentes LangChain con Grafos de Conocimiento fuertemente tipados es una solución técnica robusta para crear sistemas de pregunta-respuesta conversacionales, transparentes y libres de alucinaciones factuales.

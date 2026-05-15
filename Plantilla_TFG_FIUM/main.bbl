@@ -1,0 +1,44 @@
+\begin{thebibliography}{6}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Akyildiz et~al.(2005)Akyildiz, Pompili, and Melodia]{Akyildiz2005}
+Ian~F Akyildiz, Dario Pompili, and Tommaso Melodia.
+\newblock Underwater acoustic sensor networks: research challenges.
+\newblock \emph{Ad hoc networks}, 3\penalty0 (5):\penalty0 257--279, 2005.
+
+\bibitem[Shaw and Garlan(1996)]{Shaw1996}
+Mary Shaw and David Garlan.
+\newblock \emph{Software architecture: perspectives on an emerging discipline},
+  volume~1.
+\newblock Prentice Hall Englewood Cliffs, 1996.
+
+\bibitem[BOE(2012)]{BOE_IM_UA}
+BOE.
+\newblock Resolución de 7 de marzo de 2012, de la universidad de alicante, por
+  la que se publica el plan de estudios de graduado en ingeniería multimedia.
+\newblock BOE, 22 marzo de 2012, marzo 2012.
+\newblock URL
+  \url{http://www.boe.es/boe/dias/2012/03/22/pdfs/BOE-A-2012-4008.pdf}.
+
+\bibitem[AENOR(1997)]{UNE50136:97}
+AENOR.
+\newblock norma une 50136:1997., 1997.
+\newblock URL
+  \url{http://docubib.uc3m.es/CURSOS/Documentos_cientificos/Normas%20y%20directrices/UNE_50136=ISO%207144.pdf}.
+
+\bibitem[Barkan et~al.(1995)Barkan, Merlino, and D’angelo]{Barkan1995}
+A~Barkan, Robert~L Merlino, and N~D’angelo.
+\newblock Laboratory observation of the dust-acoustic wave mode.
+\newblock \emph{Physics of Plasmas}, 2\penalty0 (10):\penalty0 3563--3565,
+  1995.
+
+\bibitem[Leighton(2012)]{Leighton2012}
+Timothy Leighton.
+\newblock \emph{The acoustic bubble}.
+\newblock Academic press, 2012.
+
+\end{thebibliography}

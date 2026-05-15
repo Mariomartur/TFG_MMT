@@ -1,0 +1,57 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plantilla TFG/TFM
+% Universidad de Murcia. Facultad de Informática
+% Realizado por: José Manuel Requena Plens
+% Modificado: Pablo José Rocamora Zamora
+% Contacto: pablojoserocamora@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Estado del Arte}
+\label{cap:estado_arte}
+
+Para comprender la arquitectura y las decisiones de diseño adoptadas en este Trabajo de Fin de Grado, es necesario establecer una base teórica sobre las tecnologías subyacentes. Este capítulo revisa los conceptos clave en los que se apoya el sistema desarrollado: la Web Semántica, los Modelos de Lenguaje de Gran Escala (LLMs) y los paradigmas emergentes de Inteligencia Artificial como la Generación Aumentada por Recuperación (RAG) y los agentes autónomos.
+
+\section{Web Semántica y Grafos de Conocimiento}
+
+La Web Semántica, propuesta originalmente por Tim Berners-Lee, busca extender la web actual dotando a la información de un significado bien definido, permitiendo que ordenadores y personas trabajen en cooperación. El núcleo de esta visión son los Grafos de Conocimiento (\textit{Knowledge Graphs}), estructuras de datos que representan entidades del mundo real y sus interrelaciones de forma explícita.
+
+\subsection{Resource Description Framework (RDF)}
+RDF es el estándar principal para modelar información en la Web Semántica \cite{w3c_rdf}. La información se estructura en forma de tripletas: \textit{Sujeto}, \textit{Predicado} y \textit{Objeto}. Estas tripletas pueden serializarse en distintos formatos, siendo \textit{Turtle} (Terse RDF Triple Language) uno de los más legibles por humanos y el formato elegido en este proyecto para almacenar la base de conocimiento local sobre el dominio del cine.
+
+\subsection{SPARQL}
+SPARQL (\textit{SPARQL Protocol and RDF Query Language}) es el lenguaje de consulta estándar para bases de datos RDF \cite{w3c_sparql}. Permite realizar consultas complejas sobre grafos, filtrar resultados y explorar las relaciones semánticas entre entidades. Aunque es extremadamente potente y preciso, su curva de aprendizaje es muy pronunciada, lo que justifica la necesidad de construir interfaces en lenguaje natural para democratizar el acceso a los datos, como se propone en este TFG.
+
+\subsection{Wikidata}
+Wikidata es una base de conocimiento libre, colaborativa y multilingüe que actúa como almacenamiento central para los datos estructurados de sus proyectos hermanos, como Wikipedia \cite{vrandecic2014wikidata}. Dado su enorme volumen de datos y su estructura semántica abierta y en constante evolución, Wikidata se ha consolidado como una de las fuentes de conocimiento general más importantes del mundo, sirviendo como origen de los datos sobre la industria del cine extraídos para este proyecto.
+
+\section{Modelos de Lenguaje de Gran Escala (LLMs)}
+
+Los Modelos de Lenguaje de Gran Escala (LLMs), como la familia GPT de OpenAI o los modelos LLaMA de Meta, son redes neuronales masivas basadas en la arquitectura \textit{Transformer} \cite{vaswani2017attention}, entrenadas sobre cantidades ingentes de texto. Estos modelos han demostrado capacidades sin precedentes en la comprensión, síntesis y generación de lenguaje natural.
+
+Sin embargo, en el contexto de la recuperación de información factual y precisa, los LLMs presentan dos limitaciones críticas inherentes a su naturaleza estocástica:
+\begin{enumerate}
+    \item \textbf{Conocimiento estático:} El modelo solo conoce la información disponible hasta el momento de su entrenamiento, requiriendo reentrenamientos costosos para actualizarse.
+    \item \textbf{Alucinaciones:} Tendencia a generar respuestas altamente plausibles a nivel sintáctico pero factualmente incorrectas cuando el modelo no dispone de la información requerida en sus pesos internos.
+\end{enumerate}
+
+Para mitigar estos problemas, especialmente en aplicaciones de dominio específico, es estrictamente necesario acoplar el LLM con fuentes de conocimiento externas fidedignas.
+
+\section{Generación Aumentada por Recuperación (RAG)}
+
+La Generación Aumentada por Recuperación (\textit{Retrieval-Augmented Generation}, RAG) es una arquitectura \cite{lewis2020retrieval} que mejora sustancialmente la fiabilidad de las respuestas de un LLM al integrar un sistema de recuperación de información. En un flujo RAG estándar:
+\begin{enumerate}
+    \item El usuario realiza una pregunta en lenguaje natural.
+    \item El sistema busca información relevante en una base de datos externa (habitualmente bases de datos vectoriales).
+    \item La información recuperada se inyecta en el \textit{prompt} (contexto) del LLM.
+    \item El LLM formula la respuesta final basándose en el contexto documentado proporcionado, en lugar de depender únicamente de su memoria interna.
+\end{enumerate}
+
+En este TFG, se aplica una variante más estructurada de RAG, a menudo referida como \textbf{Graph RAG} o \textbf{Text-to-SPARQL RAG}. En lugar de recuperar fragmentos de texto mediante similitud vectorial (que puede ser imprecisa), el modelo se encarga de generar el código lógico (SPARQL) necesario para interrogar un Grafo de Conocimiento de forma determinista, garantizando respuestas estructuradas y exactas.
+
+\section{Agentes Autónomos y LangChain}
+
+Un paso más allá del uso estático de LLMs es el paradigma de la Inteligencia Artificial Agéntica. Un agente de IA es un sistema que utiliza un LLM como su "motor de razonamiento" central para decidir dinámicamente qué acciones tomar, qué herramientas utilizar y en qué orden.
+
+A diferencia de un flujo de código secuencial clásico, un agente puede observar el resultado de una acción y reaccionar. Por ejemplo, si el agente genera una consulta SPARQL que, al ejecutarse en el motor de base de datos, devuelve un error de sintaxis, el agente puede leer dicho error, reflexionar sobre el fallo, autocorregir el código y volver a intentar la consulta. Este bucle de retroalimentación dota al sistema de una robustez crítica frente a la variabilidad de las respuestas del modelo.
+
+\textbf{LangChain} \cite{langchain} es el \textit{framework} de desarrollo de código abierto líder en el ecosistema para la creación de aplicaciones impulsadas por modelos de lenguaje. Proporciona las abstracciones necesarias para construir cadenas de procesamiento complejas, integrar herramientas externas, gestionar la memoria de las conversaciones y orquestar el flujo cognitivo de agentes como el implementado en este TFG para interactuar con la base de conocimiento local.

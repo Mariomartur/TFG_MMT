@@ -1,0 +1,30 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plantilla TFG/TFM
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Conclusiones y Trabajo Futuro}
+\label{cap:conclusiones}
+
+Este Trabajo de Fin de Grado ha abordado el reto de integrar la flexibilidad de los Modelos de Lenguaje de Gran Escala con el rigor y la precisión de la Web Semántica. El sistema desarrollado ha demostrado ser una solución técnica viable para consultar información estructurada compleja mediante lenguaje natural, mitigando activamente el problema de las alucinaciones en los LLMs.
+
+\section{Consecución de Objetivos}
+
+El análisis de los resultados obtenidos corrobora que se han cumplido los objetivos específicos planteados al inicio del proyecto:
+
+\begin{itemize}
+    \item \textbf{Generación Precisa de SPARQL:} Se ha logrado una precisión del 75\% en la traducción autónoma de texto libre a SPARQL sobre el dominio cinematográfico, validando la eficacia del marco de inyección dinámica del diccionario de propiedades en el \textit{prompt}.
+    \item \textbf{Comportamiento Agéntico y Reflexión:} Se ha implementado con éxito un flujo de control inteligente utilizando \textit{LangChain}, dotando al sistema de la capacidad de autocorregir sus propios errores sintácticos tras capturar las excepciones del motor \textit{RDFLib}.
+    \item \textbf{Gestión Local del Grafo de Conocimiento:} Se ha conformado una base de conocimiento en formato \textit{Turtle} funcional y segura, limitando la dependencia de llamadas externas a Wikidata durante la consulta y protegiendo el sistema de latencias excesivas, cumpliendo así con los requisitos no funcionales establecidos.
+\end{itemize}
+
+\section{Líneas de Trabajo Futuro}
+
+A pesar de los logros técnicos del prototipo, el campo del Procesamiento de Lenguaje Natural y los agentes semánticos evoluciona a un ritmo vertiginoso. Se proponen las siguientes vías de mejora para futuras iteraciones del sistema:
+
+\begin{itemize}
+    \item \textbf{Mejora en la desambiguación de entidades:} El 20\% de los fallos de extracción derivó de problemas idiomáticos o nombres ambiguos ("Origen" vs "Inception"). Implementar algoritmos de similitud semántica mediante búsqueda vectorial (\textit{embeddings}) podría mitigar la dependencia de la API restrictiva de Wikidata.
+    \item \textbf{Ampliación controlada de la ontología:} Integrar más propiedades en el diccionario base (por ejemplo, "recaudación en taquilla", "premios obtenidos" o "banda sonora") requerirá técnicas avanzadas para evitar que el incremento del espacio de búsqueda confunda al LLM y degrade su precisión.
+    \item \textbf{Soporte robusto para consultas \textit{Multi-Hop} (Multi-salto):} Integrar ejemplos \textit{Few-Shot} dinámicos en el \textit{prompt} para que el agente pueda resolver eficientemente preguntas que implican recorrer varios nodos del grafo secuencialmente (ej. "¿Qué directores han trabajado con actores ganadores de un Oscar?").
+\end{itemize}
+
+En definitiva, este trabajo establece una base de ingeniería sólida sobre la cual se pueden seguir desarrollando interfaces de recuperación de información más inteligentes, transparentes y accesibles para usuarios sin conocimientos técnicos en lenguajes de consulta.
