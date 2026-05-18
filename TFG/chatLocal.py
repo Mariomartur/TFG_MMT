@@ -32,6 +32,7 @@ def extraer_entidad(consulta, historial, modelo='llama3'):
     REGLA 1: NO respondas a la pregunta. Si el usuario pide el director de una película, devuélveme el nombre de la película. Si el usuario pide la película de un actor, devuélveme el nombre del actor.
     REGLA 2: Devuelve SOLO el nombre exacto, sin comillas, sin puntos y sin texto extra.
     REGLA 3: Si no encuentras un nombre propio claro, devuelve "None".
+    REGLA 4: Devuelve siempre el nombre en el idioma que se ha preguntado
 
     Ejemplos:
     Frase: "¿Qué películas dirigió Quentin Tarantino?"

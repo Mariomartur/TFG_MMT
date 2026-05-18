@@ -16,7 +16,7 @@ def evaluar_sistema():
     total = len(dataset)
     print(f"Cargadas {total} preguntas de prueba.\n")
 
-    modelos_a_evaluar = ['llama3', 'mistral', 'gemma2:9b']
+    modelos_a_evaluar = ['llama3', 'llama3.2:1b', 'mistral', 'gemma2:9b', 'gemma2:2b', 'deepseek-r1:8b']
     resultados_modelos = {}
 
     for modelo in modelos_a_evaluar:
@@ -87,7 +87,7 @@ def evaluar_sistema():
         }
 
     print("\n" + "="*50)
-    print("RESULTADOS GLOBALES DE LA EVALUACIÓN (TFG Benchmark)")
+    print("RESULTADOS GLOBALES DE LA EVALUACIÓN")
     print("="*50)
     for mod, res in resultados_modelos.items():
         print(f"Modelo: {mod}")
