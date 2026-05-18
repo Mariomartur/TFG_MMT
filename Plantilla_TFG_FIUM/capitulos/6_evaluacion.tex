@@ -29,22 +29,28 @@ Las pruebas automatizadas arrojaron las siguientes métricas de rendimiento glob
 
 \begin{table}[h]
 \centering
-\begin{tabular}{|l|c|c|}
+\begin{tabular}{|l|c|c|c|c|}
 \hline
-\textbf{Métrica de Evaluación} & \textbf{Aciertos} & \textbf{Precisión (\%)} \\ \hline
-Extracción y Desambiguación de Entidad & 19 / 20 & 95.00\% \\ \hline
-Generación de SPARQL Válido & 19 / 20 & 95.00\% \\ \hline
+\textbf{Modelo} & \textbf{Prec. Entidad} & \textbf{Prec. SPARQL} & \textbf{T/Pregunta} & \textbf{T. Total} \\ \hline
+\textbf{llama3} & 90.16\% & 90.16\% & 3.66s & 223.35s \\ \hline
+\textbf{llama3.2:1b} & 90.16\% & 34.43\% & 94.65s & 5773.87s \\ \hline
+\textbf{mistral} & 88.52\% & 86.89\% & 4.34s & 264.62s \\ \hline
+\textbf{gemma2:9b} & 95.08\% & \textbf{95.08\%} & 5.04s & 307.71s \\ \hline
+\textbf{gemma2:2b} & 90.16\% & 80.33\% & \textbf{3.30s} & \textbf{201.00s} \\ \hline
+\textbf{deepseek-r1:8b} & \textbf{98.36\%} & 93.44\% & 68.49s & 4178.12s \\ \hline
 \end{tabular}
-\caption{Resultados de la evaluación automática del agente tras las optimizaciones del mecanismo de extracción y reflexión.}
-\label{tab:resultados_evaluacion}
+\caption{Comparativa de rendimiento, precisión y latencia entre distintos LLMs locales evaluados.}
+\label{tab:comparativa_modelos}
 \end{table}
 
 \section{Análisis y Discusión de los Resultados}
 
-Los resultados obtenidos validan cuantitativamente la eficacia del diseño basado en la inyección de contexto restrictivo en el \textit{prompt} y el bucle de reflexión. 
+La inclusión de diferentes Modelos de Lenguaje (LLMs) locales ha permitido evaluar no solo la viabilidad cualitativa del sistema, sino también comparar su rendimiento bajo las mismas restricciones del sistema RAG. Los datos de la Tabla \ref{tab:comparativa_modelos} revelan compromisos significativos según la arquitectura y el tamaño de cada modelo:
 
-\textbf{Análisis de Extracción de Entidades (95\%):} El sistema demostró una altísima fiabilidad al identificar las entidades sobre las que operaba la consulta del usuario, rozando la perfección. Tras optimizar el \textit{prompt} con instrucciones estrictas y ejemplos directos, el modelo dejó de intentar "responder" prematuramente a la pregunta y se limitó a extraer el nombre exacto de la película o actor. El único fallo restante (1 de 20) ilustra la dificultad real que aún persiste en casos de gran ambigüedad. Además, el nuevo sistema de \textit{fallback} con la base de datos local y la API REST erradicó por completo los bloqueos por limitación de tasa (Error HTTP 429) de la API de SPARQL original.
+\textbf{1. Rendimiento en Extracción de Entidades:} El sistema demostró una altísima fiabilidad en esta primera fase. La gran mayoría de modelos superaron el 88\% de precisión al identificar el sujeto principal de la consulta en lenguaje natural. Destaca especialmente el modelo \texttt{deepseek-r1:8b}, que alcanzó un porcentaje casi perfecto del 98.36\%, demostrando una capacidad sobresaliente para comprender el contexto conversacional.
 
-\textbf{Análisis de Generación de SPARQL (95\%):} Alcanzar un 95\% de acierto en la traducción directa de texto libre a código SPARQL ejecutable es un hito técnico excepcional. Este salto cualitativo se debe, en gran medida, al refinamiento del mecanismo de reintentos. Al retroalimentar al modelo de lenguaje con la consulta SPARQL exacta que había fallado en el intento anterior junto con el motivo del fallo, el agente demostró una gran capacidad de auto-corrección (como invertir el Sujeto y el Objeto en tiempo real), lo que disparó la precisión general del sistema.
+\textbf{2. Generación de Código SPARQL:} Traducir texto a sintaxis estricta es el mayor desafío técnico. En este aspecto, \texttt{gemma2:9b} se posicionó como el ganador indiscutible con un 95.08\% de acierto, confirmando que los modelos con mayor número de parámetros poseen un razonamiento lógico superior para escribir código sin alucinaciones. Por el contrario, los modelos excesivamente pequeños sufrieron en esta tarea; el caso más extremo es \texttt{llama3.2:1b}, cuyo rendimiento colapsó al 34.43\%, lo que indica que no retiene la capacidad suficiente para dominar la ontología SPARQL.
 
-En conclusión, el sistema superó la barrera de viabilidad, demostrando que la integración de agentes LangChain con Grafos de Conocimiento fuertemente tipados es una solución técnica robusta para crear sistemas de pregunta-respuesta conversacionales, transparentes y libres de alucinaciones factuales.
+\textbf{3. Análisis de Tiempos y Viabilidad:} En un sistema interactivo, la latencia es crítica para la experiencia final del usuario. Aquí sobresalen de manera espectacular \texttt{gemma2:2b} y \texttt{llama3}, resolviendo el flujo completo de pensamiento en aproximadamente 3.30s y 3.66s por pregunta respectivamente. En el lado opuesto, \texttt{deepseek-r1:8b} (68.49s por pregunta) y \texttt{llama3.2:1b} (94.65s, posiblemente penalizado por caer constantemente en los reintentos del bucle de reflexión), resultan inviables para un chat en tiempo real.
+
+En conclusión, la elección del motor LLM requiere un claro compromiso entre latencia y precisión. Para un balance óptimo, \texttt{llama3} (como modelo ligero) y \texttt{gemma2:9b} (si se dispone de hardware para procesarlo rápidamente) representan las opciones más robustas para dotar al Grafo de Conocimiento de una interfaz inteligente y fiable.
