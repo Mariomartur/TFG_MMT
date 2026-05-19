@@ -21,7 +21,7 @@ Given the experimental nature of prompt engineering, an agile and iterative meth
 \begin{itemize}
     \item \textbf{Presentation Layer:} A graphical user interface built with Streamlit that provides a chat-like experience while displaying the internal reasoning of the agent to the user.
     \item \textbf{Logic and Agent Layer:} Powered by LangChain, this layer handles entity extraction, Wikidata disambiguation, and the core SPARQL generation loop.
-    \item \textbf{Data Layer:} An in-memory RDF local graph (\texttt{.ttl}) managed by RDFLib, containing domain-specific cinematic data.
+    \item \textbf{Data Layer:} An in-memory RDF local repository (\texttt{.ttl}) managed by RDFLib, containing domain-specific cinematic data.
 \end{itemize}
 
 \section*{4. Local Knowledge Graph Construction}
@@ -33,7 +33,9 @@ The most innovative aspect of the implementation is the agent's autonomous error
 When the agent generates a SPARQL query, the system attempts to execute it locally via RDFLib. If a syntax error occurs, the execution does not fail catastrophically. Instead, the traceback is caught and fed back to the LLM in a "reflexion prompt", instructing the model to analyze its own mistake and rewrite the query. This loop drastically increases the robustness and reliability of the system.
 
 \section*{6. Evaluation and Results}
-To quantitatively validate the system, an automated evaluation framework was built. A dataset of 20 complex natural language queries was curated, covering various semantic relationships. The system achieved an 80\% accuracy rate in entity extraction and disambiguation. Furthermore, it achieved a 75\% success rate in generating valid, executable SPARQL queries that returned the correct answer. 
+To quantitatively validate the system, an automated evaluation framework was built. A dataset of 61 complex natural language queries was created, covering various semantic relationships and comparing various large language models. The chosen large language model for this project (llama3), achieved a 90.16\% accuracy rate in entity extraction and disambiguation. Furthermore, it also achieved a 90.16\% success rate in generating valid, executable SPARQL queries that returned the correct answer.
+
+On this framework we also evaluated execution time per question, and llama3 demonstrated its ideal performance for a conversational AI by achieving an average execution time of 3.66 seconds per question, which is the lowest among the tested models.
 
 The analysis of the failures revealed that most issues stemmed from idiomatic ambiguities or API rate limits during disambiguation, rather than logical failures by the LLM. The high success rate in query generation proves that heavily constraining the LLM's search space through strict prompt engineering is a highly effective strategy.
 
