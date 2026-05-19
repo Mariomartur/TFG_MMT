@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.3.6)  19 MAY 2026 10:50
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.3.6)  19 MAY 2026 11:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2066,14 +2066,76 @@ bmp)
 
 
 
-]) (preambulos/preliminaresconagradecimientos.tex [2
-
-])
-(preambulos/1_declaracion_originalidad.tex [3
-
+]) (include/portada/portada_bn.tex [2
 
 
 ]
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: xetex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(71.70166pt, 418.25368pt, 107.55254pt)
+* v-part:(T,H,B)=(56.9055pt, 686.7347pt, 101.40665pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=418.25368pt
+* \textheight=686.7347pt
+* \oddsidemargin=-0.56833pt
+* \evensidemargin=35.28255pt
+* \topmargin=-55.23949pt
+* \headheight=18.125pt
+* \headsep=21.75pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=54.06006pt
+* \marginparsep=12.8401pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+Overfull \hbox (17.92543pt too wide) in paragraph at lines 21--27
+| $[]$ 
+ []
+
+
+Overfull \hbox (20.53343pt too wide) in paragraph at lines 32--44
+|  $[]$ 
+ []
+
+File: include/logos-titulaciones/FI-positivo.png Graphic file (type bmp)
+<include/logos-titulaciones/FI-positivo.png>
+File: include/logos-titulaciones/Logotipo_DIIC.png Graphic file (type bmp)
+<include/logos-titulaciones/Logotipo_DIIC.png>
+File: include/logos-universidad/um.png Graphic file (type bmp)
+<include/logos-universidad/um.png>
+
+Overfull \hbox (20.53343pt too wide) in paragraph at lines 49--69
+|  $[]$ 
+ []
+
+[3
+
+]) (preambulos/preliminaresconagradecimientos.tex [4
+
+
+
+] [5
+
+] [6
+
+
+])
+(preambulos/1_declaracion_originalidad.tex
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: xetex
 * paper: a4paper
@@ -2108,44 +2170,52 @@ bmp)
 
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
 ine 45.
- [4
+ [7
 
 
-]) (preambulos/2_resumen.tex)
-(preambulos/3_extended_abstract.tex [5
 
 
-] [6
 
-] [7]) [8] (main.toc)
+
+]) (preambulos/2_resumen.tex
+[8
+
+
+] [9]) (preambulos/3_extended_abstract.tex [10] [11
+
+] [12]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13])
+[14] (main.toc)
 \tf@toc=\write7
 \openout7 = `main.toc'.
 
- [9
+ [15
 
 ] (main.lof)
 \tf@lof=\write8
 \openout8 = `main.lof'.
 
-
-[10
+ [16
 
 ] (main.lot)
 \tf@lot=\write9
 \openout9 = `main.lot'.
 
- [11
+ [17
 
 ] (main.lol)
 \tf@lol=\write10
 \openout10 = `main.lol'.
 
- [12
+ [18
 
-] (capitulos/1_introduccion.tex
+]
+(capitulos/1_introduccion.tex
 chapter 1.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1924) has occurred while \output is active []
 
  [1
 
@@ -2257,12 +2327,12 @@ L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 58094 strings out of 402983
- 1381667 string characters out of 5448483
- 2502363 words of memory out of 5000000
- 85839 multiletter control sequences out of 15000+600000
- 653089 words of font info for 170 fonts, out of 8000000 for 9000
+ 58091 strings out of 402983
+ 1383261 string characters out of 5448483
+ 2503126 words of memory out of 5000000
+ 85838 multiletter control sequences out of 15000+600000
+ 640539 words of font info for 120 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  113i,20n,110p,11354b,1427s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (32 pages).
+Output written on main.pdf (38 pages).
