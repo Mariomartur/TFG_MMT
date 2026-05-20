@@ -1,10 +1,13 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.3.6)  26 APR 2026 12:46
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.3.6)  21 MAY 2026 00:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/Mario/Desktop/Plantilla_TFG_FIUM/include/configuracioninicial.tex
-(c:/Users/Mario/Desktop/Plantilla_TFG_FIUM/include/configuracioninicial.tex
+**c:/Users/Mario/Desktop/TFG_MMT/Plantilla_TFG_FIUM/include/configuracioninicia
+l.tex
+
+(c:/Users/Mario/Desktop/TFG_MMT/Plantilla_TFG_FIUM/include/configuracioninicial
+.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 
@@ -54,6 +57,12 @@ Package scrbook Info: You've used standard option `12pt'.
 (scrbook)             If you'd like to set the option with \KOMAoptions,
 (scrbook)             you'd have to use `fontsize=12pt' there
 (scrbook)             instead of `12pt', too.
+Class scrbook Info: You've used standard option `openany'.
+(scrbook)           This is correct!
+(scrbook)           Internally I'm using `open=any'.
+(scrbook)           If you'd like to set the option with \KOMAoptions,
+(scrbook)           you'd have to use `open=any' there
+(scrbook)           instead of `openany', too.
 Class scrbook Info: File `scrsize12pt.clo' used to setup font sizes on input li
 ne 2713.
 
@@ -1723,8 +1732,8 @@ Type X to quit or <RETURN> to proceed,
 or enter new name. (Default extension: tex)
 
 Enter file name: 
-c:/Users/Mario/Desktop/Plantilla_TFG_FIUM/include/configuracioninicial.tex:263:
- Emergency stop.
+c:/Users/Mario/Desktop/TFG_MMT/Plantilla_TFG_FIUM/include/configuracioninicial.
+tex:263: Emergency stop.
 <read *> 
          
 l.263 ...ut{include/estiloscodigoprogramacion.tex}
@@ -1734,10 +1743,10 @@ l.263 ...ut{include/estiloscodigoprogramacion.tex}
  
 Here is how much of TeX's memory you used:
  54528 strings out of 402983
- 1317046 string characters out of 5448483
- 2093800 words of memory out of 5000000
+ 1317070 string characters out of 5448483
+ 2093834 words of memory out of 5000000
  82491 multiletter control sequences out of 15000+600000
  628960 words of font info for 45 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 108i,2n,107p,11333b,479s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,2n,107p,11341b,479s stack positions out of 10000i,1000n,20000p,200000b,200000s
 No pages of output.

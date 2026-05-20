@@ -16,23 +16,24 @@
 \contentsline {section}{\numberline {3.2}Análisis de Requisitos}{7}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Requisitos Funcionales}{7}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Requisitos No Funcionales}{8}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Casos de Uso}{8}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Diseño y resolución del trabajo realizado}{10}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Arquitectura del Sistema}{10}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Diseño del Agente Autocorrector}{11}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Diseño del Grafo de Conocimiento Local}{12}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Desarrollo e Implementación}{13}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Entorno de Desarrollo y Tecnologías}{13}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Extracción de Datos y Grafo Local}{13}{section.5.2}%
-\contentsline {section}{\numberline {5.3}El Agente Conversacional y el Control del LLM}{13}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Bucle de Reflexión y Autocorrección}{14}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Interfaz Gráfica}{14}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Evaluación y Resultados}{16}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Entorno de Pruebas}{16}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Resultados Obtenidos}{16}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Análisis y Discusión de los Resultados}{17}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Conclusiones y Trabajo Futuro}{18}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Consecución de Objetivos}{18}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Líneas de Trabajo Futuro}{18}{section.7.2}%
-\contentsline {chapter}{\nonumberline Bibliografía}{20}{chapter*.13}%
+\contentsline {section}{\numberline {3.3}Casos de Uso}{9}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Diseño y resolución del trabajo realizado}{11}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Arquitectura del Sistema}{11}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Diseño del Agente Autocorrector}{12}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Diseño del Grafo de Conocimiento Local}{13}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Desarrollo e Implementación}{14}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Entorno de Desarrollo y Tecnologías}{14}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Extracción de Datos y Grafo Local}{14}{section.5.2}%
+\contentsline {section}{\numberline {5.3}El Agente Conversacional y el Control del LLM}{14}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Bucle de Reflexión y Autocorrección}{15}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Interfaz Gráfica}{15}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Evaluación y Resultados}{17}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Entorno de Pruebas}{17}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Resultados Obtenidos}{17}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Análisis y Discusión de los Resultados}{18}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Conclusiones de la Evaluación}{19}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Conclusiones y Trabajo Futuro}{20}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Consecución de Objetivos}{20}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Líneas de Trabajo Futuro}{20}{section.7.2}%
+\contentsline {chapter}{\nonumberline Bibliografía}{22}{chapter*.14}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

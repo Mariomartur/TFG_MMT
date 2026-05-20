@@ -1,10 +1,9 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.3.6)  19 MAY 2026 11:55
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.3.6)  21 MAY 2026 00:15
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/Mario/Desktop/TFG_MMT/Plantilla_TFG_FIUM/main.tex
-(c:/Users/Mario/Desktop/TFG_MMT/Plantilla_TFG_FIUM/main.tex
+**./main.tex
+(main.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (include/configuracioninicial.tex
@@ -2193,132 +2192,97 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15
 
-] (main.lof)
+] [16] (main.lof)
 \tf@lof=\write8
 \openout8 = `main.lof'.
 
- [16
+ [17
 
 ] (main.lot)
 \tf@lot=\write9
 \openout9 = `main.lot'.
 
- [17
+ [18
 
 ] (main.lol)
 \tf@lol=\write10
 \openout10 = `main.lol'.
 
- [18
+ [19
 
 ]
-(capitulos/1_introduccion.tex
+[20
+
+
+] (capitulos/1_introduccion.tex
 chapter 1.
 
 Underfull \vbox (badness 1924) has occurred while \output is active []
 
  [1
 
-
-
 ])
 (capitulos/2_estado_arte.tex [2] [3]
 chapter 2.
-
-Package natbib Warning: Citation `w3c_rdf' on page 4 undefined on input line 19
-.
-
-
-Package natbib Warning: Citation `w3c_sparql' on page 4 undefined on input line
- 22.
-
-
-Package natbib Warning: Citation `vrandecic2014wikidata' on page 4 undefined on
- input line 25.
-
-
-Package natbib Warning: Citation `vaswani2017attention' on page 4 undefined on 
-input line 29.
-
 [4
 
 ]
-
-Package natbib Warning: Citation `lewis2020retrieval' on page 5 undefined on in
-put line 41.
-
-
 Overfull \hbox (7.24762pt too wide) in paragraph at lines 41--42
 []\TU/lmr/m/n/12 La Generación Aumentada por Recuperación (\TU/lmr/m/it/12 Retr
 ieval-Augmented Generation\TU/lmr/m/n/12 , RAG)
  []
 
-[5]
-
-Package natbib Warning: Citation `langchain' on page 6 undefined on input line 
-57.
-
-) (capitulos/3_analisis.tex [6]
+[5]) (capitulos/3_analisis.tex [6]
 chapter 3.
 [7
 
-]
-File: archivos/CasoDeUso.pdf Graphic file (type pdf)
-<use archivos/CasoDeUso.pdf>
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (capitulos/4_diseno.tex [8] [9]
+] [8]
+File: archivos/DiagSec1.pdf Graphic file (type pdf)
+<use archivos/DiagSec1.pdf>
+ [9]
+File: archivos/DiagSec2.pdf Graphic file (type pdf)
+<use archivos/DiagSec2.pdf>
+) (capitulos/4_diseno.tex [10]
 chapter 4.
-[10
+[11
 
-] [11]
+] [12]
 Overfull \hbox (2.24232pt too wide) in paragraph at lines 70--71
 []\TU/lmr/m/n/12 Este grafo local (\TU/lmtt/m/n/12 datos_cine_seguro.ttl\TU/lmr
 /m/n/12 ) actúa como una base de datos \TU/lmr/m/it/12 in-memory\TU/lmr/m/n/12 
 .
  []
 
-) (capitulos/5_implementacion.tex [12]
+) (capitulos/5_implementacion.tex [13]
 chapter 5.
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
-[13
+[14
 
-]) (capitulos/6_evaluacion.tex [14] [15]
+]) (capitulos/6_evaluacion.tex [15] [16]
 chapter 6.
-[16
+[17
 
-]) (capitulos/7_conclusiones.tex [17]
+] [18]) (capitulos/7_conclusiones.tex [19]
 chapter 7.
-[18
+[20
 
-]) (main.bbl [19]
+]) (main.bbl [21]
 chapter without number
 
-Underfull \hbox (badness 1005) in paragraph at lines 28--32
-[]\TU/lmr/m/n/12 AENOR.  norma une 50136:1997., 1997.  URL []$[][][][] [] [] []
- [][][][][][][] [] [][][][] [] [][] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 28--32
-[][][][][][] [] [][][][][][][][][][] [] [][][][][][][][][][][] [] [][][][][][] 
-[] [][][] [] [][][][][][][][][][][][][] [] [][][] [] [][][][][] []
+Underfull \hbox (badness 1259) in paragraph at lines 15--19
+[]\TU/lmr/m/n/12 W3C.  Sparql 1.1 query language, 2013.  URL []$[][][][][] [] [
+] [] [][][] [] [][] [] [][][] [] [][] []
  []
 
 )
-
-Package natbib Warning: There were undefined citations.
-
 
 Package glossaries Warning: No \printglossary or \printglossaries found. 
 (Remove \makeglossaries if you don't want any glossaries.) 
 This document will not have a glossary.
 
-[20
+[22
 
 ] (main.aux)
  ***********
@@ -2327,12 +2291,12 @@ L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 58091 strings out of 402983
- 1383261 string characters out of 5448483
- 2503126 words of memory out of 5000000
- 85838 multiletter control sequences out of 15000+600000
+ 58104 strings out of 402983
+ 1383527 string characters out of 5448483
+ 2503432 words of memory out of 5000000
+ 85851 multiletter control sequences out of 15000+600000
  640539 words of font info for 120 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 113i,20n,110p,11354b,1427s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 113i,20n,110p,11306b,1427s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (38 pages).
+Output written on main.pdf (42 pages).

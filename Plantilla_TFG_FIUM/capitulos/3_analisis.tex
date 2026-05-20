@@ -21,9 +21,10 @@ Por ello, se ha optado por un \textbf{enfoque ágil e iterativo basado en protot
     \item \textbf{Prototipado del Agente:} Desarrollo iterativo del \textit{prompt} principal del LLM para traducir lenguaje natural a SPARQL.
     \item \textbf{Implementación del Bucle de Reflexión:} Adición del mecanismo de autocorrección ante errores de sintaxis en el código generado.
     \item \textbf{Evaluación y Refinamiento:} Pruebas de rendimiento frente al \textit{dataset} de evaluación que derivaron en ajustes continuos en el flujo de ejecución.
+    \item \textbf{Implementación del Frontend:} Desarrollo de un interfaz de usuario para la interacción con el sistema.
 \end{enumerate}
 
-Este enfoque ha permitido pivotar rápidamente cuando ciertas estrategias de \textit{prompting} no lograban la precisión requerida en la generación de SPARQL.
+Este enfoque ha permitido volver a pasos anteriores en caso de que fuera necesario, permitiendo un mayor desarrollo de las estrategias de \textit{prompting} y una mayor integración de los componentes del sistema.
 
 \section{Análisis de Requisitos}
 
@@ -35,10 +36,14 @@ Los requisitos funcionales (RF) describen las interacciones y el comportamiento 
 
 \begin{itemize}
     \item \textbf{RF-01. Interfaz conversacional:} El sistema debe proporcionar una interfaz gráfica que permita al usuario realizar preguntas en lenguaje natural de forma intuitiva, similar a un chat convencional.
-    \item \textbf{RF-02. Extracción y desambiguación de entidades:} El sistema debe ser capaz de identificar la entidad principal en la consulta del usuario (ej. nombre de un actor o película) y desambiguarla contra Wikidata para obtener su identificador único (ej. \texttt{wd:Q25191}).
-    \item \textbf{RF-03. Generación de SPARQL:} El agente LLM debe traducir la pregunta del usuario en una consulta SPARQL sintáctica y semánticamente válida, usando únicamente las propiedades definidas en el diccionario del sistema.
-    \item \textbf{RF-04. Bucle de autocorrección:} Si la consulta SPARQL generada produce un error al ejecutarse en el motor RDF, el agente debe leer el mensaje de error y regenerar la consulta corregida de forma autónoma, sin intervención del usuario.
-    \item \textbf{RF-05. Ejecución y respuesta local:} El sistema debe ejecutar las consultas sobre el Grafo de Conocimiento local (\texttt{datos\_cine\_seguro.ttl}) y presentar la respuesta extraída al usuario en un formato legible.
+    \item \textbf{RF-02. Generación de la base de conocimiento local:} El sistema debe disponer de un módulo para extraer entidades de Wikidata.
+    \item \textbf{RF-03. Extracción y desambiguación de entidades:} El sistema debe ser capaz de identificar la entidad principal en la consulta del usuario (ej. nombre de un actor o película) para obtener su identificador único (ej. \texttt{wd:Q25191}).
+    \item \textbf{RF-04. Generación de SPARQL:} El agente LLM debe traducir la pregunta del usuario en una consulta SPARQL sintáctica y semánticamente válida, usando la entidad extraída y el diccionario de propiedades del sistema.
+    \item \textbf{RF-05. Obtención de resultados:} El sistema debe ser capaz de obtener los resultados de la consulta SPARQL a partir de la base de datos local.
+    \item \textbf{RF-06. Bucle de autocorrección:} Si la consulta SPARQL generada produce un error al ejecutarse en el motor RDF, el agente debe leer el mensaje de error y su propia consulta para intentar corregirla de forma autónoma.
+    \item \textbf{RF-07. Ejecución y respuesta:} El sistema debe presentar la respuesta extraída al usuario en un formato legible.
+    \item \textbf{RF-08. Mantenimiento del contexto:} El sistema debe ser capaz de resolver correferencias, para poder responder a preguntas como "¿Qué otras películas ha protagonizado?" sin necesidad de repetir el nombre del actor.
+    \item \textbf{RF-09. Transparencia y Explicabilidad:} El sistema debe mostrar al usuario el razonamiento interno, la detección de entidades y el código SPARQL generado en tiempo real.
 \end{itemize}
 
 \subsection{Requisitos No Funcionales}
@@ -47,8 +52,10 @@ Los requisitos no funcionales (RNF) definen las restricciones y atributos de cal
 
 \begin{itemize}
     \item \textbf{RNF-01. Precisión y mitigación de alucinaciones:} El sistema debe priorizar la exactitud del código SPARQL generado, limitando estrictamente el alcance de conocimiento del LLM al esquema de la base de datos local para evitar alucinaciones.
-    \item \textbf{RNF-02. Tiempos de respuesta:} El sistema debe mantener tiempos de respuesta aceptables (generalmente inferiores a los 10 segundos), teniendo en cuenta el tiempo requerido para las llamadas a la API del LLM y la desambiguación.
-    \item \textbf{RNF-03. Modularidad:} El código debe estar desacoplado, separando la lógica de la interfaz (\texttt{interfaz.py}), la lógica del agente (\texttt{chatLocal.py}) y la extracción de datos (\texttt{entidades\_cine.py}).
+    \item \textbf{RNF-02. Privacidad y Ejecución Local:} El sistema debe garantizar la total privacidad de las consultas y la independencia de APIs externas de pago o en la nube para funcionar.
+    \item \textbf{RNF-03. Tiempos de respuesta:} El sistema debe mantener tiempos de respuesta aceptables (generalmente inferiores a los 10 segundos), teniendo en cuenta el tiempo requerido para las llamadas a la API del LLM y la desambiguación.
+    \item \textbf{RNF-04. Modularidad:} El código debe estar desacoplado, separando la lógica de la interfaz (Streamlit), la lógica del agente (Ollama) y la extracción de datos (Wikidata).
+    \item \textbf{RNF-05. Escalabilidad:} El sistema debe permitir la ampliación del dominio de conocimiento modificando únicamente el fichero de configuración JSON, sin necesidad de reprogramar la lógica central del agente
 \end{itemize}
 
 \section{Casos de Uso}
@@ -59,9 +66,19 @@ A partir de los requisitos funcionales, se identifican los casos de uso principa
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{archivos/CasoDeUso.pdf}
-    \caption{Diagrama de Casos de Uso}
-    \label{fig:casos_uso}
+    \includegraphics[width=0.9\textwidth]{archivos/DiagSec1.pdf}
+    \caption{Diagrama de Secuencia Principal}
+    \label{fig:diagrama_sec}
 \end{figure}
 
-En este caso de uso central, el Actor (Usuario) interactúa con la interfaz de chat. El sistema, de forma transparente para el usuario, ejecuta sub-casos como la extracción de entidades, la generación de código y la consulta iterativa al grafo local.
+En este caso de uso central, el Actor (Usuario) interactúa con la interfaz de chat. El sistema, de forma transparente para el usuario, ejecuta sub-casos como la extracción de entidades, la generación de código SPARQLy la consulta a la base de datos local.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{archivos/DiagSec2.pdf}
+    \caption{Diagrama de Secuencia con Bucle de Autocorrección}
+    \label{fig:diag_sec_autocorr}
+\end{figure}
+
+
+Esta interacción entre el LLM y el repositorio local osucrre cuando, como se observa en la figura, la base de datos devuelve un error de la consulta SPARQL generada, provocando que el agente LLM intente corregirla de forma autónoma.
