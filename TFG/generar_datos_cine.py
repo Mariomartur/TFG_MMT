@@ -6,43 +6,41 @@ sparql = SPARQLWrapper("https://query.wikidata.org/sparql")
 sparql.addCustomHttpHeader("User-Agent", "MMT_TFG_Bot/1.0 (m.martinezturpin@um.es)")
 sparql.setReturnFormat(JSON)
 
-TAMANO_BLOQUE = 500 
 total_tripletas = 0
 
 CHECKPOINT_FILE = "checkpoint.txt"
 ARCHIVO_DATOS = "datos_cine_seguro.ttl"
 
-offset_actual = 0
+año_actual = 2026
 if os.path.exists(CHECKPOINT_FILE):
     with open(CHECKPOINT_FILE, "r") as f:
         try:
-            offset_actual = int(f.read().strip())
+            año_actual = int(f.read().strip())
         except ValueError:
-            offset_actual = 0
+            año_actual = 2026
 
-print(f"🎬 Iniciando extracción masiva de películas...")
-if offset_actual > 0:
-    print(f"Resumiendo desde el offset guardado: {offset_actual}")
+print(f"🎬 Iniciando extracción masiva de películas por AÑO...")
+if año_actual < 2026:
+    print(f"Resumiendo desde el año guardado: {año_actual}")
 
 with open(ARCHIVO_DATOS, "a", encoding="utf-8") as f:
     
-    while True:
-        print(f"\nDescargando bloque de películas (Offset: {offset_actual})...")
+    while año_actual >= 1950:
+        print(f"\nDescargando películas del año {año_actual}...")
         
         query = f"""
         SELECT ?pelicula ?propiedad ?valor ?peliculaLabel ?valorLabel WHERE {{
             {{
-                SELECT ?pelicula WHERE {{
+                SELECT DISTINCT ?pelicula WHERE {{
                     ?pelicula wdt:P31 wd:Q11424 .
                     ?pelicula wdt:P57 ?director .
                     ?pelicula wdt:P345 ?imdb .
+                    ?pelicula wdt:P577 ?fecha .
 
                     ?pelicula wikibase:sitelinks ?sitelinks .
-                    FILTER(?sitelinks >= 20)
+                    FILTER(?sitelinks >= 10)
+                    FILTER(?fecha >= "{año_actual}-01-01T00:00:00Z"^^xsd:dateTime && ?fecha < "{año_actual+1}-01-01T00:00:00Z"^^xsd:dateTime)
                 }}
-                ORDER BY ?pelicula
-                LIMIT {TAMANO_BLOQUE}
-                OFFSET {offset_actual}
             }}
             VALUES ?propiedad {{ wdt:P57 wdt:P161 wdt:P136 wdt:P577 wdt:P162 wdt:P345 }}
             ?pelicula ?propiedad ?valor .
@@ -66,13 +64,12 @@ with open(ARCHIVO_DATOS, "a", encoding="utf-8") as f:
                 if intentos == max_intentos:
                     print("Demasiados errores seguidos. Deteniendo el script de forma segura. Vuelve a ejecutarlo más tarde.")
                     exit(1)
-                espera = 10 * intentos
-                print(f"Esperando {espera} segundos antes de reintentar el mismo bloque...")
+                espera = 65
+                print(f"Esperando {espera} segundos por el límite de Wikidata antes de reintentar...")
                 time.sleep(espera)
         
         if len(resultados) == 0:
-            print("\n¡Extracción completada! No quedan más películas en Wikidata.")
-            break
+            print(f"No se encontraron películas famosas para el año {año_actual}.")
             
         tripletas_escritas = 0
         
@@ -104,10 +101,11 @@ with open(ARCHIVO_DATOS, "a", encoding="utf-8") as f:
         total_tripletas += tripletas_escritas
         print(f"  -> Se guardaron {tripletas_escritas} tripletas. Total en esta sesión: {total_tripletas}")
         
-        offset_actual += TAMANO_BLOQUE
+        año_actual -= 1
         with open(CHECKPOINT_FILE, "w") as cp:
-            cp.write(str(offset_actual))
+            cp.write(str(año_actual))
             
-        time.sleep(1)
+        print("⏳ Esperando 65 segundos para respetar el límite de Wikidata (1 req/min)...")
+        time.sleep(65)
 
 print("\n✅ Proceso terminado. Sube el archivo 'datos_cine_seguro.ttl' a Blazegraph.")

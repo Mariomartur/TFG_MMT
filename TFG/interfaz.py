@@ -2,7 +2,7 @@ import streamlit as st
 import time
 from chatLocal import procesar_consulta
 
-# Configuración básica de la página
+
 st.set_page_config(page_title="MMT Chat", page_icon="🎬", layout="centered")
 
 css = """
@@ -39,16 +39,15 @@ html, body, [class*="css"]  {
     max-width: 900px !important;
 }
 
-/* Headers styling */
+
 h1 {
     text-align: center;
-    background: linear-gradient(to right, #60a5fa, var(--primary-color), #f472b6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 600 !important;
+    color: var(--text-color) !important;
+    font-weight: 700 !important;
     font-size: 3.5rem !important;
     margin-bottom: 0 !important;
     padding-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 div[data-testid="stCaptionContainer"] {
@@ -74,11 +73,12 @@ div[data-testid="stChatInput"] textarea {
 /* Chat Bubbles */
 .stChatMessage {
     background: var(--secondary-background-color) !important;
-    border: 1px solid var(--background-color) !important;
+    border: 1px solid rgba(128, 128, 128, 0.4) !important;
     border-radius: 15px;
     padding: 10px 15px;
     margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(5px);
     animation: fadeIn 0.4s ease-out;
 }
 
@@ -96,7 +96,6 @@ header[data-testid="stHeader"] {
 st.markdown(css, unsafe_allow_html=True)
 
 st.title("MMT Chat")
-st.caption("Trabajo Fin de Grado — Mario Martínez Turpín")
 
 
 if "mensajes" not in st.session_state:
@@ -108,7 +107,7 @@ for mensaje in st.session_state.mensajes:
         st.markdown(mensaje["contenido"])
 
 
-if pregunta := st.chat_input("Ej: ¿Quién protagonizó El Club de la Lucha?"):
+if pregunta := st.chat_input("Ej: ¿Quién dirigió Harry Potter y la piedra filosofal?"):
     
     with st.chat_message("user"):
         st.markdown(pregunta)
@@ -128,7 +127,6 @@ if pregunta := st.chat_input("Ej: ¿Quién protagonizó El Club de la Lucha?"):
             
             try:
                 first_chunk = next(generador)
-                # Contraer el panel de estado una vez resuelto si no es error
                 tiempo_t = time.time() - start_time
                 if not first_chunk.startswith("No he ") and not first_chunk.startswith("❌") and "La consulta se generó" not in first_chunk:
                     status.update(label=f"✅ Consulta resuelta en {tiempo_t:.2f}s", state="complete", expanded=False)
