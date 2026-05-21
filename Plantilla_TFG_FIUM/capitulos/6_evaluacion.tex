@@ -55,6 +55,36 @@ La inclusión de diferentes Modelos de Lenguaje (LLMs) locales ha permitido eval
 
 En el lado opuesto, \texttt{deepseek-r1:8b} (68.49s por pregunta) y \texttt{llama3.2:1b} (94.65s), resultan completamente inviables para un chat en tiempo real. Es importante destacar un fenómeno particular: el altísimo tiempo registrado por \texttt{llama3.2:1b} no se debe a que la inferencia del modelo sea lenta en sí misma (de hecho, es muy ligero), sino a que su baja precisión inicial provocaba que el sistema activara constantemente el ``Bucle de Reflexión''. Al generar código SPARQL erróneo con frecuencia, el sistema de corrección interceptaba el error de ejecución y obligaba al modelo a reescribir la consulta de forma repetida. Al fallar recurrentemente en corregirse a sí mismo, agotaba los intentos máximos permitidos, lo que disparó exponencialmente el tiempo total de ejecución y la media por pregunta.
 
+\section{Estudio de Ablación del Bucle de Reflexión}
+
+Para comprobar la verdadera eficacia de la arquitectura iterativa diseñada (bucle de autocorrección), se ha llevado a cabo una evaluación para medir su impacto aislado. Para ello, se evaluaron dos métricas principales:
+
+\begin{itemize}
+    \item \textbf{Precisión Zero-Shot:} Porcentaje de consultas SPARQL generadas correctamente al primer intento, sin retroalimentación de la base de datos.
+    \item \textbf{Precisión con Reflexión (Multi-Turn):} Porcentaje de acierto final permitiendo al agente iterar y corregir sus propios errores de sintaxis o semántica (hasta un máximo de 3 intentos).
+\end{itemize}
+
+Los resultados obtenidos al comparar un modelo de lenguaje de gran capacidad (\textit{Llama 3}, de 8B parámetros) frente a un modelo ligero y eficiente (\textit{Gemma 2}, de 2B parámetros) se muestran en el Cuadro~\ref{tab:ablacion}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        \textbf{Modelo} & \textbf{Prec. Entidad} & \textbf{Prec. Zero-Shot} & \textbf{Prec. Reflexión} & \textbf{Mejora Reflexión} \\ \hline
+        Llama 3 (8B)    & 90.16\%                & 90.16\%                  & 90.16\%                  & 0.00\%                    \\ \hline
+        Gemma 2 (2B)    & 90.16\%                & 80.33\%                  & 90.16\%                  & 9.84\%                   \\ \hline
+    \end{tabular}
+    \vspace{0.2cm}
+    \caption{Resultados del Estudio de Ablación sobre la precisión de generación SPARQL.}
+    \label{tab:ablacion}
+\end{table}
+
+Como se observa en los resultados, el modelo de mayor tamaño (Llama 3) posee una capacidad de razonamiento \textit{Zero-Shot} lo suficientemente robusta como para generar consultas SPARQL correctas desde el primer intento (en los casos donde la entidad fue extraída con éxito). En consecuencia, el mecanismo de reflexión no llega a activarse.
+
+Sin embargo, el verdadero impacto de la arquitectura iterativa es evidente al analizar el modelo ligero (Gemma 2 2B). Este modelo presenta inicialmente una tasa de error mayor debido a fallos de sintaxis en su primer intento. Gracias al mecanismo de autocorrección desarrollado, el agente es capaz de leer el \textit{traceback} de la base de datos y enmendar estos errores, logrando igualar la precisión final del modelo superior. 
+
+Esto demuestra empíricamente que la arquitectura iterativa compensa las limitaciones de los modelos más pequeños, abriendo la puerta al despliegue del sistema conversacional en infraestructuras de bajos recursos (Edge AI) manteniendo una alta fiabilidad.
+
 \section{Conclusiones de la Evaluación}
 
 En conclusión, la elección del motor LLM para un sistema de estas características requiere un claro y delicado compromiso entre latencia y precisión. Para un balance óptimo en un entorno de producción local, \texttt{llama3} (como modelo ligero, rápido y altamente preciso) y \texttt{gemma2:9b} (si se dispone de hardware dedicado capaz de procesarlo rápidamente debido a su mayor tamaño) representan las opciones más robustas. Ambos logran dotar al Grafo de Conocimiento de una interfaz verdaderamente inteligente y fiable, ocultando por completo la complejidad técnica subyacente de la Web Semántica al usuario final.

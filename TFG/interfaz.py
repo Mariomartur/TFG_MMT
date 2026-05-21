@@ -13,9 +13,9 @@ html, body, [class*="css"]  {
     font-family: 'Outfit', sans-serif !important;
 }
 
-/* Animated Gradient Background */
+/* Animated Gradient Background adapting to Streamlit Theme */
 .stApp {
-    background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #1e1b4b);
+    background: linear-gradient(-45deg, var(--background-color), var(--secondary-background-color), var(--primary-color), var(--secondary-background-color));
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
 }
@@ -28,22 +28,21 @@ html, body, [class*="css"]  {
 
 /* Glassmorphism Main Container */
 .main .block-container {
-    background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: var(--background-color);
+    opacity: 0.95;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--secondary-background-color);
     padding: 3rem !important;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
     max-width: 900px !important;
 }
 
 /* Headers styling */
 h1 {
     text-align: center;
-    background: linear-gradient(to right, #60a5fa, #c084fc, #f472b6);
+    background: linear-gradient(to right, #60a5fa, var(--primary-color), #f472b6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 600 !important;
@@ -54,32 +53,32 @@ h1 {
 
 div[data-testid="stCaptionContainer"] {
     text-align: center;
-    color: #94a3b8 !important;
+    color: var(--text-color) !important;
+    opacity: 0.7;
     font-size: 1.2rem !important;
     margin-bottom: 2rem !important;
 }
 
 /* Chat Input Glassmorphism */
 div[data-testid="stChatInput"] {
-    background: rgba(30, 41, 59, 0.6) !important;
-    backdrop-filter: blur(12px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: var(--background-color) !important;
+    border: 1px solid var(--secondary-background-color) !important;
     border-radius: 15px !important;
     padding: 5px !important;
 }
 
 div[data-testid="stChatInput"] textarea {
-    color: white !important;
+    color: var(--text-color) !important;
 }
 
 /* Chat Bubbles */
 .stChatMessage {
-    background: rgba(30, 41, 59, 0.4) !important;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    background: var(--secondary-background-color) !important;
+    border: 1px solid var(--background-color) !important;
     border-radius: 15px;
     padding: 10px 15px;
     margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     animation: fadeIn 0.4s ease-out;
 }
 
@@ -92,7 +91,6 @@ div[data-testid="stChatInput"] textarea {
 header[data-testid="stHeader"] {
     background: transparent !important;
 }
-
 </style>
 """
 st.markdown(css, unsafe_allow_html=True)

@@ -11,28 +11,95 @@
 
 En este capítulo se expone la arquitectura técnica del sistema, el diseño del Grafo de Conocimiento y el modelado del comportamiento del agente inteligente responsable de traducir el lenguaje natural a consultas SPARQL.
 
+\section{Aplicación de la Metodología}
+
+Tal como se explicó en el apartado anterior, la metodología seguida combina un enfoque iterativo con la creación de prototipos y la validación continua mediante experimentación de \textit{prompts} y modelos. Cada uno de los pasos descritos —Exploración y Extracción de Datos, Prototipado del Agente, Implementación del Bucle de Reflexión, Evaluación y Refinamiento, e Implementación del Frontend— se ha orientado a cubrir las necesidades clave identificadas durante el análisis. A continuación, se muestra cómo cada aspecto metodológico responde a esas necesidades concretas:
+
+\begin{enumerate}
+    \item \textbf{Gestión estructurada del conocimiento y prevención de alucinaciones}
+    \begin{itemize}
+        \item \textbf{Análisis de Requisitos:} Se determinó la necesidad de disponer de una base de conocimiento estructurada y acotada para evitar que el LLM inventara datos (alucinaciones).
+        \item \textbf{Prototipo inicial:} Se realizaron consultas directas a la API de Wikidata para validar la viabilidad de la extracción de entidades y el modelado de la información.
+        \item \textbf{Diseño del Sistema:} Se optó por la creación de un Grafo de Conocimiento local (archivo \texttt{.ttl}) gestionado con \textit{RDFLib} para garantizar consistencia semántica y tiempos de respuesta rápidos.
+        \item \textbf{Desarrollo e Implementación:} Se implementó un esquema estricto mediante un diccionario de propiedades, limitando el espacio de búsqueda del modelo de lenguaje únicamente a la ontología definida.
+    \end{itemize}
+
+    \item \textbf{Precisión y resiliencia ante errores de sintaxis}
+    \begin{itemize}
+        \item \textbf{Análisis de Requisitos:} Se identificó la inestabilidad inherente de los LLMs a la hora de generar código estricto, como es el caso del lenguaje de consultas SPARQL.
+        \item \textbf{Diseño del Sistema:} Se diseñó un flujo de control basado en un modelo de agente iterativo, priorizando la capacidad de reflexión sobre los fallos.
+        \item \textbf{Desarrollo e Implementación:} Se orquestó mediante \textit{LangChain} un Bucle de Autocorrección: si la base de datos RDF devuelve un error, el sistema no colapsa; en su lugar, captura el \textit{traceback} y solicita al agente que corrija su propia consulta de forma autónoma.
+        \item \textbf{Pruebas y Validación:} Se evaluó el rendimiento del agente frente a un \textit{dataset} validado, logrando elevar significativamente el porcentaje de acierto respecto al enfoque de intento único (\textit{zero-shot}).
+    \end{itemize}
+
+    \item \textbf{Privacidad e independencia de la nube (Ejecución Local)}
+    \begin{itemize}
+        \item \textbf{Análisis de Requisitos:} Se definió la importancia de mantener la privacidad de las consultas y no depender económicamente de APIs de pago externas (como OpenAI).
+        \item \textbf{Diseño del Sistema:} Se decidió utilizar \textit{Ollama} como motor de inferencia principal, permitiendo ejecutar modelos de última generación (como Llama 3) de manera 100\% local.
+        \item \textbf{Desarrollo e Implementación:} A excepción de la desambiguación inicial de entidades en Wikidata, el núcleo del procesamiento (traducción de lenguaje natural a SPARQL) ocurre de forma aislada en la máquina del usuario.
+    \end{itemize}
+
+    \item \textbf{Transparencia y Explicabilidad}
+    \begin{itemize}
+        \item \textbf{Análisis de Requisitos:} Se reconoció la necesidad de que el usuario no viera al sistema como una "caja negra", sino que pudiera comprender cómo se ha obtenido una respuesta.
+        \item \textbf{Diseño del Sistema:} Se planificó la incorporación de características de Inteligencia Artificial Explicable (XAI) directamente en la interfaz.
+        \item \textbf{Desarrollo e Implementación:} Se configuró el sistema para exponer en tiempo real los pasos del agente: desde la identificación de la entidad principal, pasando por los intentos de generación de código SPARQL, hasta la ejecución contra el repositorio local.
+    \end{itemize}
+
+    \item \textbf{Experiencia de usuario conversacional}
+    \begin{itemize}
+        \item \textbf{Análisis de Requisitos:} Desde el inicio se priorizó la usabilidad, buscando que usuarios sin conocimientos técnicos sobre Grafos de Conocimiento pudieran interactuar de manera fluida.
+        \item \textbf{Diseño del Sistema:} Se seleccionó \textit{Streamlit} como \textit{framework} para el \textit{frontend}, dada su agilidad para prototipar interfaces de datos en Python.
+        \item \textbf{Pruebas y Validación:} Se refinó la interfaz de chat, ajustando el historial de mensajes y la resolución de correferencias para permitir conversaciones naturales (ej. preguntar "Quién la dirigió" justo después de mencionar una película).
+    \end{itemize}
+
+    \item \textbf{Visión de futuro, modularidad y extensibilidad}
+    \begin{itemize}
+        \item \textbf{Análisis de Requisitos:} Se previó la necesidad de ampliar el dominio del chatbot a otros campos más allá del cine o evaluar el rendimiento con modelos futuros.
+        \item \textbf{Diseño del Sistema:} Se adoptó una arquitectura por capas altamente desacoplada (Presentación, Lógica del Agente y Capa de Datos).
+        \item \textbf{Desarrollo e Implementación:} Al abstraer la conexión con el LLM mediante \textit{LangChain} y los datos en ficheros JSON de configuración, se aseguró que el sistema pueda integrar nuevos modelos, ontologías o bases de datos orientadas a grafos sin requerir modificaciones profundas en el núcleo de la aplicación.
+    \end{itemize}
+\end{enumerate}
+
 \section{Arquitectura del Sistema}
 
 El sistema ha sido diseñado siguiendo un modelo de arquitectura por capas, garantizando la separación de responsabilidades y facilitando la escalabilidad del proyecto. Los tres bloques principales son:
 
 \begin{enumerate}
-    \item \textbf{Capa de Presentación (Frontend):} Implementada con \textit{Streamlit}, actúa como el cliente de usuario, proveyendo la interfaz de chat interactiva.
-    \item \textbf{Capa de Lógica de Negocio y Agente Inteligente:} Es el núcleo del sistema, orquestado mediante \textit{LangChain} en Python. Contiene la lógica de extracción de entidades, la integración con la API del LLM, el bucle de reflexión y la construcción del \textit{prompt} del sistema.
-    \item \textbf{Capa de Datos y Grafo de Conocimiento:} Comprende el almacenamiento persistente RDF local (archivo \texttt{.ttl}) gestionado por la librería \textit{RDFLib}, así como las conexiones puntuales a la API de Wikidata para procesos de desambiguación.
+    \item \textbf{Capa de Interfaz de Usuario:} Implementada con \textit{Streamlit}, actúa como el cliente de usuario, proveyendo la interfaz de chat interactiva.
+    \item \textbf{Capa de Lógica de Negocio:} Es el núcleo del sistema, orquestado mediante \textit{LangChain} en Python. Contiene la lógica de extracción de entidades, la integración con la API del LLM, el bucle de reflexión y la construcción de los \textit{prompts} del sistema.
+    \item \textbf{Capa de Datos:} Comprende el almacenamiento persistente RDF local (archivo \texttt{.ttl}) gestionado por la librería \textit{RDFLib}, así como las conexiones puntuales a la API de Wikidata para procesos de desambiguación.
 \end{enumerate}
-
-% ====================================================================
-% NOTA PARA MARIO: 
-% Aquí deberías insertar un Diagrama de Arquitectura de Software.
-% ====================================================================
 
 \begin{figure}[h]
     \centering
-    % \includegraphics[width=0.8\textwidth]{ruta/a/tu/diagrama_arquitectura.png}
-    \vspace{6cm} % Espacio temporal dejado en blanco
-    \caption{[AÑADIR DIAGRAMA DE ARQUITECTURA AQUÍ]}
+    \includegraphics[width=0.5\textwidth]{archivos/DiagCapas.pdf}
+    \caption{Arquitectura del sistema}
     \label{fig:arquitectura}
 \end{figure}
+
+\section{Desarrollo de implementación}
+A continuación, se detallan todas las decisiones de diseño e implementación que se
+han tomado durante el desarrollo del proyecto, siguiendo la arquitectura anteriormente
+descrita. Asimismo, se menciona como cada módulo se integra y comunica con los
+demás.
+
+\subsection{Interfaz de Usuario}
+El frontend de la aplicación ha sido desarrollado utilizando \textit{Streamlit}, una biblioteca de Python que actúa como framework web. Este software destaca por su equilibrio entre sencillez y potencia, resultando adecuado para este tipo de proyectos. 
+En este proyecto se ha centrado la mayor parte del esfuerzo en la lógica
+negocio, por lo que un software capaz de crear interfaces de usuario de forma rápida y sencilla ha sido clave. 
+Además, su arquitectura permite una integración sencilla con otras librerías de Python, como es el caso de \textit{LangChain} y \textit{Ollama}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{archivos/Interfaz_usuario.png}
+    \caption{Interfaz de usuario}
+    \label{fig:interfaz}
+\end{figure}
+
+\subsection{Capa de Lógica de Negocio}
+
+\subsection{Capa de Datos}
 
 \section{Diseño del Agente Autocorrector}
 

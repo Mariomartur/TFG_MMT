@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.3.6)  21 MAY 2026 00:15
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.3.6)  21 MAY 2026 16:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2186,13 +2186,13 @@ ine 45.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13])
-[14] (main.toc)
+[14] (main.toc [15
+
+])
 \tf@toc=\write7
 \openout7 = `main.toc'.
 
- [15
-
-] [16] (main.lof)
+ [16] (main.lof)
 \tf@lof=\write8
 \openout8 = `main.lof'.
 
@@ -2247,56 +2247,20 @@ chapter 4.
 [11
 
 ] [12]
-Overfull \hbox (2.24232pt too wide) in paragraph at lines 70--71
-[]\TU/lmr/m/n/12 Este grafo local (\TU/lmtt/m/n/12 datos_cine_seguro.ttl\TU/lmr
-/m/n/12 ) actúa como una base de datos \TU/lmr/m/it/12 in-memory\TU/lmr/m/n/12 
-.
- []
+File: archivos/DiagCapas.pdf Graphic file (type pdf)
+<use archivos/DiagCapas.pdf>
 
-) (capitulos/5_implementacion.tex [13]
-chapter 5.
-(C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2025/11/14 1.11b listings language file
-)
-[14
 
-]) (capitulos/6_evaluacion.tex [15] [16]
-chapter 6.
-[17
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-] [18]) (capitulos/7_conclusiones.tex [19]
-chapter 7.
-[20
+[13]
 
-]) (main.bbl [21]
-chapter without number
+LaTeX Warning: File `archivos/Interfaz_usuario.png' not found on input line 95.
 
-Underfull \hbox (badness 1259) in paragraph at lines 15--19
-[]\TU/lmr/m/n/12 W3C.  Sparql 1.1 query language, 2013.  URL []$[][][][][] [] [
-] [] [][][] [] [][] [] [][][] [] [][] []
- []
 
-)
-
-Package glossaries Warning: No \printglossary or \printglossaries found. 
-(Remove \makeglossaries if you don't want any glossaries.) 
-This document will not have a glossary.
-
-[22
-
-] (main.aux)
- ***********
-LaTeX2e <2025-11-01>
-L3 programming layer <2020/03/25>
- ***********
- ) 
-Here is how much of TeX's memory you used:
- 58104 strings out of 402983
- 1383527 string characters out of 5448483
- 2503432 words of memory out of 5000000
- 85851 multiletter control sequences out of 15000+600000
- 640539 words of font info for 120 fonts, out of 8000000 for 9000
- 1348 hyphenation exceptions out of 8191
- 113i,20n,110p,11306b,1427s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-Output written on main.pdf (42 pages).
+! Unable to load picture or PDF file 'archivos/Interfaz_usuario.png'.
+<to be read again> 
+                   }
+l.95 ...\textwidth]{archivos/Interfaz_usuario.png}
+                                                  
+? 
