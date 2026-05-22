@@ -68,7 +68,7 @@ El sistema ha sido diseñado siguiendo un modelo de arquitectura por capas, gara
 \begin{enumerate}
     \item \textbf{Capa de Interfaz de Usuario:} Implementada con \textit{Streamlit}, actúa como el cliente de usuario, proveyendo la interfaz de chat interactiva.
     \item \textbf{Capa de Lógica de Negocio:} Es el núcleo del sistema, implementado en Python con \textit{Ollama} como motor de inferencia. Contiene la lógica de extracción de entidades, la integración con el LLM local, el bucle de reflexión y la construcción de los \textit{prompts} del sistema.
-    \item \textbf{Capa de Datos:} Comprende el almacenamiento persistente RDF en un archivo \texttt{.ttl} gestionado por \textit{Blazegraph} como motor SPARQL local, accedido mediante la librería \textit{SPARQLWrapper}.
+    \item \textbf{Capa de Datos:} Comprende el almacenamiento persistente RDF en un archivo \texttt{.nt} gestionado por \textit{Blazegraph} como motor SPARQL local, accedido mediante la librería \textit{SPARQLWrapper}.
 \end{enumerate}
 
 \begin{figure}[h]
