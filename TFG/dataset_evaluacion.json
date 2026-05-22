@@ -3,366 +3,978 @@
         "id": 1,
         "pregunta": "¿Qué películas dirigió Christopher Nolan?",
         "entidad_esperada": "Christopher Nolan",
-        "propiedad_esperada": "wdt:P57"
+        "propiedad_esperada": "wdt:P57",
+        "respuesta_esperada_contiene": [
+            "Inception",
+            "Interstellar",
+            "Tenet",
+            "Dunkirk"
+        ]
     },
     {
         "id": 2,
         "pregunta": "¿En qué año salió Matrix?",
         "entidad_esperada": "Matrix",
-        "propiedad_esperada": "wdt:P577"
+        "propiedad_esperada": "wdt:P577",
+        "respuesta_esperada_contiene": [
+            "1999"
+        ]
     },
     {
         "id": 3,
         "pregunta": "Dime películas protagonizadas por Brad Pitt",
         "entidad_esperada": "Brad Pitt",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Fight Club",
+            "Se7en",
+            "Troy",
+            "Inglourious",
+            "Once Upon"
+        ]
     },
     {
         "id": 4,
         "pregunta": "¿Qué género es El Padrino?",
         "entidad_esperada": "El Padrino",
-        "propiedad_esperada": "wdt:P136"
+        "propiedad_esperada": "wdt:P136",
+        "respuesta_esperada_contiene": [
+            "crimen",
+            "drama",
+            "thriller"
+        ]
     },
     {
         "id": 5,
         "pregunta": "¿Cuál es el IMDb ID de Inception?",
         "entidad_esperada": "Inception",
-        "propiedad_esperada": "wdt:P345"
+        "propiedad_esperada": "wdt:P345",
+        "respuesta_esperada_contiene": [
+            "tt1375666"
+        ]
     },
     {
         "id": 6,
         "pregunta": "¿Quién produjo la película Avatar?",
         "entidad_esperada": "Avatar",
-        "propiedad_esperada": "wdt:P162"
+        "propiedad_esperada": "wdt:P162",
+        "respuesta_esperada_contiene": [
+            "James Cameron",
+            "Jon Landau"
+        ]
     },
     {
         "id": 7,
         "pregunta": "¿Quien actua en Origen?",
         "entidad_esperada": "Origen",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Leonardo DiCaprio",
+            "Joseph Gordon-Levitt",
+            "Ellen Page",
+            "Tom Hardy"
+        ]
     },
     {
         "id": 8,
         "pregunta": "dime el año de publicacion de Interstellar",
         "entidad_esperada": "Interstellar",
-        "propiedad_esperada": "wdt:P577"
+        "propiedad_esperada": "wdt:P577",
+        "respuesta_esperada_contiene": [
+            "2014"
+        ]
     },
     {
         "id": 9,
         "pregunta": "¿Quién es el director de Star Wars?",
         "entidad_esperada": "Star Wars",
-        "propiedad_esperada": "wdt:P57"
+        "propiedad_esperada": "wdt:P57",
+        "respuesta_esperada_contiene": [
+            "George Lucas"
+        ]
     },
     {
         "id": 10,
         "pregunta": "quiero saber peliculas de Leonardo DiCaprio",
         "entidad_esperada": "Leonardo DiCaprio",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Titanic",
+            "Inception",
+            "The Revenant",
+            "Departed"
+        ]
     },
     {
         "id": 11,
         "pregunta": "¿Cuándo se estrenó El Señor de los Anillos: La Comunidad del Anillo?",
         "entidad_esperada": "El Señor de los Anillos: La Comunidad del Anillo",
-        "propiedad_esperada": "wdt:P577"
+        "propiedad_esperada": "wdt:P577",
+        "respuesta_esperada_contiene": [
+            "2001"
+        ]
     },
     {
         "id": 12,
         "pregunta": "Dime el género de la película Titanic",
         "entidad_esperada": "Titanic",
-        "propiedad_esperada": "wdt:P136"
+        "propiedad_esperada": "wdt:P136",
+        "respuesta_esperada_contiene": [
+            "drama",
+            "romance"
+        ]
     },
     {
         "id": 13,
         "pregunta": "¿Quién dirigió Pulp Fiction?",
         "entidad_esperada": "Pulp Fiction",
-        "propiedad_esperada": "wdt:P57"
+        "propiedad_esperada": "wdt:P57",
+        "respuesta_esperada_contiene": [
+            "Quentin Tarantino",
+            "Tarantino"
+        ]
     },
     {
         "id": 14,
         "pregunta": "Actores que aparecen en Forrest Gump",
         "entidad_esperada": "Forrest Gump",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Tom Hanks",
+            "Robin Wright",
+            "Gary Sinise"
+        ]
     },
     {
         "id": 15,
         "pregunta": "¿A qué género pertenece El Caballero Oscuro?",
         "entidad_esperada": "El Caballero Oscuro",
-        "propiedad_esperada": "wdt:P136"
+        "propiedad_esperada": "wdt:P136",
+        "respuesta_esperada_contiene": [
+            "acción",
+            "crimen",
+            "thriller"
+        ]
     },
     {
         "id": 16,
         "pregunta": "Año de lanzamiento de Jurassic Park",
         "entidad_esperada": "Jurassic Park",
-        "propiedad_esperada": "wdt:P577"
+        "propiedad_esperada": "wdt:P577",
+        "respuesta_esperada_contiene": [
+            "1993"
+        ]
     },
     {
         "id": 17,
         "pregunta": "¿Quién es el director de El Resplandor?",
         "entidad_esperada": "El Resplandor",
-        "propiedad_esperada": "wdt:P57"
+        "propiedad_esperada": "wdt:P57",
+        "respuesta_esperada_contiene": [
+            "Stanley Kubrick",
+            "Kubrick"
+        ]
     },
     {
         "id": 18,
         "pregunta": "Dime películas de Tom Hanks",
         "entidad_esperada": "Tom Hanks",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Forrest Gump",
+            "Cast Away",
+            "Philadelphia",
+            "Saving Private Ryan"
+        ]
     },
     {
         "id": 19,
         "pregunta": "Dame el IMDb de The Avengers",
         "entidad_esperada": "The Avengers",
-        "propiedad_esperada": "wdt:P345"
+        "propiedad_esperada": "wdt:P345",
+        "respuesta_esperada_contiene": [
+            "tt0848228"
+        ]
     },
     {
         "id": 20,
         "pregunta": "¿Quien produjo The Terminator?",
         "entidad_esperada": "The Terminator",
-        "propiedad_esperada": "wdt:P162"
+        "propiedad_esperada": "wdt:P162",
+        "respuesta_esperada_contiene": [
+            "Gale Anne Hurd"
+        ]
     },
     {
         "id": 21,
         "pregunta": "¿Quién es el director de Alien?",
         "entidad_esperada": "Alien",
-        "propiedad_esperada": "wdt:P57"
+        "propiedad_esperada": "wdt:P57",
+        "respuesta_esperada_contiene": [
+            "Ridley Scott",
+            "Scott"
+        ]
     },
     {
         "id": 22,
         "pregunta": "dime el director de la película Gladiator",
         "entidad_esperada": "Gladiator",
-        "propiedad_esperada": "wdt:P57"
+        "propiedad_esperada": "wdt:P57",
+        "respuesta_esperada_contiene": [
+            "Ridley Scott",
+            "Scott"
+        ]
     },
     {
         "id": 23,
         "pregunta": "¿qué peliculas dirigió Steven Spielberg?",
         "entidad_esperada": "Steven Spielberg",
-        "propiedad_esperada": "wdt:P57"
+        "propiedad_esperada": "wdt:P57",
+        "respuesta_esperada_contiene": [
+            "Jurassic Park",
+            "Schindler",
+            "E.T.",
+            "Jaws"
+        ]
     },
     {
         "id": 24,
         "pregunta": "Peliculas de Martin Scorsese",
         "entidad_esperada": "Martin Scorsese",
-        "propiedad_esperada": "wdt:P57"
+        "propiedad_esperada": "wdt:P57",
+        "respuesta_esperada_contiene": [
+            "Goodfellas",
+            "Departed",
+            "Taxi Driver",
+            "Raging Bull"
+        ]
     },
     {
         "id": 25,
         "pregunta": "quien es el creador de la pelicula Oppenheimer",
         "entidad_esperada": "Oppenheimer",
-        "propiedad_esperada": "wdt:P57"
+        "propiedad_esperada": "wdt:P57",
+        "respuesta_esperada_contiene": [
+            "Christopher Nolan",
+            "Nolan"
+        ]
     },
     {
         "id": 26,
         "pregunta": "director de el Padrino 2",
         "entidad_esperada": "el Padrino 2",
-        "propiedad_esperada": "wdt:P57"
+        "propiedad_esperada": "wdt:P57",
+        "respuesta_esperada_contiene": [
+            "Francis Ford Coppola",
+            "Coppola"
+        ]
     },
     {
         "id": 27,
         "pregunta": "¿quién ha dirigido Dune?",
         "entidad_esperada": "Dune",
-        "propiedad_esperada": "wdt:P57"
+        "propiedad_esperada": "wdt:P57",
+        "respuesta_esperada_contiene": [
+            "Denis Villeneuve",
+            "Villeneuve"
+        ]
     },
     {
         "id": 28,
         "pregunta": "¿De qué año es la película Tiburón?",
         "entidad_esperada": "Tiburón",
-        "propiedad_esperada": "wdt:P577"
+        "propiedad_esperada": "wdt:P577",
+        "respuesta_esperada_contiene": [
+            "1975"
+        ]
     },
     {
         "id": 29,
         "pregunta": "cuando salio la pelicula It",
         "entidad_esperada": "It",
-        "propiedad_esperada": "wdt:P577"
+        "propiedad_esperada": "wdt:P577",
+        "respuesta_esperada_contiene": [
+            "2017",
+            "1990"
+        ]
     },
     {
         "id": 30,
         "pregunta": "año de la peli Toy Story",
         "entidad_esperada": "Toy Story",
-        "propiedad_esperada": "wdt:P577"
+        "propiedad_esperada": "wdt:P577",
+        "respuesta_esperada_contiene": [
+            "1995"
+        ]
     },
     {
         "id": 31,
         "pregunta": "¿En qué fecha se estrenó El Rey León?",
         "entidad_esperada": "El Rey León",
-        "propiedad_esperada": "wdt:P577"
+        "propiedad_esperada": "wdt:P577",
+        "respuesta_esperada_contiene": [
+            "1994"
+        ]
     },
     {
         "id": 32,
         "pregunta": "dime en que año salio The Dark Knight",
         "entidad_esperada": "The Dark Knight",
-        "propiedad_esperada": "wdt:P577"
+        "propiedad_esperada": "wdt:P577",
+        "respuesta_esperada_contiene": [
+            "2008"
+        ]
     },
     {
         "id": 33,
         "pregunta": "año de publicacion de Forrest Gump",
         "entidad_esperada": "Forrest Gump",
-        "propiedad_esperada": "wdt:P577"
+        "propiedad_esperada": "wdt:P577",
+        "respuesta_esperada_contiene": [
+            "1994"
+        ]
     },
     {
         "id": 34,
         "pregunta": "¿cuándo se publicó Shrek?",
         "entidad_esperada": "Shrek",
-        "propiedad_esperada": "wdt:P577"
+        "propiedad_esperada": "wdt:P577",
+        "respuesta_esperada_contiene": [
+            "2001"
+        ]
     },
     {
         "id": 35,
         "pregunta": "¿Qué actores salen en Los Vengadores?",
         "entidad_esperada": "Los Vengadores",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Robert Downey Jr.",
+            "Chris Evans",
+            "Scarlett Johansson",
+            "Mark Ruffalo"
+        ]
     },
     {
         "id": 36,
         "pregunta": "dime peliculas de Tom Cruise",
         "entidad_esperada": "Tom Cruise",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Top Gun",
+            "Mission: Impossible",
+            "Jerry Maguire"
+        ]
     },
     {
         "id": 37,
         "pregunta": "peliculas de johnny depp",
         "entidad_esperada": "johnny depp",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Edward Scissorhands",
+            "Pirates of the Caribbean",
+            "Fear and Loathing"
+        ]
     },
     {
         "id": 38,
         "pregunta": "¿quien actúa en la película Casablanca?",
         "entidad_esperada": "Casablanca",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Humphrey Bogart",
+            "Ingrid Bergman"
+        ]
     },
     {
         "id": 39,
         "pregunta": "reparto de Spiderman",
         "entidad_esperada": "Spiderman",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Tobey Maguire",
+            "Kirsten Dunst",
+            "Willem Dafoe"
+        ]
     },
     {
         "id": 40,
         "pregunta": "dime los actores de The Truman Show",
         "entidad_esperada": "The Truman Show",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Jim Carrey",
+            "Ed Harris",
+            "Laura Linney"
+        ]
     },
     {
         "id": 41,
         "pregunta": "¿Qué películas ha protagonizado Morgan Freeman?",
         "entidad_esperada": "Morgan Freeman",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Se7en",
+            "Shawshank",
+            "Million Dollar Baby"
+        ]
     },
     {
         "id": 42,
         "pregunta": "¿quien sale en el club de la lucha?",
         "entidad_esperada": "el club de la lucha",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Brad Pitt",
+            "Edward Norton",
+            "Helena Bonham Carter"
+        ]
     },
     {
         "id": 43,
         "pregunta": "actores en The Matrix",
         "entidad_esperada": "The Matrix",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Keanu Reeves",
+            "Laurence Fishburne",
+            "Carrie-Anne Moss"
+        ]
     },
     {
         "id": 44,
         "pregunta": "pelis de Emma Stone",
         "entidad_esperada": "Emma Stone",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "La La Land",
+            "Birdman",
+            "Easy A"
+        ]
     },
     {
         "id": 45,
         "pregunta": "protagonista de Terminator 2",
         "entidad_esperada": "Terminator 2",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Arnold Schwarzenegger",
+            "Linda Hamilton",
+            "Edward Furlong"
+        ]
     },
     {
         "id": 46,
         "pregunta": "¿Quién es el actor de Iron Man?",
         "entidad_esperada": "Iron Man",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Robert Downey Jr.",
+            "Gwyneth Paltrow",
+            "Jeff Bridges"
+        ]
     },
     {
         "id": 47,
         "pregunta": "peliculas donde actue Joaquin Phoenix",
         "entidad_esperada": "Joaquin Phoenix",
-        "propiedad_esperada": "wdt:P161"
+        "propiedad_esperada": "wdt:P161",
+        "respuesta_esperada_contiene": [
+            "Joker",
+            "Her",
+            "Walk the Line",
+            "Gladiator"
+        ]
     },
     {
         "id": 48,
         "pregunta": "¿Qué género tiene la película Saw?",
         "entidad_esperada": "Saw",
-        "propiedad_esperada": "wdt:P136"
+        "propiedad_esperada": "wdt:P136",
+        "respuesta_esperada_contiene": [
+            "terror",
+            "horror",
+            "thriller"
+        ]
     },
     {
         "id": 49,
         "pregunta": "dime el genero de The Hangover",
         "entidad_esperada": "The Hangover",
-        "propiedad_esperada": "wdt:P136"
+        "propiedad_esperada": "wdt:P136",
+        "respuesta_esperada_contiene": [
+            "comedia",
+            "comedy"
+        ]
     },
     {
         "id": 50,
         "pregunta": "genero de la pelicula Psicosis",
         "entidad_esperada": "Psicosis",
-        "propiedad_esperada": "wdt:P136"
+        "propiedad_esperada": "wdt:P136",
+        "respuesta_esperada_contiene": [
+            "terror",
+            "horror",
+            "thriller",
+            "suspense"
+        ]
     },
     {
         "id": 51,
         "pregunta": "tipo de pelicula es El Exorcista",
         "entidad_esperada": "El Exorcista",
-        "propiedad_esperada": "wdt:P136"
+        "propiedad_esperada": "wdt:P136",
+        "respuesta_esperada_contiene": [
+            "terror",
+            "horror"
+        ]
     },
     {
         "id": 52,
         "pregunta": "¿A qué género pertenece Star Wars?",
         "entidad_esperada": "Star Wars",
-        "propiedad_esperada": "wdt:P136"
+        "propiedad_esperada": "wdt:P136",
+        "respuesta_esperada_contiene": [
+            "ciencia ficción",
+            "space opera",
+            "aventura"
+        ]
     },
     {
         "id": 53,
         "pregunta": "género de Blade Runner",
         "entidad_esperada": "Blade Runner",
-        "propiedad_esperada": "wdt:P136"
+        "propiedad_esperada": "wdt:P136",
+        "respuesta_esperada_contiene": [
+            "ciencia ficción",
+            "neo-noir",
+            "thriller"
+        ]
     },
     {
         "id": 54,
         "pregunta": "cual es el imdb de Coco",
         "entidad_esperada": "Coco",
-        "propiedad_esperada": "wdt:P345"
+        "propiedad_esperada": "wdt:P345",
+        "respuesta_esperada_contiene": [
+            "tt2380307"
+        ]
     },
     {
         "id": 55,
         "pregunta": "dime el codigo imdb de Los Increíbles",
         "entidad_esperada": "Los Increíbles",
-        "propiedad_esperada": "wdt:P345"
+        "propiedad_esperada": "wdt:P345",
+        "respuesta_esperada_contiene": [
+            "tt0317705"
+        ]
     },
     {
         "id": 56,
         "pregunta": "ID de IMDb de Goodfellas",
         "entidad_esperada": "Goodfellas",
-        "propiedad_esperada": "wdt:P345"
+        "propiedad_esperada": "wdt:P345",
+        "respuesta_esperada_contiene": [
+            "tt0099685"
+        ]
     },
     {
         "id": 57,
         "pregunta": "¿quién produjo la película Jurassic World?",
         "entidad_esperada": "Jurassic World",
-        "propiedad_esperada": "wdt:P162"
+        "propiedad_esperada": "wdt:P162",
+        "respuesta_esperada_contiene": [
+            "Frank Marshall",
+            "Patrick Crowley",
+            "Belén Atienza"
+        ]
     },
     {
         "id": 58,
         "pregunta": "productor de The Wolf of Wall Street",
         "entidad_esperada": "The Wolf of Wall Street",
-        "propiedad_esperada": "wdt:P162"
+        "propiedad_esperada": "wdt:P162",
+        "respuesta_esperada_contiene": [
+            "Martin Scorsese",
+            "Leonardo DiCaprio",
+            "Riza Aziz"
+        ]
     },
     {
         "id": 59,
         "pregunta": "quien es el productor de Regreso al Futuro",
         "entidad_esperada": "Regreso al Futuro",
-        "propiedad_esperada": "wdt:P162"
+        "propiedad_esperada": "wdt:P162",
+        "respuesta_esperada_contiene": [
+            "Bob Gale",
+            "Neil Canton",
+            "Steven Spielberg"
+        ]
     },
     {
         "id": 60,
         "pregunta": "¿En qué año salió la película de superhéroes Logan?",
         "entidad_esperada": "Logan",
-        "propiedad_esperada": "wdt:P577"
+        "propiedad_esperada": "wdt:P577",
+        "respuesta_esperada_contiene": [
+            "2017"
+        ]
     },
     {
         "id": 61,
         "pregunta": "dime peliculas del director Quentin Tarantino",
         "entidad_esperada": "Quentin Tarantino",
-        "propiedad_esperada": "wdt:P57"
+        "propiedad_esperada": "wdt:P57",
+        "respuesta_esperada_contiene": [
+            "Pulp Fiction",
+            "Kill Bill",
+            "Reservoir Dogs",
+            "Django"
+        ]
+    },
+    {
+        "id": 62,
+        "pregunta": "¿De qué país es la película Amélie?",
+        "entidad_esperada": "Amélie",
+        "propiedad_esperada": "wdt:P495",
+        "respuesta_esperada_contiene": [
+            "Francia",
+            "France"
+        ]
+    },
+    {
+        "id": 63,
+        "pregunta": "país de origen de Parasite",
+        "entidad_esperada": "Parasite",
+        "propiedad_esperada": "wdt:P495",
+        "respuesta_esperada_contiene": [
+            "Corea",
+            "Korea",
+            "Corea del Sur"
+        ]
+    },
+    {
+        "id": 64,
+        "pregunta": "¿de dónde es la película Roma?",
+        "entidad_esperada": "Roma",
+        "propiedad_esperada": "wdt:P495",
+        "respuesta_esperada_contiene": [
+            "México",
+            "Mexico"
+        ]
+    },
+    {
+        "id": 65,
+        "pregunta": "¿cuál es el país de origen de La Vita è Bella?",
+        "entidad_esperada": "La Vita è Bella",
+        "propiedad_esperada": "wdt:P495",
+        "respuesta_esperada_contiene": [
+            "Italia",
+            "Italy"
+        ]
+    },
+    {
+        "id": 66,
+        "pregunta": "de qué país es Intocable",
+        "entidad_esperada": "Intocable",
+        "propiedad_esperada": "wdt:P495",
+        "respuesta_esperada_contiene": [
+            "Francia",
+            "France"
+        ]
+    },
+    {
+        "id": 67,
+        "pregunta": "¿qué nacionalidad tiene la película Crouching Tiger Hidden Dragon?",
+        "entidad_esperada": "Crouching Tiger Hidden Dragon",
+        "propiedad_esperada": "wdt:P495",
+        "respuesta_esperada_contiene": [
+            "Taiwan",
+            "China",
+            "Hong Kong"
+        ]
+    },
+    {
+        "id": 68,
+        "pregunta": "¿Cuánto dura la película Titanic?",
+        "entidad_esperada": "Titanic",
+        "propiedad_esperada": "wdt:P2047",
+        "respuesta_esperada_contiene": [
+            "194",
+            "195"
+        ]
+    },
+    {
+        "id": 69,
+        "pregunta": "duración de Avengers Endgame",
+        "entidad_esperada": "Avengers Endgame",
+        "propiedad_esperada": "wdt:P2047",
+        "respuesta_esperada_contiene": [
+            "181",
+            "182"
+        ]
+    },
+    {
+        "id": 70,
+        "pregunta": "¿cuántos minutos dura Pulp Fiction?",
+        "entidad_esperada": "Pulp Fiction",
+        "propiedad_esperada": "wdt:P2047",
+        "respuesta_esperada_contiene": [
+            "154"
+        ]
+    },
+    {
+        "id": 71,
+        "pregunta": "tiempo de duración de Interstellar",
+        "entidad_esperada": "Interstellar",
+        "propiedad_esperada": "wdt:P2047",
+        "respuesta_esperada_contiene": [
+            "169"
+        ]
+    },
+    {
+        "id": 72,
+        "pregunta": "¿cuánto tiempo dura la peli Inception?",
+        "entidad_esperada": "Inception",
+        "propiedad_esperada": "wdt:P2047",
+        "respuesta_esperada_contiene": [
+            "148"
+        ]
+    },
+    {
+        "id": 73,
+        "pregunta": "minutos de Goodfellas",
+        "entidad_esperada": "Goodfellas",
+        "propiedad_esperada": "wdt:P2047",
+        "respuesta_esperada_contiene": [
+            "146"
+        ]
+    },
+    {
+        "id": 74,
+        "pregunta": "¿cuánto dura El Señor de los Anillos: El Retorno del Rey?",
+        "entidad_esperada": "El Señor de los Anillos: El Retorno del Rey",
+        "propiedad_esperada": "wdt:P2047",
+        "respuesta_esperada_contiene": [
+            "201"
+        ]
+    },
+    {
+        "id": 75,
+        "pregunta": "¿En qué idioma está rodada Amélie?",
+        "entidad_esperada": "Amélie",
+        "propiedad_esperada": "wdt:P364",
+        "respuesta_esperada_contiene": [
+            "francés",
+            "French",
+            "français"
+        ]
+    },
+    {
+        "id": 76,
+        "pregunta": "idioma original de La Vita è Bella",
+        "entidad_esperada": "La Vita è Bella",
+        "propiedad_esperada": "wdt:P364",
+        "respuesta_esperada_contiene": [
+            "italiano",
+            "Italian"
+        ]
+    },
+    {
+        "id": 77,
+        "pregunta": "¿En qué idioma se filmó Parasite?",
+        "entidad_esperada": "Parasite",
+        "propiedad_esperada": "wdt:P364",
+        "respuesta_esperada_contiene": [
+            "coreano",
+            "Korean"
+        ]
+    },
+    {
+        "id": 78,
+        "pregunta": "lengua original de Crouching Tiger Hidden Dragon",
+        "entidad_esperada": "Crouching Tiger Hidden Dragon",
+        "propiedad_esperada": "wdt:P364",
+        "respuesta_esperada_contiene": [
+            "chino mandarín",
+            "Mandarin",
+            "chino"
+        ]
+    },
+    {
+        "id": 79,
+        "pregunta": "¿en qué idioma está hecha la peli Roma?",
+        "entidad_esperada": "Roma",
+        "propiedad_esperada": "wdt:P364",
+        "respuesta_esperada_contiene": [
+            "español",
+            "Spanish",
+            "mixteco"
+        ]
+    },
+    {
+        "id": 80,
+        "pregunta": "¿Quién escribió el guión de Pulp Fiction?",
+        "entidad_esperada": "Pulp Fiction",
+        "propiedad_esperada": "wdt:P58",
+        "respuesta_esperada_contiene": [
+            "Quentin Tarantino",
+            "Roger Avary"
+        ]
+    },
+    {
+        "id": 81,
+        "pregunta": "guionista de Inception",
+        "entidad_esperada": "Inception",
+        "propiedad_esperada": "wdt:P58",
+        "respuesta_esperada_contiene": [
+            "Christopher Nolan",
+            "Nolan"
+        ]
+    },
+    {
+        "id": 82,
+        "pregunta": "¿quién escribió el guion de Good Will Hunting?",
+        "entidad_esperada": "Good Will Hunting",
+        "propiedad_esperada": "wdt:P58",
+        "respuesta_esperada_contiene": [
+            "Matt Damon",
+            "Ben Affleck"
+        ]
+    },
+    {
+        "id": 83,
+        "pregunta": "autor del guion de Matrix",
+        "entidad_esperada": "Matrix",
+        "propiedad_esperada": "wdt:P58",
+        "respuesta_esperada_contiene": [
+            "Lana Wachowski",
+            "Lilly Wachowski",
+            "Wachowski"
+        ]
+    },
+    {
+        "id": 84,
+        "pregunta": "quién escribió la historia de Forrest Gump",
+        "entidad_esperada": "Forrest Gump",
+        "propiedad_esperada": "wdt:P58",
+        "respuesta_esperada_contiene": [
+            "Eric Roth"
+        ]
+    },
+    {
+        "id": 85,
+        "pregunta": "dime el guionista de The Shawshank Redemption",
+        "entidad_esperada": "The Shawshank Redemption",
+        "propiedad_esperada": "wdt:P58",
+        "respuesta_esperada_contiene": [
+            "Frank Darabont"
+        ]
+    },
+    {
+        "id": 86,
+        "pregunta": "¿Cuál fue el presupuesto de Avatar?",
+        "entidad_esperada": "Avatar",
+        "propiedad_esperada": "wdt:P2130",
+        "respuesta_esperada_contiene": [
+            "237000000",
+            "237",
+            "310000000"
+        ]
+    },
+    {
+        "id": 87,
+        "pregunta": "¿cuánto costó hacer Titanic?",
+        "entidad_esperada": "Titanic",
+        "propiedad_esperada": "wdt:P2130",
+        "respuesta_esperada_contiene": [
+            "200000000",
+            "200"
+        ]
+    },
+    {
+        "id": 88,
+        "pregunta": "presupuesto de Avengers Endgame",
+        "entidad_esperada": "Avengers Endgame",
+        "propiedad_esperada": "wdt:P2130",
+        "respuesta_esperada_contiene": [
+            "356000000",
+            "356"
+        ]
+    },
+    {
+        "id": 89,
+        "pregunta": "¿cuánto dinero se gastó en producir Inception?",
+        "entidad_esperada": "Inception",
+        "propiedad_esperada": "wdt:P2130",
+        "respuesta_esperada_contiene": [
+            "160000000",
+            "160"
+        ]
+    },
+    {
+        "id": 90,
+        "pregunta": "coste de producción de Joker",
+        "entidad_esperada": "Joker",
+        "propiedad_esperada": "wdt:P2130",
+        "respuesta_esperada_contiene": [
+            "55000000",
+            "55"
+        ]
+    },
+    {
+        "id": 91,
+        "pregunta": "¿Qué premios ganó Parasite?",
+        "entidad_esperada": "Parasite",
+        "propiedad_esperada": "wdt:P166",
+        "respuesta_esperada_contiene": [
+            "Oscar",
+            "Academy Award",
+            "Palme d'Or",
+            "Cannes"
+        ]
+    },
+    {
+        "id": 92,
+        "pregunta": "premios que recibió Titanic",
+        "entidad_esperada": "Titanic",
+        "propiedad_esperada": "wdt:P166",
+        "respuesta_esperada_contiene": [
+            "Oscar",
+            "Academy Award",
+            "Golden Globe"
+        ]
+    },
+    {
+        "id": 93,
+        "pregunta": "¿qué galardones tiene la película The Shape of Water?",
+        "entidad_esperada": "The Shape of Water",
+        "propiedad_esperada": "wdt:P166",
+        "respuesta_esperada_contiene": [
+            "Oscar",
+            "Academy Award",
+            "Golden Lion"
+        ]
+    },
+    {
+        "id": 94,
+        "pregunta": "premios de Schindler's List",
+        "entidad_esperada": "Schindler's List",
+        "propiedad_esperada": "wdt:P166",
+        "respuesta_esperada_contiene": [
+            "Oscar",
+            "Academy Award"
+        ]
+    },
+    {
+        "id": 95,
+        "pregunta": "¿ganó algún premio la película Moonlight?",
+        "entidad_esperada": "Moonlight",
+        "propiedad_esperada": "wdt:P166",
+        "respuesta_esperada_contiene": [
+            "Oscar",
+            "Academy Award"
+        ]
     }
 ]

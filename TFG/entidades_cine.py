@@ -3,65 +3,70 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 
 def buscar_id_entidad(nombre_entidad):
     """
-    Busca una entidad usando la API de Wikidata (para evitar límites de SPARQL)
-    y prioriza las que existan en nuestra base de datos local.
+    Busca una entidad por label directamente en Blazegraph local.
+    Sin dependencia de red externa.
     """
-    url = "https://www.wikidata.org/w/api.php"
-    params = {
-        "action": "wbsearchentities",
-        "search": nombre_entidad,
-        "language": "es",
-        "format": "json",
-        "limit": 10
-    }
-    headers = {
-        'User-Agent': 'MMT_TFG_Bot/1.0 (m.martinezturpin@um.es)'
-    }
-    
+    sparql = SPARQLWrapper("http://localhost:9999/blazegraph/namespace/kb/sparql")
+    sparql.setReturnFormat(JSON)
+
+    # Búsqueda exacta primero (case-insensitive)
+    query_exacta = f"""
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX wd: <http://www.wikidata.org/entity/>
+    PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+    SELECT DISTINCT ?entidad ?label WHERE {{
+        ?entidad rdfs:label ?label .
+        FILTER(LCASE(STR(?label)) = LCASE("{nombre_entidad}"))
+        ?entidad ?p ?o .
+    }}
+    LIMIT 5
+    """
+
     try:
-        response = requests.get(url, params=params, headers=headers)
-        data = response.json()
+        sparql.setQuery(query_exacta)
+        res = sparql.query().convert()
+        bindings = res["results"]["bindings"]
+
+        if bindings:
+            item = bindings[0]
+            qid = item["entidad"]["value"].split("/")[-1]
+            label = item["label"]["value"]
+            return {"id": qid, "nombre": label}
+
         
-        resultados = data.get("search", [])
-        if not resultados:
-            return None
-            
-        qids = [item["id"] for item in resultados]
-        
-        # Filtramos con la base de datos local para coger el QID correcto (pelicula/actor)
-        sparql_local = SPARQLWrapper("http://localhost:9999/blazegraph/namespace/kb/sparql")
-        values = " ".join([f"wd:{q}" for q in qids])
-        
-        query_local = f"""
+        query_parcial = f"""
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX wd: <http://www.wikidata.org/entity/>
-        SELECT ?id WHERE {{
-            VALUES ?id {{ {values} }}
-            ?id ?p ?o .
-        }} GROUP BY ?id LIMIT 10
+
+        SELECT DISTINCT ?entidad ?label WHERE {{
+            ?entidad rdfs:label ?label .
+            FILTER(CONTAINS(LCASE(STR(?label)), LCASE("{nombre_entidad}")))
+            ?entidad ?p ?o .
+        }}
+        LIMIT 5
         """
-        sparql_local.setQuery(query_local)
-        sparql_local.setReturnFormat(JSON)
-        
-        try:
-            res_local = sparql_local.query().convert()
-            found_qids = [b["id"]["value"].split("/")[-1] for b in res_local["results"]["bindings"]]
-            
-            # Devolver el primer resultado de la API que exista en nuestra DB local
-            for item in resultados:
-                if item["id"] in found_qids:
-                    return {"id": item["id"], "nombre": item["label"]}
-        except Exception as local_e:
-            print(f"Aviso: no se pudo filtrar localmente: {local_e}")
-            
-        # Fallback: si ninguno está en la local (o falló), devolvemos el primero de la API
-        primer_item = resultados[0]
-        return {"id": primer_item["id"], "nombre": primer_item["label"]}
-        
-    except Exception as e:
-        print(f"Error en la desambiguación con API de Wikidata: {e}")
+        sparql.setQuery(query_parcial)
+        res = sparql.query().convert()
+        bindings = res["results"]["bindings"]
+
+        if bindings:
+            item = bindings[0]
+            qid = item["entidad"]["value"].split("/")[-1]
+            label = item["label"]["value"]
+            return {"id": qid, "nombre": label}
+
         return None
 
-# --- Prueba ---
+    except Exception as e:
+        print(f"Error buscando entidad localmente: {e}")
+        return None
+
 if __name__ == "__main__":
-    print(buscar_id_entidad("Up")) # Debería sacar la película, no la preposición
-    print(buscar_id_entidad("Christopher Nolan")) # Debería sacar al director (humano)
+    print(buscar_id_entidad("Jurassic Park"))
+    print(buscar_id_entidad("Christopher Nolan"))
+    print(buscar_id_entidad("Daniel Radcliffe"))
+    print(buscar_id_entidad("Los Vengadores"))
+    print(buscar_id_entidad("Robert Downey Jr"))
+    print(buscar_id_entidad("Harry Potter"))
+    print(buscar_id_entidad("Matrix"))

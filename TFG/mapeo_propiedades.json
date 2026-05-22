@@ -4,5 +4,11 @@
   "wdt:P136": "género cinematográfico",
   "wdt:P577": "fecha de publicación o estreno",
   "wdt:P162": "productor",
-  "wdt:P345": "identificador de IMDb"
+  "wdt:P345": "identificador de IMDb",
+  "wdt:P495": "país de origen",
+  "wdt:P2047": "duración",
+  "wdt:P166": "premios recibidos",
+  "wdt:P364": "idioma original",
+  "wdt:P58": "guionista",
+  "wdt:P2130": "coste o presupuesto de producción (valor numérico en dólares USD)"
 }

@@ -12,9 +12,9 @@ Este Trabajo de Fin de Grado ha abordado el reto de integrar la flexibilidad de 
 El análisis de los resultados obtenidos corrobora que se han cumplido los objetivos específicos planteados al inicio del proyecto:
 
 \begin{itemize}
-    \item \textbf{Generación Precisa de SPARQL:} Se ha logrado una precisión del 75\% en la traducción autónoma de texto libre a SPARQL sobre el dominio cinematográfico, validando la eficacia del marco de inyección dinámica del diccionario de propiedades en el \textit{prompt}.
-    \item \textbf{Comportamiento Agéntico y Reflexión:} Se ha implementado con éxito un flujo de control inteligente utilizando \textit{LangChain}, dotando al sistema de la capacidad de autocorregir sus propios errores sintácticos tras capturar las excepciones del motor \textit{RDFLib}.
-    \item \textbf{Gestión Local del Grafo de Conocimiento:} Se ha conformado una base de conocimiento en formato \textit{Turtle} funcional y segura, limitando la dependencia de llamadas externas a Wikidata durante la consulta y protegiendo el sistema de latencias excesivas, cumpliendo así con los requisitos no funcionales establecidos.
+    \item \textbf{Generación Precisa de SPARQL:} Se ha logrado una alta precisión en la traducción autónoma de texto libre a SPARQL sobre el dominio cinematográfico: hasta un 90.16\% con \texttt{llama3} y un 95.08\% con \texttt{gemma2:9b}, validando la eficacia del marco de inyección dinámica del diccionario de propiedades en el \textit{prompt}.
+    \item \textbf{Comportamiento Agéntico y Reflexión:} Se ha implementado con éxito un flujo de control inteligente utilizando \textit{Ollama} como motor de inferencia, dotando al sistema de la capacidad de autocorregir sus propios errores sintácticos tras capturar las excepciones devueltas por \textit{Blazegraph} mediante \textit{SPARQLWrapper}.
+    \item \textbf{Gestión Local del Grafo de Conocimiento:} Se ha conformado una base de conocimiento en formato \textit{Turtle} funcional y segura, cargada en \textit{Blazegraph} como motor SPARQL local, limitando la dependencia de llamadas externas a Wikidata durante la consulta y protegiendo el sistema de latencias excesivas, cumpliendo así con los requisitos no funcionales establecidos.
 \end{itemize}
 
 \section{Líneas de Trabajo Futuro}

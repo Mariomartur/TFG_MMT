@@ -169,25 +169,33 @@ def procesar_consulta(consulta, historial=None, st_callback=None, modelo='llama3
 
     notify(f"📊 **Resultados brutos:** `{valores}`")
     
-    nombre = traducir_ids(valores)
+    nombres = traducir_ids(valores)
     
-    notify("✨ **Generando respuesta en lenguaje natural...**")
-    prompt_nat = f"""
-    Eres un asistente experto en cine. 
-    Pregunta del usuario: "{consulta}"
-    Dato real de la base de datos: "{nombre}"
+    notify("✨ **Formateando respuesta...**")
     
-    Redacta una respuesta natural, cercana y muy breve (1 o 2 líneas) para darle este dato al usuario.
-    REGLA ESTRICTA: No te inventes nada de información extra, cíñete a dar el dato real de forma conversacional.
-    REGLA ESTRICTA 2: RESPONDE SIEMPRE EN ESPAÑOL, pase lo que pase.
-    Regla opcional: no te rias al inicio de las respuestas
+    respuesta_estructurada = construir_respuesta(consulta, nombres)
+    yield respuesta_estructurada
+
+def construir_respuesta(consulta, dato):
+    items = [d.strip() for d in dato.split(",") if d.strip()]
+    if not items:
+        return "No encontré datos para esa consulta en la base de datos."
+    
+    dato_verificado = ", ".join(items)
+    
+    prompt_formato = f"""
+    Tienes que presentar este dato exacto al usuario: "{dato_verificado}"
+    La pregunta fue: "{consulta}"
+    
+    REGLAS ABSOLUTAS:
+    1. El dato entre comillas es la única verdad. No lo cambies, no lo amplíes.
+    2. Si el dato tiene varios elementos separados por comas, menciónalos todos.
+    3. Una sola frase. Sin inventar contexto extra.
+    4. Responde en español.
+    
+    Respuesta:
     """
-    
-    for chunk in consultar_llm_stream(prompt_nat, modelo):
-        yield chunk
-
-
-
+    return consultar_llm(prompt_formato)
 
 
 # Hasta aquí se recibe la consulta y Llama 3 la procesa para devolver una consulta de Wikidata con la pregunta traducida a SPARQL
@@ -245,6 +253,7 @@ def traducir_ids(lista_valores):
     SELECT ?uri ?label WHERE {{
         VALUES ?uri {{ {valores_sparql} }}
         ?uri rdfs:label ?label .
+        FILTER(LANG(?label) = "es" || LANG(?label) = "")
     }}
     """
     

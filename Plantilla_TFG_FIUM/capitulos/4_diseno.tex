@@ -28,7 +28,7 @@ Tal como se explicó en el apartado anterior, la metodología seguida combina un
     \begin{itemize}
         \item \textbf{Análisis de Requisitos:} Se identificó la inestabilidad inherente de los LLMs a la hora de generar código estricto, como es el caso del lenguaje de consultas SPARQL.
         \item \textbf{Diseño del Sistema:} Se diseñó un flujo de control basado en un modelo de agente iterativo, priorizando la capacidad de reflexión sobre los fallos.
-        \item \textbf{Desarrollo e Implementación:} Se orquestó mediante \textit{LangChain} un Bucle de Autocorrección: si la base de datos RDF devuelve un error, el sistema no colapsa; en su lugar, captura el \textit{traceback} y solicita al agente que corrija su propia consulta de forma autónoma.
+        \item \textbf{Desarrollo e Implementación:} Se implementó directamente sobre \textit{Ollama} un Bucle de Autocorrección: si la base de datos devuelve un error, el sistema no colapsa; en su lugar, captura el mensaje de error y solicita al agente que corrija su propia consulta de forma autónoma.
         \item \textbf{Pruebas y Validación:} Se evaluó el rendimiento del agente frente a un \textit{dataset} validado, logrando elevar significativamente el porcentaje de acierto respecto al enfoque de intento único (\textit{zero-shot}).
     \end{itemize}
 
@@ -36,7 +36,7 @@ Tal como se explicó en el apartado anterior, la metodología seguida combina un
     \begin{itemize}
         \item \textbf{Análisis de Requisitos:} Se definió la importancia de mantener la privacidad de las consultas y no depender económicamente de APIs de pago externas (como OpenAI).
         \item \textbf{Diseño del Sistema:} Se decidió utilizar \textit{Ollama} como motor de inferencia principal, permitiendo ejecutar modelos de última generación (como Llama 3) de manera 100\% local.
-        \item \textbf{Desarrollo e Implementación:} A excepción de la desambiguación inicial de entidades en Wikidata, el núcleo del procesamiento (traducción de lenguaje natural a SPARQL) ocurre de forma aislada en la máquina del usuario.
+        \item \textbf{Desarrollo e Implementación:} El núcleo del procesamiento (extracción de entidades, traducción de lenguaje natural a SPARQL y resolución de resultados) ocurre íntegramente de forma local en la máquina del usuario, sin ninguna llamada a servicios externos durante la fase de consulta.
     \end{itemize}
 
     \item \textbf{Transparencia y Explicabilidad}
@@ -57,7 +57,7 @@ Tal como se explicó en el apartado anterior, la metodología seguida combina un
     \begin{itemize}
         \item \textbf{Análisis de Requisitos:} Se previó la necesidad de ampliar el dominio del chatbot a otros campos más allá del cine o evaluar el rendimiento con modelos futuros.
         \item \textbf{Diseño del Sistema:} Se adoptó una arquitectura por capas altamente desacoplada (Presentación, Lógica del Agente y Capa de Datos).
-        \item \textbf{Desarrollo e Implementación:} Al abstraer la conexión con el LLM mediante \textit{LangChain} y los datos en ficheros JSON de configuración, se aseguró que el sistema pueda integrar nuevos modelos, ontologías o bases de datos orientadas a grafos sin requerir modificaciones profundas en el núcleo de la aplicación.
+        \item \textbf{Desarrollo e Implementación:} Al parametrizar el modelo LLM mediante \textit{Ollama} y externalizar el esquema de propiedades en un fichero JSON de configuración, se garantiza que el sistema puede integrar nuevos modelos, ontologías o grafos sin necesidad de modificar la lógica central del agente.
     \end{itemize}
 \end{enumerate}
 
@@ -67,8 +67,8 @@ El sistema ha sido diseñado siguiendo un modelo de arquitectura por capas, gara
 
 \begin{enumerate}
     \item \textbf{Capa de Interfaz de Usuario:} Implementada con \textit{Streamlit}, actúa como el cliente de usuario, proveyendo la interfaz de chat interactiva.
-    \item \textbf{Capa de Lógica de Negocio:} Es el núcleo del sistema, orquestado mediante \textit{LangChain} en Python. Contiene la lógica de extracción de entidades, la integración con la API del LLM, el bucle de reflexión y la construcción de los \textit{prompts} del sistema.
-    \item \textbf{Capa de Datos:} Comprende el almacenamiento persistente RDF local (archivo \texttt{.ttl}) gestionado por la librería \textit{RDFLib}, así como las conexiones puntuales a la API de Wikidata para procesos de desambiguación.
+    \item \textbf{Capa de Lógica de Negocio:} Es el núcleo del sistema, implementado en Python con \textit{Ollama} como motor de inferencia. Contiene la lógica de extracción de entidades, la integración con el LLM local, el bucle de reflexión y la construcción de los \textit{prompts} del sistema.
+    \item \textbf{Capa de Datos:} Comprende el almacenamiento persistente RDF en un archivo \texttt{.ttl} gestionado por \textit{Blazegraph} como motor SPARQL local, accedido mediante la librería \textit{SPARQLWrapper}.
 \end{enumerate}
 
 \begin{figure}[h]
@@ -92,14 +92,32 @@ Además, su arquitectura permite una integración sencilla con otras librerías 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{archivos/Interfaz_usuario.png}
+    \includegraphics[width=0.5\textwidth]{archivos/Respuesta_bucle.jpeg}
     \caption{Interfaz de usuario}
     \label{fig:interfaz}
 \end{figure}
 
 \subsection{Capa de Lógica de Negocio}
 
+La lógica de negocio reside íntegramente en el módulo \texttt{chatLocal.py}, que actúa como orquestador del flujo de procesamiento. Este módulo se estructura en tres funciones principales que se ejecutan de forma secuencial para cada consulta recibida:
+
+\begin{itemize}
+    \item \textbf{\texttt{extraer\_entidad}:} Recibe la pregunta del usuario y el historial reciente de la conversación. Mediante un \textit{prompt} altamente restrictivo, solicita al LLM que identifique y devuelva únicamente el nombre propio sobre el que versa la pregunta (película, actor, director, etc.), sin responder a ella. Esto permite resolver correferencias anafóricas del tipo ``¿Y él quién la dirigió?'' apoyándose en el historial.
+
+    \item \textbf{\texttt{generar\_sparql}:} Construye el \textit{prompt} de generación SPARQL inyectando la entidad extraída, su identificador de Wikidata y el diccionario de propiedades leído desde \texttt{mapeo\_propiedades.json}. Solicita al LLM que razone paso a paso (\textit{Chain of Thought}) antes de devolver el código SPARQL dentro de un bloque delimitado, facilitando su posterior extracción con expresiones regulares. Si se le pasa un error previo, el \textit{prompt} incluye la consulta fallida y el motivo del fallo para que el modelo pueda corregirla.
+
+    \item \textbf{\texttt{procesar\_consulta}:} Función principal que coordina el flujo completo: llama a \texttt{extraer\_entidad}, resuelve el identificador Wikidata en la base de datos local mediante \texttt{buscar\_id\_entidad}, ejecuta el bucle iterativo de generación y corrección SPARQL (hasta tres intentos), traduce los resultados a texto legible y devuelve la respuesta formateada por el LLM.
+\end{itemize}
+
+La conexión con el LLM se realiza directamente a través de la librería \texttt{ollama}, invocando el método \texttt{ollama.chat()} con temperatura cero para maximizar el determinismo de las respuestas. Esto permite cambiar de modelo (Llama 3, Mistral, Gemma 2, etc.) simplemente modificando el parámetro correspondiente, sin alterar ninguna otra parte del sistema.
+
 \subsection{Capa de Datos}
+
+La capa de datos se sustenta en \textit{Blazegraph}, un motor de base de datos RDF de alto rendimiento que expone un endpoint SPARQL local en el puerto 9999. El grafo de conocimiento (archivo \texttt{.ttl}) se carga una única vez en Blazegraph al inicio del proceso y permanece disponible en memoria durante toda la sesión, garantizando tiempos de respuesta rápidos ante las consultas del agente.
+
+El acceso al endpoint desde Python se realiza mediante la librería \textit{SPARQLWrapper}, que permite lanzar consultas SPARQL estándar y recibir los resultados en formato JSON. Este diseño presenta dos ventajas clave frente a alternativas de carga en memoria (como RDFLib): en primer lugar, Blazegraph mantiene índices internos que hacen las consultas significativamente más rápidas sobre grafos de gran tamaño; en segundo lugar, el servidor puede recargarse o ampliarse sin reiniciar la aplicación.
+
+La resolución de entidades también opera sobre esta misma capa: \texttt{entidades\_cine.py} ejecuta primero una búsqueda exacta por \textit{label} contra Blazegraph local y, si no halla resultado, intenta una búsqueda parcial por subcadena. Este diseño elimina la dependencia de la API externa de Wikidata durante la fase de consulta, reforzando el requisito de ejecución completamente local (RNF-02).
 
 \section{Diseño del Agente Autocorrector}
 
@@ -108,8 +126,8 @@ Uno de los principales desafíos técnicos del proyecto radica en la inestabilid
 El flujo de control del agente sigue los siguientes pasos lógicos:
 \begin{enumerate}
     \item Se recibe la pregunta en lenguaje natural.
-    \item Se solicita al LLM que extraiga únicamente la entidad principal (ej. "Matrix").
-    \item Se consulta Wikidata para obtener el ID de dicha entidad (ej. \texttt{wd:Q83495}).
+    \item Se solicita al LLM que extraiga únicamente la entidad principal (ej. ``Matrix''), teniendo en cuenta el historial de conversación para resolver referencias anafóricas.
+    \item Se realiza una búsqueda local en \textit{Blazegraph} para obtener el identificador Wikidata de dicha entidad (ej. \texttt{wd:Q83495}), sin necesidad de acceder a servicios externos.
     \item Se inyecta la pregunta, el ID de la entidad y el \textit{diccionario de propiedades} en un \textit{prompt} altamente restrictivo.
     \item El LLM genera una propuesta de consulta SPARQL.
     \item El sistema intenta ejecutar la consulta localmente en RDFLib.
@@ -134,15 +152,21 @@ El flujo de control del agente sigue los siguientes pasos lógicos:
 
 Para asegurar la privacidad, el rendimiento y la consistencia de las respuestas, el sistema no interroga directamente a Wikidata en su fase de resolución de consultas, sino que opera sobre un Grafo de Conocimiento local exportado previamente.
 
-Este grafo local (\texttt{datos\_cine\_seguro.ttl}) actúa como una base de datos \textit{in-memory}. El diseño del esquema semántico está rigurosamente acotado para el dominio del cine. Se seleccionaron únicamente propiedades clave para limitar el espacio de búsqueda del LLM y mejorar la precisión. Entre estas propiedades mapeadas destacan:
+Este grafo local (\texttt{datos\_cine\_seguro.ttl}) actúa como la base de datos del sistema, gestionada por \textit{Blazegraph}. Su esquema semántico está rigurosamente acotado para el dominio del cine: se seleccionaron únicamente doce propiedades clave de Wikidata para limitar el espacio de búsqueda del LLM y mejorar la precisión en la generación SPARQL. Las propiedades mapeadas son:
 
 \begin{itemize}
     \item \texttt{wdt:P57}: Director.
-    \item \texttt{wdt:P577}: Fecha de publicación o estreno.
-    \item \texttt{wdt:P161}: Miembro del reparto (actores).
+    \item \texttt{wdt:P161}: Actor o miembro del reparto.
     \item \texttt{wdt:P136}: Género cinematográfico.
+    \item \texttt{wdt:P577}: Fecha de publicación o estreno.
     \item \texttt{wdt:P162}: Productor.
     \item \texttt{wdt:P345}: Identificador de IMDb.
+    \item \texttt{wdt:P495}: País de origen.
+    \item \texttt{wdt:P2047}: Duración.
+    \item \texttt{wdt:P364}: Idioma original.
+    \item \texttt{wdt:P58}: Guionista.
+    \item \texttt{wdt:P166}: Premios recibidos.
+    \item \texttt{wdt:P2130}: Coste o presupuesto de producción.
 \end{itemize}
 
-El LLM recibe en su instrucción del sistema (System Prompt) un diccionario estricto que mapea el lenguaje natural a estas propiedades, con la orden explícita de no utilizar ninguna propiedad de Wikidata que no se encuentre en dicha lista. Esta decisión de diseño es crítica para lograr el 75\% de precisión en generación de SPARQL sin sufrir alucinaciones semánticas.
+El LLM recibe en su \textit{prompt} un diccionario estricto que mapea el lenguaje natural a estas propiedades —leído dinámicamente desde \texttt{mapeo\_propiedades.json}—, con la orden explícita de no utilizar ninguna propiedad de Wikidata que no se encuentre en dicha lista. Esta decisión de diseño es crítica para evitar alucinaciones semánticas y obtener los altos porcentajes de precisión en la generación de SPARQL que se documentan en el capítulo de evaluación.

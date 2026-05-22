@@ -12,10 +12,10 @@ En este capítulo se detallan los aspectos técnicos de la implementación del s
 
 El sistema ha sido desarrollado íntegramente en Python, aprovechando su extenso ecosistema para el procesamiento de datos y la Inteligencia Artificial. Entre las librerías principales destacan:
 \begin{itemize}
-    \item \textbf{LangChain:} Para la orquestación del LLM y la gestión del bucle del agente.
-    \item \textbf{RDFLib:} Para la carga, manipulación y consulta en memoria del Grafo de Conocimiento (\texttt{.ttl}).
+    \item \textbf{Ollama:} Motor de inferencia local que permite ejecutar LLMs de código abierto (Llama 3, Mistral, Gemma 2, etc.) directamente en la máquina del usuario sin depender de APIs externas. Se accede desde Python mediante la librería cliente oficial \texttt{ollama}.
+    \item \textbf{Blazegraph:} Base de datos RDF de alto rendimiento que actúa como motor SPARQL local, sobre la que se carga el grafo de conocimiento en formato \textit{Turtle}.
     \item \textbf{Streamlit:} Para la rápida construcción de la interfaz gráfica de usuario.
-    \item \textbf{SPARQLWrapper:} Para realizar consultas remotas a Wikidata durante el proceso de extracción de datos y desambiguación de entidades.
+    \item \textbf{SPARQLWrapper:} Para lanzar consultas SPARQL contra Blazegraph local y, durante la fase de extracción de datos, contra Wikidata.
 \end{itemize}
 
 El despliegue del sistema se ha contenerizado utilizando \textbf{Docker}, garantizando así que el entorno de ejecución sea reproducible en cualquier máquina sin problemas de dependencias.
@@ -34,37 +34,65 @@ El componente principal, ubicado en \texttt{chatLocal.py}, inicializa el motor L
 
 Para asegurar que el modelo utilice exclusivamente las propiedades permitidas en el grafo local, se inyecta dinámicamente un texto de mapeo en la instrucción base:
 
-\begin{lstlisting}[style=Python-color, caption={Inyección de mapeo de propiedades en el prompt}, label=lst:prompt]
+\begin{lstlisting}[style=Python-color, caption={Carga del mapeo de propiedades e inyección en el prompt SPARQL}, label=lst:prompt]
 with open("mapeo_propiedades.json", "r", encoding="utf-8") as f:
     mapeoProp = json.load(f)
     textoMapeo = json.dumps(mapeoProp, indent=2)
 
-system_template = f"""
-Eres un agente experto en SPARQL y bases de datos RDF del dominio de cine.
-Esquema de propiedades disponibles:
-{textoMapeo}
-Objetivo: 
-Genera una consulta SPARQL válida para responder a la consulta '{consulta}'
-REGLAS:
+def generar_sparql(consulta, id_entidad, textoMapeo,
+                   error_previo="", query_previo="", modelo='llama3'):
+    contexto_error = ""
+    if error_previo:
+        contexto_error = f"""
+        !ATENCION! Tu intento anterior fallo.
+        La consulta que generaste fue:
+        {query_previo}
+        Motivo del fallo: {error_previo}
+        Corrige el SPARQL para solucionar este problema.
+        """
+
+    prompt_sparql = f"""
+    Eres un traductor experto de lenguaje natural a SPARQL.
+    Esquema de propiedades disponibles:
+    {textoMapeo}
+    Objetivo: Genera una consulta SPARQL valida para '{consulta}'
+    {contexto_error}
+    REGLAS:
     1. La entidad principal es: wd:{id_entidad}
     2. Usa SOLO las propiedades del esquema de arriba.
-    3. Las propiedades DEBEN llevar el prefijo 'wdt:'. Si usas la propiedad P178, escribe wdt:P178.
     ...
-"""
+    """
+    return consultar_llm(prompt_sparql, modelo)
 \end{lstlisting}
 
 \section{Bucle de Reflexión y Autocorrección}
 
-La ejecución de la consulta SPARQL generada se envuelve en un bloque de control de excepciones. Si \textit{RDFLib} arroja un error de sintaxis al evaluar la consulta, el sistema captura dicho error y realiza una llamada iterativa al LLM para que se corrija a sí mismo:
+La ejecución de la consulta SPARQL generada se encapsula en la función \texttt{ejecutar\_sparql\_local()}, que lanza la consulta contra el endpoint de \textit{Blazegraph} mediante \textit{SPARQLWrapper}. Si \textit{Blazegraph} devuelve un error de sintaxis, la función lo captura y lo retorna como cadena de texto. El sistema lo incorpora al siguiente \textit{prompt} para que el agente pueda corregirse a sí mismo:
 
-\begin{lstlisting}[style=Python-color, caption={Bucle de reflexión ante errores de sintaxis}, label=lst:reflexion]
-try:
-    resultados = g.query(query_sparql)
-except Exception as e:
-    # Si falla, informamos al agente de su propio error
-    mensaje_error = f"Error sintáctico: {str(e)}. Reescribe el SPARQL."
-    nuevo_sparql = llm.invoke(prompt_reflexion + mensaje_error)
-    resultados = g.query(nuevo_sparql)
+\begin{lstlisting}[style=Python-color, caption={Bucle de reflexión ante errores de Blazegraph}, label=lst:reflexion]
+def ejecutar_sparql_local(consulta):
+    endpoint = "http://localhost:9999/blazegraph/namespace/kb/sparql"
+    prefijos = """
+    PREFIX wd:  <http://www.wikidata.org/entity/>
+    PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+    """
+    sparql = SPARQLWrapper(endpoint)
+    sparql.setQuery(prefijos + consulta)
+    sparql.setReturnFormat(JSON)
+    try:
+        resultados = sparql.query().convert()
+        return resultados["results"]["bindings"], None
+    except Exception as e:
+        error_str = str(e)
+        if "Connection refused" in error_str:
+            return [], "CONNECTION_ERROR"
+        return [], error_str  # mensaje de error devuelto al agente
+
+# En procesar_consulta(), el error se inyecta en el siguiente prompt:
+resultados, error_db = ejecutar_sparql_local(query_limpia)
+if not resultados and error_db:
+    error_previo = f"Error en Blazegraph: {error_db}"
+    # El agente reintenta con este contexto de error (max 3 intentos)
 \end{lstlisting}
 
 Este enfoque incrementó drásticamente la robustez del sistema, permitiéndole recuperarse de fallos comunes como puntos finales olvidados o prefijos \texttt{wdt} mal estructurados, sin mostrar errores en bruto al usuario final.
