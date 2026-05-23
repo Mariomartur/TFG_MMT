@@ -2,11 +2,13 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Diagrama de Secuencia Principal}}{9}{figure.caption.9}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Diagrama de Secuencia con Bucle de Autocorrección}}{10}{figure.caption.10}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Arquitectura del sistema}}{14}{figure.caption.11}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Interfaz de usuario}}{15}{figure.caption.12}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces [AÑADIR DIAGRAMA DE FLUJO DEL AGENTE AQUÍ]}}{17}{figure.caption.13}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Arquitectura del sistema}}{14}{figure.caption.10}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Interfaz de usuario en modo oscuro}}{15}{figure.caption.11}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Interfaz de usuario en modo claro}}{16}{figure.caption.12}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Respuesta del sistema a una consulta.}}{17}{figure.caption.13}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Diagrama de Secuencia con Bucle de Autocorrección}}{18}{figure.caption.14}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Respuesta del sistema con el bucle de autocorrección activado.}}{19}{figure.caption.15}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -17,7 +17,7 @@ CHECKPOINT_FILE = "checkpoint.txt"
  
 PROPIEDADES = "wdt:P57 wdt:P161 wdt:P136 wdt:P577 wdt:P162 wdt:P345 wdt:P495 wdt:P2047 wdt:P364 wdt:P58 wdt:P166 wdt:P2130"
  
-PAGINA          = 25    # Películas por página (reducido para evitar truncado de Wikidata)
+PAGINA          = 10    # Películas por página (reducido a 10 para evitar respuestas cortadas)
 PAUSA_PAGINA    = 8     # Segundos entre páginas del mismo año
 PAUSA_AÑO       = 65   # Segundos entre años (límite de Wikidata)
 PAUSA_LABELS    = 2     # Segundos entre bloques de resolución de labels
@@ -71,10 +71,15 @@ def ejecutar_con_backoff(query: str, max_intentos: int = 6) -> list:
             time.sleep(espera)
  
         except json.JSONDecodeError as e:
-            espera = PAUSA_AÑO * (2 ** intento)
-            print(f"  JSON inválido tras saneamiento (intento {intento+1}/{max_intentos}): {e}")
-            print(f"  Respuesta probablemente truncada. Esperando {espera}s...")
+            # Si el JSON viene roto o cortado, esperar mucho no suele arreglarlo.
+            # Esperamos un tiempo fijo corto y reducimos los reintentos.
+            espera = 15
+            print(f"  JSON inválido/cortado (intento {intento+1}/{max_intentos}): {e}")
+            print(f"  Esperando {espera}s...")
             time.sleep(espera)
+            # Si falla 3 veces por JSON roto, lo damos por imposible para no perder el día
+            if intento >= 2: 
+                raise RuntimeError("JSON devuelto por Wikidata está constantemente roto/truncado.")
  
         except Exception as e:
             espera = PAUSA_AÑO * (2 ** intento)
@@ -142,8 +147,9 @@ def obtener_datos_año(año: int) -> list:
         try:
             pagina = ejecutar_con_backoff(query)
         except RuntimeError as e:
-            print(f"  Página offset={offset} fallida definitivamente: {e}")
-            break
+            print(f"  Aviso: Página offset={offset} ignorada por error persistente: {e}")
+            offset += PAGINA
+            continue
  
         if not pagina:
             break

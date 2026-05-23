@@ -1,6 +1,7 @@
 import json
 import time
 import sys
+import concurrent.futures
 from chatLocal import extraer_entidad, generar_sparql, textoMapeo, ejecutar_sparql_local, traducir_ids
 from entidades_cine import buscar_id_entidad
 
@@ -233,6 +234,8 @@ def evaluar_sistema():
 
     resumen_global = {}
 
+    executor = concurrent.futures.ThreadPoolExecutor(max_workers=5)
+
     for modelo in modelos:
         print(f"\n{'='*55}")
         print(f"  Evaluando modelo: {modelo}")
@@ -242,7 +245,29 @@ def evaluar_sistema():
 
         for item in dataset:
             print(f"── Pregunta #{item['id']}: \"{item['pregunta']}\"")
-            resultado = evaluar_pregunta(item, modelo)
+            
+            future = executor.submit(evaluar_pregunta, item, modelo)
+            try:
+                # Límite estricto de 200 segundos por pregunta
+                resultado = future.result(timeout=200)
+            except concurrent.futures.TimeoutError:
+                print(f"  [TIMEOUT] El modelo se quedó bloqueado más de 200 segundos. Saltando a la siguiente...")
+                resultado = {
+                    "id": item["id"],
+                    "pregunta": item["pregunta"],
+                    "exito_entidad": False,
+                    "entidad_obtenida": None,
+                    "id_wikidata": None,
+                    "exito_sparql_zero_shot": False,
+                    "exito_sparql_final": False,
+                    "intentos_usados": 0,
+                    "exito_respuesta": False,
+                    "dato_obtenido": None,
+                    "ultimo_sparql": "",
+                    "tiempo": 200.0,
+                    "error": "Timeout (200s)"
+                }
+            
             resultados_modelo.append(resultado)
             print(f"  [TIEMPO] {resultado['tiempo']:.2f}s")
             print()

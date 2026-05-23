@@ -92,10 +92,28 @@ Además, su arquitectura permite una integración sencilla con otras librerías 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{archivos/Respuesta_bucle.jpeg}
-    \caption{Interfaz de usuario}
-    \label{fig:interfaz}
+    \includegraphics[width=1\textwidth]{archivos/Interfaz_oscuro.jpeg}
+    \caption{Interfaz de usuario en modo oscuro}
+    \label{fig:interfaz_oscuro}
 \end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{archivos/Interfaz_claro.jpeg}
+    \caption{Interfaz de usuario en modo claro}
+    \label{fig:interfaz_claro}
+\end{figure}
+
+Además de la interacción conversacional habitual, la interfaz ha sido diseñada para proporcionar total transparencia sobre el funcionamiento interno del sistema. Durante cada consulta, se expone en la propia pantalla el proceso de razonamiento del agente, detallando paso a paso acciones clave como la extracción de la entidad solicitada, la generación y validación del código SPARQL, y la gestión de reintentos automáticos. Mostrar de forma clara este \textit{pipeline} interno resulta fundamental en el contexto del proyecto, ya que permite comprender y validar el comportamiento de la arquitectura subyacente.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{archivos/Respuesta_no_bucle.jpeg}
+    \caption{Respuesta del sistema a una consulta.}
+    \label{fig:respuesta_no_bucle}
+\end{figure}
+
+
 
 \subsection{Capa de Lógica de Negocio}
 
@@ -134,18 +152,20 @@ El flujo de control del agente sigue los siguientes pasos lógicos:
     \item \textbf{Bucle de corrección:} Si la consulta falla (error de sintaxis o error de acceso a la ontología), el sistema no aborta la operación. Captura el \textit{traceback} del error, se lo envía de vuelta al LLM y le solicita que reescriba el SPARQL corrigiendo su propio fallo. Este proceso se repite un número máximo de iteraciones.
 \end{enumerate}
 
-% ====================================================================
-% NOTA PARA MARIO: 
-% Aquí deberías insertar un Diagrama de Actividad o de Secuencia
-% mostrando el bucle del agente que acabo de describir.
-% ====================================================================
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{archivos/DiagSec2.pdf}
+    \caption{Diagrama de Secuencia con Bucle de Autocorrección}
+    \label{fig:diag_sec_autocorr}
+\end{figure}
+
+Como se menciona anteriormente, una interacción como esta también se muestra de manera transparente al usuario mediante la interfaz de la aplicación, permitiendo al usuario ver el proceso de generación SPARQL y la corrección de errores.
 
 \begin{figure}[h]
     \centering
-    % \includegraphics[width=0.8\textwidth]{ruta/a/tu/diagrama_flujo.png}
-    \vspace{6cm} % Espacio temporal dejado en blanco
-    \caption{[AÑADIR DIAGRAMA DE FLUJO DEL AGENTE AQUÍ]}
-    \label{fig:flujo_agente}
+    \includegraphics[width=1\textwidth]{archivos/Respuesta_bucle.jpeg}
+    \caption{Respuesta del sistema con el bucle de autocorrección activado.}
+    \label{fig:respuesta_bucle}
 \end{figure}
 
 \section{Diseño del Grafo de Conocimiento Local}

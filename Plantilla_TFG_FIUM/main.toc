@@ -23,23 +23,23 @@
 \contentsline {section}{\numberline {4.3}Desarrollo de implementación}{13}{section.4.3}%
 \contentsline {subsection}{\numberline {4.3.1}Interfaz de Usuario}{13}{subsection.4.3.1}%
 \contentsline {subsection}{\numberline {4.3.2}Capa de Lógica de Negocio}{14}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Capa de Datos}{15}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}Diseño del Agente Autocorrector}{16}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Diseño del Grafo de Conocimiento Local}{17}{section.4.5}%
-\contentsline {chapter}{\numberline {5}Desarrollo e Implementación}{19}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Entorno de Desarrollo y Tecnologías}{19}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Extracción de Datos y Grafo Local}{19}{section.5.2}%
-\contentsline {section}{\numberline {5.3}El Agente Conversacional y el Control del LLM}{20}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Bucle de Reflexión y Autocorrección}{20}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Interfaz Gráfica}{21}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Evaluación y Resultados}{22}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Entorno de Pruebas}{22}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Resultados Obtenidos}{22}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Análisis y Discusión de los Resultados}{23}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Estudio de Ablación del Bucle de Reflexión}{24}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Conclusiones de la Evaluación}{24}{section.6.5}%
-\contentsline {chapter}{\numberline {7}Conclusiones y Trabajo Futuro}{26}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Consecución de Objetivos}{26}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Líneas de Trabajo Futuro}{26}{section.7.2}%
-\contentsline {chapter}{\nonumberline Bibliografía}{28}{chapter*.16}%
+\contentsline {subsection}{\numberline {4.3.3}Capa de Datos}{16}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Diseño del Agente Autocorrector}{17}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Diseño del Grafo de Conocimiento Local}{18}{section.4.5}%
+\contentsline {chapter}{\numberline {5}Desarrollo e Implementación}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Entorno de Desarrollo y Tecnologías}{21}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Extracción de Datos y Grafo Local}{21}{section.5.2}%
+\contentsline {section}{\numberline {5.3}El Agente Conversacional y el Control del LLM}{22}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Bucle de Reflexión y Autocorrección}{22}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Interfaz Gráfica}{23}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Evaluación y Resultados}{24}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Entorno de Pruebas}{24}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Resultados Obtenidos}{24}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Análisis y Discusión de los Resultados}{25}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Estudio del Impacto del Bucle de Reflexión}{26}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Conclusiones de la Evaluación}{26}{section.6.5}%
+\contentsline {chapter}{\numberline {7}Conclusiones y Trabajo Futuro}{28}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Consecución de Objetivos}{28}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Líneas de Trabajo Futuro}{28}{section.7.2}%
+\contentsline {chapter}{\nonumberline Bibliografía}{30}{chapter*.18}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

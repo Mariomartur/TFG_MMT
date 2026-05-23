@@ -72,13 +72,3 @@ A partir de los requisitos funcionales, se identifican los casos de uso principa
 \end{figure}
 
 En este caso de uso central, el Actor (Usuario) interactúa con la interfaz de chat. El sistema, de forma transparente para el usuario, ejecuta sub-casos como la extracción de entidades, la generación de código SPARQLy la consulta a la base de datos local.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{archivos/DiagSec2.pdf}
-    \caption{Diagrama de Secuencia con Bucle de Autocorrección}
-    \label{fig:diag_sec_autocorr}
-\end{figure}
-
-
-Esta interacción entre el LLM y el repositorio local osucrre cuando, como se observa en la figura, la base de datos devuelve un error de la consulta SPARQL generada, provocando que el agente LLM intente corregirla de forma autónoma.

@@ -10,5 +10,10 @@
   "wdt:P166": "premios recibidos",
   "wdt:P364": "idioma original",
   "wdt:P58": "guionista",
-  "wdt:P2130": "coste o presupuesto de producción (valor numérico en dólares USD)"
+  "wdt:P2130": "coste o presupuesto de producción (valor numérico en dólares USD)",
+  "wdt:P569": "fecha de nacimiento",
+  "wdt:P570": "fecha de fallecimiento",
+  "wdt:P19": "lugar de nacimiento",
+  "wdt:P27": "país de nacionalidad",
+  "wdt:P106": "ocupación"
 }

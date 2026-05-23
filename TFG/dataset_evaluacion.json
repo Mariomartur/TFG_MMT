@@ -976,5 +976,56 @@
             "Oscar",
             "Academy Award"
         ]
+    },
+    {
+        "id": 96,
+        "pregunta": "¿Qué edad tiene el director de Parasite?",
+        "entidad_esperada": "Parasite",
+        "propiedad_esperada": "wdt:P569",
+        "respuesta_esperada_contiene": [
+            "1969"
+        ]
+    },
+    {
+        "id": 97,
+        "pregunta": "¿Dónde nació el director de Inception?",
+        "entidad_esperada": "Inception",
+        "propiedad_esperada": "wdt:P19",
+        "respuesta_esperada_contiene": [
+            "London",
+            "Londres"
+        ]
+    },
+    {
+        "id": 98,
+        "pregunta": "¿De qué país es el actor protagonista de Gladiator?",
+        "entidad_esperada": "Gladiator",
+        "propiedad_esperada": "wdt:P27",
+        "respuesta_esperada_contiene": [
+            "New Zealand",
+            "Nueva Zelanda",
+            "Australia"
+        ]
+    },
+    {
+        "id": 99,
+        "pregunta": "¿Cuál es la ocupación del director de El Padrino?",
+        "entidad_esperada": "El Padrino",
+        "propiedad_esperada": "wdt:P106",
+        "respuesta_esperada_contiene": [
+            "director",
+            "cineasta",
+            "film director",
+            "screenwriter"
+        ]
+    },
+    {
+        "id": 100,
+        "pregunta": "¿En qué año falleció el guionista de El Resplandor?",
+        "entidad_esperada": "El Resplandor",
+        "propiedad_esperada": "wdt:P570",
+        "respuesta_esperada_contiene": [
+            "1999"
+        ]
     }
 ]

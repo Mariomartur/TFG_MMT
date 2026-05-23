@@ -55,7 +55,7 @@ La inclusión de diferentes Modelos de Lenguaje (LLMs) locales ha permitido eval
 
 En el lado opuesto, \texttt{deepseek-r1:8b} (68.49s por pregunta) y \texttt{llama3.2:1b} (94.65s), resultan completamente inviables para un chat en tiempo real. Es importante destacar un fenómeno particular: el altísimo tiempo registrado por \texttt{llama3.2:1b} no se debe a que la inferencia del modelo sea lenta en sí misma (de hecho, es muy ligero), sino a que su baja precisión inicial provocaba que el sistema activara constantemente el ``Bucle de Reflexión''. Al generar código SPARQL erróneo con frecuencia, el sistema de corrección interceptaba el error de ejecución y obligaba al modelo a reescribir la consulta de forma repetida. Al fallar recurrentemente en corregirse a sí mismo, agotaba los intentos máximos permitidos, lo que disparó exponencialmente el tiempo total de ejecución y la media por pregunta.
 
-\section{Estudio de Ablación del Bucle de Reflexión}
+\section{Estudio del Impacto del Bucle de Reflexión}
 
 Para comprobar la verdadera eficacia de la arquitectura iterativa diseñada (bucle de autocorrección), se ha llevado a cabo una evaluación para medir su impacto aislado. Para ello, se evaluaron dos métricas principales:
 
@@ -64,7 +64,7 @@ Para comprobar la verdadera eficacia de la arquitectura iterativa diseñada (buc
     \item \textbf{Precisión con Reflexión (Multi-Turn):} Porcentaje de acierto final permitiendo al agente iterar y corregir sus propios errores de sintaxis o semántica (hasta un máximo de 3 intentos).
 \end{itemize}
 
-Los resultados obtenidos al comparar un modelo de lenguaje de gran capacidad (\textit{Llama 3}, de 8B parámetros) frente a un modelo ligero y eficiente (\textit{Gemma 2}, de 2B parámetros) se muestran en el Cuadro~\ref{tab:ablacion}.
+Los resultados obtenidos al comparar un modelo de lenguaje de gran capacidad (\textit{Llama 3}, de 8B parámetros) frente a un modelo ligero y eficiente (\textit{Gemma 2}, de 2B parámetros) se muestran en el Cuadro~\ref{tab:impacto}.
 
 \begin{table}[h]
     \centering
@@ -75,8 +75,8 @@ Los resultados obtenidos al comparar un modelo de lenguaje de gran capacidad (\t
         Gemma 2 (2B)    & 90.16\%                & 80.33\%                  & 90.16\%                  & 9.84\%                   \\ \hline
     \end{tabular}
     \vspace{0.2cm}
-    \caption{Resultados del Estudio de Ablación sobre la precisión de generación SPARQL.}
-    \label{tab:ablacion}
+    \caption{Resultados del Estudio del Impacto del Bucle de Reflexión sobre la precisión de generación SPARQL.}
+    \label{tab:impacto}
 \end{table}
 
 Como se observa en los resultados, el modelo de mayor tamaño (Llama 3) posee una capacidad de razonamiento \textit{Zero-Shot} lo suficientemente robusta como para generar consultas SPARQL correctas desde el primer intento (en los casos donde la entidad fue extraída con éxito). En consecuencia, el mecanismo de reflexión no llega a activarse.
