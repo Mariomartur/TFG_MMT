@@ -13,7 +13,7 @@ En este capítulo se detallan los aspectos técnicos de la implementación del s
 El sistema ha sido desarrollado íntegramente en Python, aprovechando su extenso ecosistema para el procesamiento de datos y la Inteligencia Artificial. Entre las librerías principales destacan:
 \begin{itemize}
     \item \textbf{Ollama:} Motor de inferencia local que permite ejecutar LLMs de código abierto (Llama 3, Mistral, Gemma 2, etc.) directamente en la máquina del usuario sin depender de APIs externas. Se accede desde Python mediante la librería cliente oficial \texttt{ollama}.
-    \item \textbf{Blazegraph:} Base de datos RDF de alto rendimiento que actúa como motor SPARQL local, sobre la que se carga el grafo de conocimiento en formato \textit{Turtle}.
+    \item \textbf{Blazegraph:} Base de datos RDF de alto rendimiento que actúa como motor SPARQL local, sobre la que se carga el grafo de conocimiento en formato \textit{N-Triples}.
     \item \textbf{Streamlit:} Para la rápida construcción de la interfaz gráfica de usuario.
     \item \textbf{SPARQLWrapper:} Para lanzar consultas SPARQL contra Blazegraph local y, durante la fase de extracción de datos, contra Wikidata.
 \end{itemize}
@@ -22,7 +22,7 @@ El despliegue del sistema se ha contenerizado utilizando \textbf{Docker}, garant
 
 \section{Extracción de Datos y Grafo Local}
 
-Para evitar depender de llamadas externas costosas durante la interacción con los usuarios, se diseñó el proceso (\texttt{generar\_datos\_cine.py}) que extrae la información desde Wikidata y la guarda en el archivo \texttt{datos\_cine\_seguro.ttl}, que funciona como base de datos local.
+Para evitar depender de llamadas externas costosas durante la interacción con los usuarios, se diseñó el proceso (\texttt{extraer\_dump\_cine.py}) que procesa el volcado (dump) masivo de Wikidata en local y guarda la información relevante en el archivo \texttt{datos\_cine\_limpio.nt}, que funciona como base de datos local.
 
 Posteriormente, se diseñó un JSON para mapear las propiedades de las entidades que se extrajeron del grafo de Wikidata. Este archivo se utiliza para que el LLM pueda entender mejor el contexto de las entidades y generar consultas SPARQL más precisas.
 

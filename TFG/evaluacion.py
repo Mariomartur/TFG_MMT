@@ -226,11 +226,18 @@ def evaluar_sistema():
 
     # Selección del modelo
     if len(sys.argv) > 1:
-        modelos = [sys.argv[1]]
+        entrada = sys.argv[1]
     else:
-        print("Modelos típicos: llama3, llama3.2:1b, mistral, gemma2:9b, gemma2:2b, deepseek-r1:8b")
-        entrada = input("Modelo a evaluar (Enter = llama3): ").strip()
-        modelos = [entrada if entrada else "llama3"]
+        print("Modelos disponibles: llama3, llama3.2:1b, mistral, gemma2:9b, gemma2:2b, deepseek-r1:8b")
+        print("Puedes escribir varios modelos separados por comas, o escribir 'todos' para evaluarlos de golpe.")
+        entrada = input("Modelos a evaluar (Enter = llama3): ").strip()
+        
+    if not entrada:
+        modelos = ["llama3"]
+    elif entrada.lower() == "todos":
+        modelos = ["llama3", "llama3.2:1b", "mistral", "gemma2:9b", "gemma2:2b", "deepseek-r1:8b"]
+    else:
+        modelos = [m.strip() for m in entrada.split(",") if m.strip()]
 
     resumen_global = {}
 

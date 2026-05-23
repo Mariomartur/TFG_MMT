@@ -20,7 +20,7 @@ Tal como se explicó en el apartado anterior, la metodología seguida combina un
     \begin{itemize}
         \item \textbf{Análisis de Requisitos:} Se determinó la necesidad de disponer de una base de conocimiento estructurada y acotada para evitar que el LLM inventara datos (alucinaciones).
         \item \textbf{Prototipo inicial:} Se realizaron consultas directas a la API de Wikidata para validar la viabilidad de la extracción de entidades y el modelado de la información.
-        \item \textbf{Diseño del Sistema:} Se optó por la creación de un Grafo de Conocimiento local (archivo \texttt{.ttl}) gestionado con \textit{RDFLib} para garantizar consistencia semántica y tiempos de respuesta rápidos.
+        \item \textbf{Diseño del Sistema:} Se optó por la creación de un Grafo de Conocimiento local (archivo \texttt{.nt}) gestionado con \textit{Blazegraph} para garantizar consistencia semántica y tiempos de respuesta rápidos.
         \item \textbf{Desarrollo e Implementación:} Se implementó un esquema estricto mediante un diccionario de propiedades, limitando el espacio de búsqueda del modelo de lenguaje únicamente a la ontología definida.
     \end{itemize}
 
@@ -68,7 +68,7 @@ El sistema ha sido diseñado siguiendo un modelo de arquitectura por capas, gara
 \begin{enumerate}
     \item \textbf{Capa de Interfaz de Usuario:} Implementada con \textit{Streamlit}, actúa como el cliente de usuario, proveyendo la interfaz de chat interactiva.
     \item \textbf{Capa de Lógica de Negocio:} Es el núcleo del sistema, implementado en Python con \textit{Ollama} como motor de inferencia. Contiene la lógica de extracción de entidades, la integración con el LLM local, el bucle de reflexión y la construcción de los \textit{prompts} del sistema.
-    \item \textbf{Capa de Datos:} Comprende el almacenamiento persistente RDF en un archivo \texttt{.ttl} gestionado por \textit{Blazegraph} como motor SPARQL local, accedido mediante la librería \textit{SPARQLWrapper}.
+    \item \textbf{Capa de Datos:} Comprende el almacenamiento persistente RDF en un archivo \texttt{.nt} gestionado por \textit{Blazegraph} como motor SPARQL local, accedido mediante la librería \textit{SPARQLWrapper}.
 \end{enumerate}
 
 \begin{figure}[h]
@@ -131,7 +131,7 @@ La conexión con el LLM se realiza directamente a través de la librería \textt
 
 \subsection{Capa de Datos}
 
-La capa de datos se sustenta en \textit{Blazegraph}, un motor de base de datos RDF de alto rendimiento que expone un endpoint SPARQL local en el puerto 9999. El grafo de conocimiento (archivo \texttt{.ttl}) se carga una única vez en Blazegraph al inicio del proceso y permanece disponible en memoria durante toda la sesión, garantizando tiempos de respuesta rápidos ante las consultas del agente.
+La capa de datos se sustenta en \textit{Blazegraph}, un motor de base de datos RDF de alto rendimiento que expone un endpoint SPARQL local en el puerto 9999. El grafo de conocimiento (archivo \texttt{.nt}) se carga una única vez en Blazegraph al inicio del proceso y permanece disponible en memoria durante toda la sesión, garantizando tiempos de respuesta rápidos ante las consultas del agente.
 
 El acceso al endpoint desde Python se realiza mediante la librería \textit{SPARQLWrapper}, que permite lanzar consultas SPARQL estándar y recibir los resultados en formato JSON. Este diseño presenta dos ventajas clave frente a alternativas de carga en memoria (como RDFLib): en primer lugar, Blazegraph mantiene índices internos que hacen las consultas significativamente más rápidas sobre grafos de gran tamaño; en segundo lugar, el servidor puede recargarse o ampliarse sin reiniciar la aplicación.
 
@@ -172,7 +172,7 @@ Como se menciona anteriormente, una interacción como esta también se muestra d
 
 Para asegurar la privacidad, el rendimiento y la consistencia de las respuestas, el sistema no interroga directamente a Wikidata en su fase de resolución de consultas, sino que opera sobre un Grafo de Conocimiento local exportado previamente.
 
-Este grafo local (\texttt{datos\_cine\_seguro.ttl}) actúa como la base de datos del sistema, gestionada por \textit{Blazegraph}. Su esquema semántico está rigurosamente acotado para el dominio del cine: se seleccionaron únicamente doce propiedades clave de Wikidata para limitar el espacio de búsqueda del LLM y mejorar la precisión en la generación SPARQL. Las propiedades mapeadas son:
+Este grafo local (\texttt{datos\_cine\_limpio.nt}) actúa como la base de datos del sistema, gestionada por \textit{Blazegraph}. Su esquema semántico está rigurosamente acotado para el dominio del cine: se seleccionaron únicamente diecisiete propiedades clave de Wikidata para limitar el espacio de búsqueda del LLM y mejorar la precisión en la generación SPARQL. Las propiedades mapeadas son:
 
 \begin{itemize}
     \item \texttt{wdt:P57}: Director.
