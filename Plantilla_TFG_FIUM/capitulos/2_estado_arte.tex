@@ -16,7 +16,17 @@ Para comprender la arquitectura y las decisiones de diseño adoptadas en este Tr
 La Web Semántica, propuesta originalmente por Tim Berners-Lee, busca extender la web actual dotando a la información de un significado bien definido, permitiendo que ordenadores y personas trabajen en cooperación. El núcleo de esta visión son los Grafos de Conocimiento (\textit{Knowledge Graphs}), estructuras de datos que representan entidades del mundo real y sus interrelaciones de forma explícita.
 
 \subsection{Resource Description Framework (RDF)}
-RDF es el estándar principal para modelar información en la Web Semántica \cite{w3c_rdf}. La información se estructura en forma de tripletas que representan una relación entre dos entidades, por lo que el modelo de datos está estructurado en forma de grafo, donde cada nodo es una entidad y cada arista es una relación entre dos entidades: \textit{Sujeto}, \textit{Predicado} y \textit{Objeto}. Estas tripletas pueden serializarse en distintos formatos, siendo \textit{Turtle} (Terse RDF Triple Language) uno de los más legibles por humanos y el formato elegido en este proyecto para almacenar la base de conocimiento local sobre el dominio del cine.
+RDF es el estándar principal para modelar información en la Web Semántica \cite{w3c_rdf}. La información se estructura en forma de tripletas que representan una relación entre dos entidades, por lo que el modelo de datos está estructurado en forma de grafo, donde cada nodo es una entidad y cada arista es una relación entre dos entidades: \textit{Sujeto}, \textit{Predicado} y \textit{Objeto}. 
+
+Estas tripletas pueden serializarse en distintos formatos, siendo \textit{nt} (N-Triples) uno de los más eficientes para el almacenamiento, tiempo de procesamiento y consultas complejas que requieran pasar de unas entidades a otras (multi-hop queries), como se muestra en la siguiente figura.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{archivos/Grafo_Conocimiento.pdf}
+    \caption{Ejemplo de grafo de conocimiento sobre el dominio del cine.}
+    \label{fig:grafo_conocimiento}
+\end{figure}
 
 \subsection{SPARQL}
 SPARQL (\textit{SPARQL Protocol and RDF Query Language}) es el lenguaje de consulta estándar para bases de datos RDF \cite{w3c_sparql}. Permite realizar consultas complejas sobre grafos, filtrar resultados y explorar las relaciones semánticas entre entidades. Aunque es extremadamente potente y preciso, su curva de aprendizaje es muy pronunciada, lo que justifica la necesidad de construir interfaces en lenguaje natural para democratizar el acceso a los datos, como se propone en este TFG.

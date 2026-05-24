@@ -172,7 +172,7 @@ Como se menciona anteriormente, una interacción como esta también se muestra d
 
 Para asegurar la privacidad, el rendimiento y la consistencia de las respuestas, el sistema no interroga directamente a Wikidata en su fase de resolución de consultas, sino que opera sobre un Grafo de Conocimiento local exportado previamente.
 
-Este grafo local (\texttt{datos\_cine\_limpio.nt}) actúa como la base de datos del sistema, gestionada por \textit{Blazegraph}. Su esquema semántico está rigurosamente acotado para el dominio del cine: se seleccionaron únicamente diecisiete propiedades clave de Wikidata para limitar el espacio de búsqueda del LLM y mejorar la precisión en la generación SPARQL. Las propiedades mapeadas son:
+Este grafo local (\texttt{datos\_cine\_limpio.nt}) actúa como la base de datos del sistema, gestionada por \textit{Blazegraph}. Su esquema semántico está rigurosamente acotado para el dominio del cine: se seleccionaron doce propiedades clave de Wikidata para limitar el espacio de búsqueda del LLM y mejorar la precisión en la generación SPARQL. Las propiedades mapeadas son:
 
 \begin{itemize}
     \item \texttt{wdt:P57}: Director.
@@ -187,6 +187,17 @@ Este grafo local (\texttt{datos\_cine\_limpio.nt}) actúa como la base de datos 
     \item \texttt{wdt:P58}: Guionista.
     \item \texttt{wdt:P166}: Premios recibidos.
     \item \texttt{wdt:P2130}: Coste o presupuesto de producción.
+\end{itemize}
+
+Además, también se han seleccionado las cinco propiedades princpales de algunas de las entidades relacionadas con las películas, como son los actores y directores de estas. Estas propiedades son:
+
+
+\begin{itemize}
+    \item \texttt{wdt:P27}: Nacionalidad.
+    \item \texttt{wdt:P569}: Fecha de nacimiento.
+    \item \texttt{wdt:P570}: Fecha de fallecimiento.
+    \item \texttt{wdt:P106}: Profesión.
+    \item \texttt{wdt:P19}: Lugar de nacimiento.
 \end{itemize}
 
 El LLM recibe en su \textit{prompt} un diccionario estricto que mapea el lenguaje natural a estas propiedades —leído dinámicamente desde \texttt{mapeo\_propiedades.json}—, con la orden explícita de no utilizar ninguna propiedad de Wikidata que no se encuentre en dicha lista. Esta decisión de diseño es crítica para evitar alucinaciones semánticas y obtener los altos porcentajes de precisión en la generación de SPARQL que se documentan en el capítulo de evaluación.

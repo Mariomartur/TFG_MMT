@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.3.6)  22 MAY 2026 10:48
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.5.24)  24 MAY 2026 13:28
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
  %&-line parsing enabled.
 **./main.tex
 (main.tex
 LaTeX2e <2025-11-01>
-L3 programming layer <2026-01-19>
+L3 programming layer <2025-12-24>
 (include/configuracioninicial.tex
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrbook.cls
 Document Class: scrbook 2026/02/02 v3.49.2 KOMA-Script document class (book)
@@ -172,7 +172,7 @@ Package scrlayer-scrpage Info: Makeing stand-alone element `pagehead' from
 (scrlayer-scrpage)             alias to `pageheadfoot' on input line 1106.
 )
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
-Package: geometry 2020/01/02 v5.9 Page Geometry
+Package: geometry 2026/03/07 v6.0 Page Geometry
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
@@ -218,7 +218,7 @@ Package: lscapeenhanced 2024-04-16 v1.0 improved lscape package
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/xpatch\xpatch.sty
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
-Package: expl3 2026-01-19 L3 programming layer (loader) 
+Package: expl3 2025-12-24 L3 programming layer (loader) 
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-xet
 ex.def
@@ -249,16 +249,16 @@ LaTeX Info: Redefining \cite on input line 694.
 )
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/breakcites\breakcites.s
 ty) (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
-Package: babel 2026/02/14 v26.3 The multilingual framework for LuaLaTeX, pdfLaT
-eX and XeLaTeX
+Package: babel 2025/12/11 v25.17 The multilingual framework for LuaLaTeX, pdfLa
+TeX and XeLaTeX
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.def
-File: babel.def 2026/02/14 v26.3 Babel common definitions
+File: babel.def 2025/12/11 v25.17 Babel common definitions
 ))
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/polyglossia\polyglossia
 .sty
-Package: polyglossia 2025/12/01 v2.9 Modern multilingual typesetting with XeLaT
-eX and LuaLaTeX
+Package: polyglossia 2026/04/18 v2.10 Modern multilingual typesetting with XeLa
+TeX and LuaLaTeX
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.sty
 Package: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
@@ -1103,10 +1103,10 @@ Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ))
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/zref\zref-abspage.sty
-Package: zref-abspage 2025-06-08 v2.36 Module abspage for zref (HO)
+Package: zref-abspage 2026-03-07 v2.37 Module abspage for zref (HO)
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/zref\zref-base.sty
-Package: zref-base 2025-06-08 v2.36 Module base for zref (HO)
+Package: zref-base 2026-03-07 v2.37 Module base for zref (HO)
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
 ty
@@ -1228,10 +1228,10 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \c@mdf@zref@counter=\count353
 Package zref Info: New property: mdf@pagevalue on input line 895.
 ) (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/generic/soul\soul.sty
-Package: soul 2023-06-14 v3.1 Permit use of UTF-8 characters in soul (HO)
+Package: soul 2026-03-06 v3.2 Permit use of UTF-8 characters in soul (HO)
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/generic/soul\soul-ori.sty
-Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
+Package: soul-ori 2026-03-06 v3.2 letterspacing/underlining (mf)
 \SOUL@word=\toks44
 \SOUL@lasttoken=\toks45
 \SOUL@syllable=\toks46
@@ -1254,7 +1254,7 @@ Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
 \SOUL@ulht=\dimen335
 ))
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/pdfpages\pdfpages.sty
-Package: pdfpages 2025/07/23 v0.6g Insert pages of external PDF documents (AM)
+Package: pdfpages 2026/03/30 v0.6h Insert pages of external PDF documents (AM)
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
@@ -1282,7 +1282,7 @@ Package: eso-pic 2025/12/10 v3.0d eso-pic (RN)
 \AM@fboxrule=\dimen342
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/pdfpages\ppxetex.def
-File: ppxetex.def 2025/07/23 v0.6g Pdfpages driver for XeTeX (AM)
+File: ppxetex.def 2026/03/30 v0.6h Pdfpages driver for XeTeX (AM)
 )
 \pdfpages@includegraphics@status=\count361
 \AM@pagebox=\box106
@@ -1298,7 +1298,7 @@ File: ppxetex.def 2025/07/23 v0.6g Pdfpages driver for XeTeX (AM)
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
-Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
+Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
 ty
@@ -1306,7 +1306,7 @@ Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 ) (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 ) (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
-Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
+Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
@@ -1326,23 +1326,23 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 \Hy@linkcounter=\count365
 \Hy@pagecounter=\count366
  (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
-File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
 ) (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count367
  (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
-File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
 )
-Package hyperref Info: Hyper figures OFF on input line 4201.
-Package hyperref Info: Link nesting OFF on input line 4206.
-Package hyperref Info: Hyper index ON on input line 4209.
-Package hyperref Info: Plain pages OFF on input line 4216.
-Package hyperref Info: Backreferencing OFF on input line 4221.
+Package hyperref Info: Hyper figures OFF on input line 4195.
+Package hyperref Info: Link nesting OFF on input line 4200.
+Package hyperref Info: Hyper index ON on input line 4203.
+Package hyperref Info: Plain pages OFF on input line 4210.
+Package hyperref Info: Backreferencing OFF on input line 4215.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4468.
+Package hyperref Info: Bookmarks ON on input line 4462.
 \c@Hy@tempcnt=\count368
-LaTeX Info: Redefining \url on input line 4807.
+LaTeX Info: Redefining \url on input line 4801.
 \XeTeXLinkMargin=\dimen344
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
@@ -1356,13 +1356,13 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 \Fld@menulength=\count369
 \Field@Width=\dimen345
 \Fld@charsize=\dimen346
-Package hyperref Info: Hyper figures OFF on input line 6084.
-Package hyperref Info: Link nesting OFF on input line 6089.
-Package hyperref Info: Hyper index ON on input line 6092.
-Package hyperref Info: backreferencing OFF on input line 6099.
-Package hyperref Info: Link coloring OFF on input line 6104.
-Package hyperref Info: Link coloring with OCG OFF on input line 6109.
-Package hyperref Info: PDF/A mode OFF on input line 6114.
+Package hyperref Info: Hyper figures OFF on input line 6078.
+Package hyperref Info: Link nesting OFF on input line 6083.
+Package hyperref Info: Hyper index ON on input line 6086.
+Package hyperref Info: backreferencing OFF on input line 6093.
+Package hyperref Info: Link coloring OFF on input line 6098.
+Package hyperref Info: Link coloring with OCG OFF on input line 6103.
+Package hyperref Info: PDF/A mode OFF on input line 6108.
 \Hy@abspage=\count370
 \c@Item=\count371
 \c@Hfootnote=\count372
@@ -1370,7 +1370,7 @@ Package hyperref Info: PDF/A mode OFF on input line 6114.
 Package hyperref Info: Driver (autodetected): hxetex.
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hxetex.def
-File: hxetex.def 2026-01-29 v7.01p Hyperref driver for XeTeX
+File: hxetex.def 2025-07-12 v7.01o Hyperref driver for XeTeX
 \pdfm@box=\box108
 \c@Hy@AnnotLevel=\count373
 \HyField@AnnotCount=\count374
@@ -1447,7 +1447,7 @@ File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/glossaries/base\glossar
 ies.sty
-Package: glossaries 2025/11/09 v4.9 (NLCT)
+Package: glossaries 2026/04/21 v5.1 (NLCT)
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/mfirstuc\mfirstuc.sty
 Package: mfirstuc 2025/04/03 v2.09 (NLCT)
@@ -1463,7 +1463,7 @@ File: amsgen.sty 1999/11/30 v2.0 generic functions
 \ex@=\dimen347
 )
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/tracklang\tracklang.sty
-Package: tracklang 2025/03/11 v1.6.6 (NLCT) Track Languages
+Package: tracklang 2026/05/18 v1.6.7 (NLCT) Track Languages
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/generic/tracklang\tracklang.t
 ex)
@@ -1603,22 +1603,22 @@ Package tracklang Warning: No `datatool' support for dialect `spainspanish'  on
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/glossaries/styles\gloss
 ary-hypernav.sty
-Package: glossary-hypernav 2025/11/09 v4.9 (NLCT)
+Package: glossary-hypernav 2026/04/21 v5.1 (NLCT)
 )
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/glossaries/styles\gloss
 ary-list.sty
-Package: glossary-list 2025/11/09 v4.9 (NLCT)
+Package: glossary-list 2026/04/21 v5.1 (NLCT)
 \glslistdottedwidth=\skip169
 )
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/glossaries/styles\gloss
 ary-long.sty
-Package: glossary-long 2025/11/09 v4.9 (NLCT)
+Package: glossary-long 2026/04/21 v5.1 (NLCT)
 \glsdescwidth=\skip170
 \glspagelistwidth=\skip171
 )
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/glossaries/styles\gloss
 ary-super.sty
-Package: glossary-super 2025/11/09 v4.9 (NLCT)
+Package: glossary-super 2026/04/21 v5.1 (NLCT)
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/supertabular\supertabul
 ar.sty
@@ -1641,7 +1641,7 @@ Package: supertabular 2025/06/26 v4.2d the supertabular environment
 ))
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/glossaries/styles\gloss
 ary-tree.sty
-Package: glossary-tree 2025/11/09 v4.9 (NLCT)
+Package: glossary-tree 2026/04/21 v5.1 (NLCT)
 \l__glossaries_tree_max_known_level_int=\count421
 \l__glossaries_tree_offset_dim=\dimen370
 \l__glossaries_tree_namewidth_dim=\dimen371
@@ -1657,7 +1657,7 @@ Package: glossary-tree 2025/11/09 v4.9 (NLCT)
 ))
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/glossaries/styles\gloss
 ary-superragged.sty
-Package: glossary-superragged 2025/11/09 v4.9 (NLCT)
+Package: glossary-superragged 2026/04/21 v5.1 (NLCT)
 )
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mathtools.sty
 Package: mathtools 2024/10/04 v1.31 mathematical typesetting tools
@@ -1795,11 +1795,10 @@ Class scrbook Info: loading recommended package `bookmark'.
 (scrbook)           before \begin{document} on input line 79.
 
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bookmark.sty
-Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
+Package: bookmark 2026-05-21 v1.32 PDF bookmarks (HO)
 
-(C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bkm-dvipdfm.de
-f
-File: bkm-dvipdfm.def 2023-12-10 v1.31 bookmark driver for dvipdfm (HO)
+(C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bkm-xetex.def
+File: bkm-xetex.def 2026-05-21 v1.32 bookmark driver for xetex (HO)
 \BKM@id=\count438
 )) (main.aux)
 \openout1 = `main.aux'.
@@ -2224,33 +2223,38 @@ Underfull \vbox (badness 1924) has occurred while \output is active []
 ])
 (capitulos/2_estado_arte.tex [2] [3]
 chapter 2.
+File: archivos/Grafo_Conocimiento.pdf Graphic file (type pdf)
+<use archivos/Grafo_Conocimiento.pdf>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [4
 
-]
-Overfull \hbox (7.24762pt too wide) in paragraph at lines 41--42
+] [5]
+Overfull \hbox (7.24762pt too wide) in paragraph at lines 51--52
 []\TU/lmr/m/n/12 La Generación Aumentada por Recuperación (\TU/lmr/m/it/12 Retr
 ieval-Augmented Generation\TU/lmr/m/n/12 , RAG)
  []
 
-[5]) (capitulos/3_analisis.tex [6]
+) (capitulos/3_analisis.tex [6] [7]
 chapter 3.
-[7
+[8
 
-] [8]
+] [9]
 File: archivos/DiagSec1.pdf Graphic file (type pdf)
 <use archivos/DiagSec1.pdf>
-) (capitulos/4_diseno.tex [9] [10]
+) (capitulos/4_diseno.tex [10] [11]
 chapter 4.
-[11
+[12
 
-] [12]
+] [13]
 File: archivos/DiagCapas.pdf Graphic file (type pdf)
 <use archivos/DiagCapas.pdf>
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[13]
+[14]
 File: archivos/Interfaz_oscuro.jpeg Graphic file (type bmp)
 <archivos/Interfaz_oscuro.jpeg>
 
@@ -2269,10 +2273,10 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 123.
-[14]
+[15]
 Underfull \vbox (badness 5563) has occurred while \output is active []
 
- [15]
+ [16]
 Overfull \hbox (3.26622pt too wide) in paragraph at lines 138--139
 []\TU/lmr/m/n/12 La resolución de entidades también opera sobre esta misma capa
 : \TU/lmtt/m/n/12 entidades_cine.py
@@ -2281,8 +2285,8 @@ Overfull \hbox (3.26622pt too wide) in paragraph at lines 138--139
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [16]
-[17]
+ [17]
+[18]
 File: archivos/DiagSec2.pdf Graphic file (type pdf)
 <use archivos/DiagSec2.pdf>
 File: archivos/Respuesta_bucle.jpeg Graphic file (type bmp)
@@ -2291,9 +2295,15 @@ File: archivos/Respuesta_bucle.jpeg Graphic file (type bmp)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[18] [19]) (capitulos/5_implementacion.tex [20]
+[19] [20]) (capitulos/5_implementacion.tex [21]
 chapter 5.
-[21
+
+Overfull \hbox (63.92232pt too wide) in paragraph at lines 25--26
+\TU/lmr/m/n/12 masivo de Wikidata en local y guarda la información relevante en
+ el archivo \TU/lmtt/m/n/12 datos_cine_limpio.nt\TU/lmr/m/n/12 ,
+ []
+
+[22
 
 ]
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
@@ -2304,24 +2314,20 @@ Overfull \hbox (81.79701pt too wide) in paragraph at lines 70--71
  función \TU/lmtt/m/n/12 ejecutar_sparql_local()\TU/lmr/m/n/12 ,
  []
 
-[22]) (capitulos/6_evaluacion.tex [23]
+[23]) (capitulos/6_evaluacion.tex [24]
 chapter 6.
-[24
+[25
 
-] [25]
-
-LaTeX Warning: Reference `tab:impacto' on page 26 undefined on input line 67.
-
-
+] [26]
 Overfull \hbox (65.03435pt too wide) in paragraph at lines 71--78
  [][] 
  []
 
-) (capitulos/7_conclusiones.tex [26] [27]
+) (capitulos/7_conclusiones.tex [27] [28]
 chapter 7.
-[28
+[29
 
-]) (main.bbl [29]
+]) (main.bbl [30]
 chapter without number
 
 Underfull \hbox (badness 1259) in paragraph at lines 15--19
@@ -2335,28 +2341,21 @@ Package glossaries Warning: No \printglossary or \printglossaries found.
 (Remove \makeglossaries if you don't want any glossaries.) 
 This document will not have a glossary.
 
-[30
+[31
 
 ] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 58200 strings out of 402983
- 1385678 string characters out of 5448483
- 2544230 words of memory out of 5000000
- 85939 multiletter control sequences out of 15000+600000
+ 58308 strings out of 402987
+ 1388753 string characters out of 5448524
+ 2547559 words of memory out of 5000000
+ 86041 multiletter control sequences out of 15000+600000
  640547 words of font info for 121 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 113i,21n,110p,11306b,2190s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 113i,21n,110p,11306b,2184s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (50 pages).
+Output written on main.pdf (51 pages).
