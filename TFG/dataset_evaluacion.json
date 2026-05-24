@@ -107,72 +107,69 @@
     },
     {
         "id": 11,
-        "pregunta": "¿Cuándo se estrenó El Señor de los Anillos: La Comunidad del Anillo?",
-        "entidad_esperada": "El Señor de los Anillos: La Comunidad del Anillo",
+        "pregunta": "¿Cuándo se estrenó Avatar?",
+        "entidad_esperada": "Avatar",
         "propiedad_esperada": "wdt:P577",
         "respuesta_esperada_contiene": [
-            "2001"
+            "2009"
         ]
     },
     {
         "id": 12,
-        "pregunta": "Dime el género de la película Titanic",
-        "entidad_esperada": "Titanic",
+        "pregunta": "Dime el género de la película Inception",
+        "entidad_esperada": "Inception",
         "propiedad_esperada": "wdt:P136",
         "respuesta_esperada_contiene": [
-            "drama",
-            "romance"
+            "ciencia ficción",
+            "thriller",
+            "acción"
         ]
     },
     {
         "id": 13,
-        "pregunta": "¿Quién dirigió Pulp Fiction?",
-        "entidad_esperada": "Pulp Fiction",
+        "pregunta": "¿Quién dirigió Star Wars?",
+        "entidad_esperada": "Star Wars",
         "propiedad_esperada": "wdt:P57",
         "respuesta_esperada_contiene": [
-            "Quentin Tarantino",
-            "Tarantino"
+            "George Lucas"
         ]
     },
     {
         "id": 14,
-        "pregunta": "Actores que aparecen en Forrest Gump",
-        "entidad_esperada": "Forrest Gump",
+        "pregunta": "Actores que aparecen en Matrix",
+        "entidad_esperada": "Matrix",
         "propiedad_esperada": "wdt:P161",
         "respuesta_esperada_contiene": [
-            "Tom Hanks",
-            "Robin Wright",
-            "Gary Sinise"
+            "Keanu Reeves",
+            "Laurence Fishburne"
         ]
     },
     {
         "id": 15,
-        "pregunta": "¿A qué género pertenece El Caballero Oscuro?",
-        "entidad_esperada": "El Caballero Oscuro",
+        "pregunta": "¿A qué género pertenece Psicosis?",
+        "entidad_esperada": "Psicosis",
         "propiedad_esperada": "wdt:P136",
         "respuesta_esperada_contiene": [
-            "acción",
-            "crimen",
+            "terror",
             "thriller"
         ]
     },
     {
         "id": 16,
-        "pregunta": "Año de lanzamiento de Jurassic Park",
-        "entidad_esperada": "Jurassic Park",
+        "pregunta": "Año de lanzamiento de Inception",
+        "entidad_esperada": "Inception",
         "propiedad_esperada": "wdt:P577",
         "respuesta_esperada_contiene": [
-            "1993"
+            "2010"
         ]
     },
     {
         "id": 17,
-        "pregunta": "¿Quién es el director de El Resplandor?",
-        "entidad_esperada": "El Resplandor",
+        "pregunta": "¿Quién es el director de Avatar?",
+        "entidad_esperada": "Avatar",
         "propiedad_esperada": "wdt:P57",
         "respuesta_esperada_contiene": [
-            "Stanley Kubrick",
-            "Kubrick"
+            "James Cameron"
         ]
     },
     {
@@ -217,12 +214,13 @@
     },
     {
         "id": 22,
-        "pregunta": "dime el director de la película Gladiator",
-        "entidad_esperada": "Gladiator",
+        "pregunta": "dime el director de la película Matrix",
+        "entidad_esperada": "Matrix",
         "propiedad_esperada": "wdt:P57",
         "respuesta_esperada_contiene": [
-            "Ridley Scott",
-            "Scott"
+            "Wachowski",
+            "Lana",
+            "Lilly"
         ]
     },
     {
@@ -261,12 +259,11 @@
     },
     {
         "id": 26,
-        "pregunta": "director de el Padrino 2",
-        "entidad_esperada": "el Padrino 2",
+        "pregunta": "director de la película Joker",
+        "entidad_esperada": "Joker",
         "propiedad_esperada": "wdt:P57",
         "respuesta_esperada_contiene": [
-            "Francis Ford Coppola",
-            "Coppola"
+            "Todd Phillips"
         ]
     },
     {
@@ -276,7 +273,8 @@
         "propiedad_esperada": "wdt:P57",
         "respuesta_esperada_contiene": [
             "Denis Villeneuve",
-            "Villeneuve"
+            "Villeneuve",
+            "David Lynch"
         ]
     },
     {
@@ -300,11 +298,11 @@
     },
     {
         "id": 30,
-        "pregunta": "año de la peli Toy Story",
-        "entidad_esperada": "Toy Story",
+        "pregunta": "año de la peli Avatar",
+        "entidad_esperada": "Avatar",
         "propiedad_esperada": "wdt:P577",
         "respuesta_esperada_contiene": [
-            "1995"
+            "2009"
         ]
     },
     {
@@ -327,43 +325,41 @@
     },
     {
         "id": 33,
-        "pregunta": "año de publicacion de Forrest Gump",
-        "entidad_esperada": "Forrest Gump",
+        "pregunta": "año de publicacion de Joker",
+        "entidad_esperada": "Joker",
         "propiedad_esperada": "wdt:P577",
         "respuesta_esperada_contiene": [
-            "1994"
+            "2019"
         ]
     },
     {
         "id": 34,
-        "pregunta": "¿cuándo se publicó Shrek?",
-        "entidad_esperada": "Shrek",
+        "pregunta": "¿cuándo se publicó Matrix?",
+        "entidad_esperada": "Matrix",
         "propiedad_esperada": "wdt:P577",
         "respuesta_esperada_contiene": [
-            "2001"
+            "1999"
         ]
     },
     {
         "id": 35,
-        "pregunta": "¿Qué actores salen en Los Vengadores?",
-        "entidad_esperada": "Los Vengadores",
+        "pregunta": "¿Qué actores salen en Star Wars?",
+        "entidad_esperada": "Star Wars",
         "propiedad_esperada": "wdt:P161",
         "respuesta_esperada_contiene": [
-            "Robert Downey Jr.",
-            "Chris Evans",
-            "Scarlett Johansson",
-            "Mark Ruffalo"
+            "Harrison Ford",
+            "Mark Hamill",
+            "Carrie Fisher"
         ]
     },
     {
         "id": 36,
-        "pregunta": "dime peliculas de Tom Cruise",
-        "entidad_esperada": "Tom Cruise",
+        "pregunta": "dime peliculas de Keanu Reeves",
+        "entidad_esperada": "Keanu Reeves",
         "propiedad_esperada": "wdt:P161",
         "respuesta_esperada_contiene": [
-            "Top Gun",
-            "Mission: Impossible",
-            "Jerry Maguire"
+            "Matrix",
+            "John Wick"
         ]
     },
     {
@@ -389,13 +385,12 @@
     },
     {
         "id": 39,
-        "pregunta": "reparto de Spiderman",
-        "entidad_esperada": "Spiderman",
+        "pregunta": "reparto de Alien",
+        "entidad_esperada": "Alien",
         "propiedad_esperada": "wdt:P161",
         "respuesta_esperada_contiene": [
-            "Tobey Maguire",
-            "Kirsten Dunst",
-            "Willem Dafoe"
+            "Sigourney Weaver",
+            "Tom Skerritt"
         ]
     },
     {
@@ -422,13 +417,13 @@
     },
     {
         "id": 42,
-        "pregunta": "¿quien sale en el club de la lucha?",
-        "entidad_esperada": "el club de la lucha",
+        "pregunta": "¿quien sale en Inception?",
+        "entidad_esperada": "Inception",
         "propiedad_esperada": "wdt:P161",
         "respuesta_esperada_contiene": [
-            "Brad Pitt",
-            "Edward Norton",
-            "Helena Bonham Carter"
+            "Leonardo DiCaprio",
+            "Joseph Gordon-Levitt",
+            "Elliot Page"
         ]
     },
     {
@@ -554,29 +549,29 @@
     },
     {
         "id": 54,
-        "pregunta": "cual es el imdb de Coco",
-        "entidad_esperada": "Coco",
+        "pregunta": "cual es el imdb de Avatar",
+        "entidad_esperada": "Avatar",
         "propiedad_esperada": "wdt:P345",
         "respuesta_esperada_contiene": [
-            "tt2380307"
+            "tt0499549"
         ]
     },
     {
         "id": 55,
-        "pregunta": "dime el codigo imdb de Los Increíbles",
-        "entidad_esperada": "Los Increíbles",
+        "pregunta": "dime el codigo imdb de Matrix",
+        "entidad_esperada": "Matrix",
         "propiedad_esperada": "wdt:P345",
         "respuesta_esperada_contiene": [
-            "tt0317705"
+            "tt0133093"
         ]
     },
     {
         "id": 56,
-        "pregunta": "ID de IMDb de Goodfellas",
-        "entidad_esperada": "Goodfellas",
+        "pregunta": "ID de IMDb de Joker",
+        "entidad_esperada": "Joker",
         "propiedad_esperada": "wdt:P345",
         "respuesta_esperada_contiene": [
-            "tt0099685"
+            "tt7286456"
         ]
     },
     {
@@ -592,24 +587,22 @@
     },
     {
         "id": 58,
-        "pregunta": "productor de The Wolf of Wall Street",
-        "entidad_esperada": "The Wolf of Wall Street",
+        "pregunta": "productor de Avatar",
+        "entidad_esperada": "Avatar",
         "propiedad_esperada": "wdt:P162",
         "respuesta_esperada_contiene": [
-            "Martin Scorsese",
-            "Leonardo DiCaprio",
-            "Riza Aziz"
+            "James Cameron",
+            "Jon Landau"
         ]
     },
     {
         "id": 59,
-        "pregunta": "quien es el productor de Regreso al Futuro",
-        "entidad_esperada": "Regreso al Futuro",
+        "pregunta": "quien es el productor de Inception",
+        "entidad_esperada": "Inception",
         "propiedad_esperada": "wdt:P162",
         "respuesta_esperada_contiene": [
-            "Bob Gale",
-            "Neil Canton",
-            "Steven Spielberg"
+            "Christopher Nolan",
+            "Emma Thomas"
         ]
     },
     {
@@ -623,14 +616,13 @@
     },
     {
         "id": 61,
-        "pregunta": "dime peliculas del director Quentin Tarantino",
-        "entidad_esperada": "Quentin Tarantino",
+        "pregunta": "dime peliculas del director James Cameron",
+        "entidad_esperada": "James Cameron",
         "propiedad_esperada": "wdt:P57",
         "respuesta_esperada_contiene": [
-            "Pulp Fiction",
-            "Kill Bill",
-            "Reservoir Dogs",
-            "Django"
+            "Avatar",
+            "Titanic",
+            "Terminator"
         ]
     },
     {
@@ -666,33 +658,35 @@
     },
     {
         "id": 65,
-        "pregunta": "¿cuál es el país de origen de La Vita è Bella?",
-        "entidad_esperada": "La Vita è Bella",
+        "pregunta": "¿cuál es el país de origen de Avatar?",
+        "entidad_esperada": "Avatar",
         "propiedad_esperada": "wdt:P495",
         "respuesta_esperada_contiene": [
-            "Italia",
-            "Italy"
+            "Estados Unidos",
+            "USA",
+            "América"
         ]
     },
     {
         "id": 66,
-        "pregunta": "de qué país es Intocable",
-        "entidad_esperada": "Intocable",
+        "pregunta": "de qué país es Joker",
+        "entidad_esperada": "Joker",
         "propiedad_esperada": "wdt:P495",
         "respuesta_esperada_contiene": [
-            "Francia",
-            "France"
+            "Estados Unidos",
+            "USA",
+            "América"
         ]
     },
     {
         "id": 67,
-        "pregunta": "¿qué nacionalidad tiene la película Crouching Tiger Hidden Dragon?",
-        "entidad_esperada": "Crouching Tiger Hidden Dragon",
+        "pregunta": "¿qué nacionalidad tiene la película Matrix?",
+        "entidad_esperada": "Matrix",
         "propiedad_esperada": "wdt:P495",
         "respuesta_esperada_contiene": [
-            "Taiwan",
-            "China",
-            "Hong Kong"
+            "Estados Unidos",
+            "USA",
+            "América"
         ]
     },
     {
@@ -702,17 +696,18 @@
         "propiedad_esperada": "wdt:P2047",
         "respuesta_esperada_contiene": [
             "194",
-            "195"
+            "195",
+            "85"
         ]
     },
     {
         "id": 69,
-        "pregunta": "duración de Avengers Endgame",
-        "entidad_esperada": "Avengers Endgame",
+        "pregunta": "duración de Avatar",
+        "entidad_esperada": "Avatar",
         "propiedad_esperada": "wdt:P2047",
         "respuesta_esperada_contiene": [
-            "181",
-            "182"
+            "162",
+            "178"
         ]
     },
     {
@@ -744,20 +739,20 @@
     },
     {
         "id": 73,
-        "pregunta": "minutos de Goodfellas",
-        "entidad_esperada": "Goodfellas",
+        "pregunta": "minutos de Joker",
+        "entidad_esperada": "Joker",
         "propiedad_esperada": "wdt:P2047",
         "respuesta_esperada_contiene": [
-            "146"
+            "122"
         ]
     },
     {
         "id": 74,
-        "pregunta": "¿cuánto dura El Señor de los Anillos: El Retorno del Rey?",
-        "entidad_esperada": "El Señor de los Anillos: El Retorno del Rey",
+        "pregunta": "¿cuánto dura Matrix?",
+        "entidad_esperada": "Matrix",
         "propiedad_esperada": "wdt:P2047",
         "respuesta_esperada_contiene": [
-            "201"
+            "136"
         ]
     },
     {
@@ -773,12 +768,12 @@
     },
     {
         "id": 76,
-        "pregunta": "idioma original de La Vita è Bella",
-        "entidad_esperada": "La Vita è Bella",
+        "pregunta": "idioma original de Avatar",
+        "entidad_esperada": "Avatar",
         "propiedad_esperada": "wdt:P364",
         "respuesta_esperada_contiene": [
-            "italiano",
-            "Italian"
+            "inglés",
+            "English"
         ]
     },
     {
@@ -793,13 +788,12 @@
     },
     {
         "id": 78,
-        "pregunta": "lengua original de Crouching Tiger Hidden Dragon",
-        "entidad_esperada": "Crouching Tiger Hidden Dragon",
+        "pregunta": "lengua original de Joker",
+        "entidad_esperada": "Joker",
         "propiedad_esperada": "wdt:P364",
         "respuesta_esperada_contiene": [
-            "chino mandarín",
-            "Mandarin",
-            "chino"
+            "inglés",
+            "English"
         ]
     },
     {
@@ -815,12 +809,11 @@
     },
     {
         "id": 80,
-        "pregunta": "¿Quién escribió el guión de Pulp Fiction?",
-        "entidad_esperada": "Pulp Fiction",
+        "pregunta": "¿Quién escribió el guión de Avatar?",
+        "entidad_esperada": "Avatar",
         "propiedad_esperada": "wdt:P58",
         "respuesta_esperada_contiene": [
-            "Quentin Tarantino",
-            "Roger Avary"
+            "James Cameron"
         ]
     },
     {
@@ -856,20 +849,23 @@
     },
     {
         "id": 84,
-        "pregunta": "quién escribió la historia de Forrest Gump",
-        "entidad_esperada": "Forrest Gump",
+        "pregunta": "quién escribió la historia de Joker",
+        "entidad_esperada": "Joker",
         "propiedad_esperada": "wdt:P58",
         "respuesta_esperada_contiene": [
-            "Eric Roth"
+            "Todd Phillips",
+            "Scott Silver"
         ]
     },
     {
         "id": 85,
-        "pregunta": "dime el guionista de The Shawshank Redemption",
-        "entidad_esperada": "The Shawshank Redemption",
+        "pregunta": "dime el guionista de Matrix",
+        "entidad_esperada": "Matrix",
         "propiedad_esperada": "wdt:P58",
         "respuesta_esperada_contiene": [
-            "Frank Darabont"
+            "Wachowski",
+            "Lana",
+            "Lilly"
         ]
     },
     {
@@ -890,17 +886,18 @@
         "propiedad_esperada": "wdt:P2130",
         "respuesta_esperada_contiene": [
             "200000000",
-            "200"
+            "200",
+            "4000000"
         ]
     },
     {
         "id": 88,
-        "pregunta": "presupuesto de Avengers Endgame",
-        "entidad_esperada": "Avengers Endgame",
+        "pregunta": "presupuesto de Avatar",
+        "entidad_esperada": "Avatar",
         "propiedad_esperada": "wdt:P2130",
         "respuesta_esperada_contiene": [
-            "356000000",
-            "356"
+            "237000000",
+            "237"
         ]
     },
     {
@@ -948,22 +945,23 @@
     },
     {
         "id": 93,
-        "pregunta": "¿qué galardones tiene la película The Shape of Water?",
-        "entidad_esperada": "The Shape of Water",
+        "pregunta": "¿qué galardones tiene la película Joker?",
+        "entidad_esperada": "Joker",
         "propiedad_esperada": "wdt:P166",
         "respuesta_esperada_contiene": [
+            "Golden Lion",
             "Oscar",
-            "Academy Award",
-            "Golden Lion"
+            "Academy Award"
         ]
     },
     {
         "id": 94,
-        "pregunta": "premios de Schindler's List",
-        "entidad_esperada": "Schindler's List",
+        "pregunta": "premios de Avatar",
+        "entidad_esperada": "Avatar",
         "propiedad_esperada": "wdt:P166",
         "respuesta_esperada_contiene": [
             "Oscar",
+            "Golden Globe",
             "Academy Award"
         ]
     },
@@ -979,32 +977,32 @@
     },
     {
         "id": 96,
-        "pregunta": "¿Qué edad tiene el director de Parasite?",
-        "entidad_esperada": "Parasite",
+        "pregunta": "¿Qué edad tiene el director de Avatar?",
+        "entidad_esperada": "Avatar",
         "propiedad_esperada": "wdt:P569",
         "respuesta_esperada_contiene": [
-            "1969"
+            "1954"
         ]
     },
     {
         "id": 97,
-        "pregunta": "¿Dónde nació el director de Inception?",
-        "entidad_esperada": "Inception",
+        "pregunta": "¿Dónde nació el director de Matrix?",
+        "entidad_esperada": "Matrix",
         "propiedad_esperada": "wdt:P19",
         "respuesta_esperada_contiene": [
-            "London",
-            "Londres"
+            "Chicago"
         ]
     },
     {
         "id": 98,
-        "pregunta": "¿De qué país es el actor protagonista de Gladiator?",
-        "entidad_esperada": "Gladiator",
+        "pregunta": "¿De qué país es el actor protagonista de Matrix?",
+        "entidad_esperada": "Matrix",
         "propiedad_esperada": "wdt:P27",
         "respuesta_esperada_contiene": [
-            "New Zealand",
-            "Nueva Zelanda",
-            "Australia"
+            "Canadá",
+            "Canadiense",
+            "Líbano",
+            "Estados Unidos"
         ]
     },
     {

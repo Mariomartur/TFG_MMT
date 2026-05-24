@@ -10,18 +10,19 @@ Para asegurar la viabilidad técnica del sistema y validar el cumplimiento de lo
 
 \section{Entorno de Pruebas}
 
-Se elaboró un conjunto de datos (\textit{dataset}) de validación en formato estructurado (\texttt{dataset\_evaluacion.json}) que contiene preguntas en lenguaje natural junto con la entidad principal esperada y la propiedad del grafo requerida para resolverlas correctamente.
+Se elaboró un conjunto de datos (\textit{dataset}) de validación en formato estructurado (\texttt{dataset\_evaluacion.json}) que contiene preguntas en lenguaje natural junto con la entidad principal esperada, la propiedad del grafo requerida para resolverlas, y un listado de posibles respuestas correctas (\texttt{respuesta\_esperada\_contiene}) que actúan como \textit{ground truth}.
 
-El conjunto de pruebas definitivo se compone de 20 preguntas complejas que abarcan diversas relaciones semánticas del dominio cinematográfico, tales como:
+El conjunto de pruebas se compone de 100 preguntas que abarcan diversas relaciones semánticas del dominio cinematográfico, evaluando tanto búsquedas directas (\textit{single-hop}), en las que se preguntan propiedades específicas de una sola entidad, como consultas complejas de más de un salto (\textit{multi-hop}) en las que se pregunta por propiedades de entidades relacionadas con la entidad inicial para relacionar múltiples nodos, por ejemplo, averiguar el lugar de nacimiento (\texttt{wdt:P19}) o país de ciudadanía (\texttt{wdt:P27}) del director o actor de una película concreta. abarcando todas las propiedades listadas en apartados anteriores.
 \begin{itemize}
     \item Directores de obras cinematográficas (\texttt{wdt:P57}).
     \item Años de publicación o estreno (\texttt{wdt:P577}).
     \item Reparto de actores principales (\texttt{wdt:P161}).
     \item Géneros cinematográficos (\texttt{wdt:P136}).
     \item Identificadores externos como IMDb (\texttt{wdt:P345}) y Productores (\texttt{wdt:P162}).
+    \item Consultas \textit{multi-hop}, que requieren crear variables intermedias en la consulta para relacionar múltiples nodos, por ejemplo, averiguar el lugar de nacimiento (\texttt{wdt:P19}) o país de ciudadanía (\texttt{wdt:P27}) del director o actor de una película concreta.
 \end{itemize}
 
-El script \texttt{evaluacion.py} automatiza la ejecución secuencial de estas pruebas sin intervención humana, comparando la salida del sistema con los valores esperados y calculando la precisión media (\textit{Accuracy}).
+El script \texttt{evaluacion.py} automatiza la ejecución secuencial de estas pruebas sin intervención humana. La evaluación se divide en tres fases: primero verifica la correcta extracción de la entidad inicial, luego valida la estructura y sintaxis de la consulta SPARQL generada, y finalmente comprueba que el dato real extraído de la base de datos local coincida con alguno de los valores estipulados en \texttt{respuesta\_esperada\_contiene}, calculando así la precisión global (\textit{Accuracy}).
 
 \section{Resultados Obtenidos}
 

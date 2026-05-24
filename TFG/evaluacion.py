@@ -4,17 +4,21 @@ import sys
 import concurrent.futures
 from chatLocal import extraer_entidad, generar_sparql, textoMapeo, ejecutar_sparql_local, traducir_ids
 from entidades_cine import buscar_id_entidad
+import unicodedata
 
+def normalizar_texto(texto: str) -> str:
+    texto = texto.lower()
+    return ''.join(c for c in unicodedata.normalize('NFD', texto) if unicodedata.category(c) != 'Mn')
 
 def verificar_respuesta(dato_obtenido: str, items_esperados: list[str]) -> bool:
     """
     Comprueba si la cadena de datos obtenida de Blazegraph contiene
-    al menos uno de los valores esperados (case-insensitive).
+    al menos uno de los valores esperados (case-insensitive y sin tildes).
 
     Se compara sobre el dato traducido (nombres reales), no sobre QIDs.
     """
-    dato_lower = dato_obtenido.lower()
-    return any(item.lower() in dato_lower for item in items_esperados)
+    dato_norm = normalizar_texto(dato_obtenido)
+    return any(normalizar_texto(item) in dato_norm for item in items_esperados)
 
 
 def evaluar_pregunta(item: dict, modelo: str) -> dict:
