@@ -45,7 +45,9 @@ def evaluar_pregunta(item: dict, modelo: str) -> dict:
     start = time.time()
 
     # ── FASE 1: Extracción de entidad ──────────────────────────────────────
-    entidad_obtenida = extraer_entidad(item["pregunta"], historial=[], modelo=modelo)
+    historial = item.get("historial", [])
+    ultima_entidad = item.get("ultima_entidad", None)
+    entidad_obtenida = extraer_entidad(item["pregunta"], historial=historial, ultima_entidad=ultima_entidad, modelo=modelo)
     resultado["entidad_obtenida"] = entidad_obtenida
 
     if entidad_obtenida.lower() != item["entidad_esperada"].lower():
@@ -277,6 +279,23 @@ def evaluar_sistema():
                     "ultimo_sparql": "",
                     "tiempo": 200.0,
                     "error": "Timeout (200s)"
+                }
+            except Exception as e:
+                print(f"  [ERROR EN HILO] Se canceló la petición en el hilo: {str(e)[:100]}")
+                resultado = {
+                    "id": item["id"],
+                    "pregunta": item["pregunta"],
+                    "exito_entidad": False,
+                    "entidad_obtenida": None,
+                    "id_wikidata": None,
+                    "exito_sparql_zero_shot": False,
+                    "exito_sparql_final": False,
+                    "intentos_usados": 0,
+                    "exito_respuesta": False,
+                    "dato_obtenido": None,
+                    "ultimo_sparql": "",
+                    "tiempo": 200.0,
+                    "error": f"Error interno: {str(e)[:50]}"
                 }
             
             resultados_modelo.append(resultado)

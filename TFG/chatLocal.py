@@ -10,15 +10,33 @@ with open("mapeo_propiedades.json", "r", encoding="utf-8") as f:
     textoMapeo = json.dumps(mapeoProp, indent=2)
 
 def consultar_llm(prompt, modelo='llama3'):
-    response = ollama.chat(model=modelo, messages=[{'role': 'user', 'content': prompt}],
-                           options={'temperature':0.0})
-    return response['message']['content']
+    url = "http://localhost:11434/api/chat"
+    data = {
+        "model": modelo,
+        "messages": [{"role": "user", "content": prompt}],
+        "stream": False,
+        "options": {"temperature": 0.0}
+    }
+    # Timeout de 180s para lecturas
+    response = requests.post(url, json=data, timeout=180)
+    response.raise_for_status()
+    return response.json()['message']['content']
 
 def consultar_llm_stream(prompt, modelo='llama3'):
-    response = ollama.chat(model=modelo, messages=[{'role': 'user', 'content': prompt}],
-                           options={'temperature':0.0}, stream=True)
-    for chunk in response:
-        yield chunk['message']['content']
+    url = "http://localhost:11434/api/chat"
+    data = {
+        "model": modelo,
+        "messages": [{"role": "user", "content": prompt}],
+        "stream": True,
+        "options": {"temperature": 0.0}
+    }
+    response = requests.post(url, json=data, stream=True, timeout=180)
+    response.raise_for_status()
+    for line in response.iter_lines():
+        if line:
+            chunk = json.loads(line)
+            if 'message' in chunk and 'content' in chunk['message']:
+                yield chunk['message']['content']
 
 def extraer_entidad(consulta, historial, ultima_entidad=None,modelo='llama3'):
     texto_historial = ""

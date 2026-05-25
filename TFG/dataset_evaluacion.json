@@ -1025,5 +1025,49 @@
         "respuesta_esperada_contiene": [
             "1999"
         ]
+    },
+    {
+        "id": 101,
+        "pregunta": "¿Y quién la dirigió?",
+        "historial": [
+            {"rol": "user", "contenido": "¿En qué año salió Titanic?"},
+            {"rol": "assistant", "contenido": "Titanic se estrenó en 1997."}
+        ],
+        "ultima_entidad": "Titanic",
+        "entidad_esperada": "Titanic",
+        "propiedad_esperada": "wdt:P57",
+        "respuesta_esperada_contiene": [
+            "James Cameron"
+        ]
+    },
+    {
+        "id": 102,
+        "pregunta": "¿En qué país nació él?",
+        "historial": [
+            {"rol": "user", "contenido": "¿Quién es el actor protagonista de Memento?"},
+            {"rol": "assistant", "contenido": "El protagonista de Memento es Guy Pearce."}
+        ],
+        "ultima_entidad": "Guy Pearce",
+        "entidad_esperada": "Guy Pearce",
+        "propiedad_esperada": "wdt:P27",
+        "respuesta_esperada_contiene": [
+            "Reino Unido",
+            "UK",
+            "United Kingdom"
+        ]
+    },
+    {
+        "id": 103,
+        "pregunta": "¿Cuántos minutos dura esa película?",
+        "historial": [
+            {"rol": "user", "contenido": "Dime de qué género es Inception"},
+            {"rol": "assistant", "contenido": "Inception es una película de ciencia ficción y acción."}
+        ],
+        "ultima_entidad": "Inception",
+        "entidad_esperada": "Inception",
+        "propiedad_esperada": "wdt:P2047",
+        "respuesta_esperada_contiene": [
+            "148"
+        ]
     }
 ]

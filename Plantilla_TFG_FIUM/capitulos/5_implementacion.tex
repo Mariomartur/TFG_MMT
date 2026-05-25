@@ -22,17 +22,17 @@ El despliegue del sistema se ha contenerizado utilizando \textbf{Docker}, garant
 
 \section{Extracción de Datos y Grafo Local}
 
-Para evitar depender de llamadas externas costosas durante la interacción con los usuarios, se diseñó el proceso (\texttt{extraer\_dump\_cine.py}) que procesa el volcado (dump) masivo de Wikidata en local y guarda la información relevante en el archivo \texttt{datos\_cine\_limpio.nt}, que funciona como base de datos local.
+Para evitar depender de llamadas externas costosas durante la interacción con los usuarios, se diseñó el proceso \texttt{extraer\_dump\_cine.py} que procesa el volcado (dump) masivo de Wikidata en local y guarda la información relevante en el archivo \texttt{datos\_cine\_limpio.nt}, que funciona como base de datos local, las propiedades extraidas de las entidades relevantes son las presentes en \texttt{mapeo\_propiedades.json}.
 
-Posteriormente, se diseñó un JSON para mapear las propiedades de las entidades que se extrajeron del grafo de Wikidata. Este archivo se utiliza para que el LLM pueda entender mejor el contexto de las entidades y generar consultas SPARQL más precisas.
+Este JSON fue diseñado, además de para mapear las propiedades de las entidades deseadas del grafo de Wikidata, para que el LLM pueda entender mejor el contexto de las entidades y generar consultas SPARQL más precisas.
 
 La estructura del código permite añadir entidades relevantes al grafo local. Por ejemplo, al extraer una película, también se extraen los nodos de su director y actores, conformando un subgrafo fuertemente conectado, ideal para responder a las consultas SPARQL posteriores.
 
 \section{El Agente Conversacional y el Control del LLM}
 
-El componente principal, ubicado en \texttt{chatLocal.py}, inicializa el motor LangChain. El aspecto más crítico de la implementación es el diseño de los \textit{Prompts} del sistema. 
+El componente principal, ubicado en \texttt{chatLocal.py}, inicializa el motor LangChain y funciona como el cerebro del sistema, encargándose de toda la lógica de la aplicación. El aspecto más crítico de la implementación en esta fase es el diseño de los \textit{Prompts} del sistema, ya que son los que guían al LLM en la generación de consultas SPARQL y en la respuesta a las preguntas de los usuarios. 
 
-Para asegurar que el modelo utilice exclusivamente las propiedades permitidas en el grafo local, se inyecta dinámicamente un texto de mapeo en la instrucción base:
+Para asegurar que el modelo utilice exclusivamente las propiedades permitidas en el grafo local, se inyecta dinámicamente el JSON de mapeo mencionado en el apartado anterior en la instrucción base:
 
 \begin{lstlisting}[style=Python-color, caption={Carga del mapeo de propiedades e inyección en el prompt SPARQL}, label=lst:prompt]
 with open("mapeo_propiedades.json", "r", encoding="utf-8") as f:
@@ -99,4 +99,4 @@ Este enfoque incrementó drásticamente la robustez del sistema, permitiéndole 
 
 \section{Interfaz Gráfica}
 
-La interfaz, construida con \textit{Streamlit} (\texttt{interfaz.py}), mantiene el estado de la conversación y proporciona una experiencia moderna mediante técnicas de diseño \textit{Glassmorphism}. Destaca la inclusión de un \textbf{panel desplegable de estado} donde el usuario puede visualizar en tiempo real los pensamientos internos del agente: qué entidad extrae, qué consulta SPARQL ha generado y si ha necesitado autocorregirse. Esto dota al sistema de una robusta capa de explicabilidad (\textit{Explainable AI}), diferenciándolo de los chatbots tipo "caja negra" convencionales.
+La interfaz, construida con \textit{Streamlit}, mantiene el estado de la conversación y proporciona una página intuitiva para el usuario. Destaca la inclusión de un panel desplegable de estado donde el usuario puede visualizar en tiempo real los pensamientos internos del agente: qué entidad extrae, qué consulta SPARQL ha generado y si ha necesitado autocorregirse. Esto dota al sistema de una robusta capa de explicabilidad (\textit{Explainable AI}), diferenciándolo de los chatbots tipo "caja negra" convencionales.

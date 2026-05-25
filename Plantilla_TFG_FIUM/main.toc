@@ -36,8 +36,7 @@
 \contentsline {section}{\numberline {6.1}Entorno de Pruebas}{25}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Resultados Obtenidos}{25}{section.6.2}%
 \contentsline {section}{\numberline {6.3}Análisis y Discusión de los Resultados}{26}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Estudio del Impacto del Bucle de Reflexión}{27}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Conclusiones de la Evaluación}{27}{section.6.5}%
+\contentsline {section}{\numberline {6.4}Conclusiones de la Evaluación}{28}{section.6.4}%
 \contentsline {chapter}{\numberline {7}Conclusiones y Trabajo Futuro}{29}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Consecución de Objetivos}{29}{section.7.1}%
 \contentsline {section}{\numberline {7.2}Líneas de Trabajo Futuro}{29}{section.7.2}%

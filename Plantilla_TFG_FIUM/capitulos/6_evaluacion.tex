@@ -12,17 +12,9 @@ Para asegurar la viabilidad técnica del sistema y validar el cumplimiento de lo
 
 Se elaboró un conjunto de datos (\textit{dataset}) de validación en formato estructurado (\texttt{dataset\_evaluacion.json}) que contiene preguntas en lenguaje natural junto con la entidad principal esperada, la propiedad del grafo requerida para resolverlas, y un listado de posibles respuestas correctas (\texttt{respuesta\_esperada\_contiene}) que actúan como \textit{ground truth}.
 
-El conjunto de pruebas se compone de 100 preguntas que abarcan diversas relaciones semánticas del dominio cinematográfico, evaluando tanto búsquedas directas (\textit{single-hop}), en las que se preguntan propiedades específicas de una sola entidad, como consultas complejas de más de un salto (\textit{multi-hop}) en las que se pregunta por propiedades de entidades relacionadas con la entidad inicial para relacionar múltiples nodos, por ejemplo, averiguar el lugar de nacimiento (\texttt{wdt:P19}) o país de ciudadanía (\texttt{wdt:P27}) del director o actor de una película concreta. abarcando todas las propiedades listadas en apartados anteriores.
-\begin{itemize}
-    \item Directores de obras cinematográficas (\texttt{wdt:P57}).
-    \item Años de publicación o estreno (\texttt{wdt:P577}).
-    \item Reparto de actores principales (\texttt{wdt:P161}).
-    \item Géneros cinematográficos (\texttt{wdt:P136}).
-    \item Identificadores externos como IMDb (\texttt{wdt:P345}) y Productores (\texttt{wdt:P162}).
-    \item Consultas \textit{multi-hop}, que requieren crear variables intermedias en la consulta para relacionar múltiples nodos, por ejemplo, averiguar el lugar de nacimiento (\texttt{wdt:P19}) o país de ciudadanía (\texttt{wdt:P27}) del director o actor de una película concreta.
-\end{itemize}
+El conjunto de pruebas se compone de 103 preguntas que abarcan diversas relaciones semánticas del dominio cinematográfico, evaluando tanto búsquedas directas (\textit{single-hop}), en las que se preguntan propiedades específicas de una sola entidad, como consultas complejas de más de un salto (\textit{multi-hop}) en las que se pregunta por propiedades de entidades relacionadas con la entidad inicial para relacionar múltiples nodos, por ejemplo, averiguar el lugar de nacimiento (\texttt{wdt:P19}) o país de ciudadanía (\texttt{wdt:P27}) del director o actor de una película concreta, abarcando todas las propiedades listadas en apartados anteriores.
 
-El script \texttt{evaluacion.py} automatiza la ejecución secuencial de estas pruebas sin intervención humana. La evaluación se divide en tres fases: primero verifica la correcta extracción de la entidad inicial, luego valida la estructura y sintaxis de la consulta SPARQL generada, y finalmente comprueba que el dato real extraído de la base de datos local coincida con alguno de los valores estipulados en \texttt{respuesta\_esperada\_contiene}, calculando así la precisión global (\textit{Accuracy}).
+El script \texttt{evaluacion.py} automatiza la ejecución secuencial de estas pruebas sin intervención humana. La evaluación se divide en tres fases: primero verifica la correcta extracción de la entidad inicial, luego valida la estructura y sintaxis de la consulta SPARQL generada, y finalmente comprueba que el dato real extraído de la base de datos local coincida con los valores estipulados en \texttt{respuesta\_esperada\_contiene}, que contarían como aciertos en la respuesta,calculando así la precisión global (\textit{Accuracy}).
 
 \section{Resultados Obtenidos}
 
@@ -30,62 +22,74 @@ Las pruebas automatizadas arrojaron las siguientes métricas de rendimiento glob
 
 \begin{table}[h]
 \centering
-\begin{tabular}{|l|c|c|c|c|}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|c|c|c|c|}
 \hline
-\textbf{Modelo} & \textbf{Prec. Entidad} & \textbf{Prec. SPARQL} & \textbf{T/Pregunta} & \textbf{T. Total} \\ \hline
-\textbf{llama3} & 90.16\% & 90.16\% & 3.66s & 223.35s \\ \hline
-\textbf{llama3.2:1b} & 90.16\% & 34.43\% & 94.65s & 5773.87s \\ \hline
-\textbf{mistral} & 88.52\% & 86.89\% & 4.34s & 264.62s \\ \hline
-\textbf{gemma2:9b} & 95.08\% & \textbf{95.08\%} & 5.04s & 307.71s \\ \hline
-\textbf{gemma2:2b} & 90.16\% & 80.33\% & \textbf{3.30s} & \textbf{201.00s} \\ \hline
-\textbf{deepseek-r1:8b} & \textbf{98.36\%} & 93.44\% & 68.49s & 4178.12s \\ \hline
-\end{tabular}
+\textbf{Modelo}         & \textbf{Prec. Ent.}   & \textbf{Prec. SPARQL} & \textbf{Prec. Respuesta} & \textbf{Prec. Final} & \textbf{T/Preg.}  & \textbf{T. Total} \\ \hline
+\textbf{llama3}         & 97.1\%                & \textbf{97.1\%}       & \textbf{97.1\%}          & \textbf{94.3\%}      & \textbf{9.51s}    & \textbf{979.84s} \\ \hline
+\textbf{llama3.2:1b}    & 58.3\%                & 21.4\%                & 0.0\%                    & 0.0\%                & 76.78s            & 7908.84s \\ \hline
+\textbf{mistral}        & 82.5\%                & 73.8\%                & 94.6\%                   & 69.8\%               & 10.57s            & 1088.79s \\ \hline
+\textbf{gemma2:9b}      & \textbf{98.1\%}       & \textbf{97.1\%}       & 96.5\%                   & 93.7\%               & 9.98s             & 1027.62s \\ \hline
+\textbf{gemma2:2b}      & 85.4\%                & 74.8\%                & 73.7\%                   & 55.1\%               & 20.28s            & 2088.85s \\ \hline
+\textbf{deepseek-r1:8b} & 91.3\%                & 91.3\%                & 95.9\%                   & 87.6\%               & 35.59s            & 3665.37s \\ \hline
+\end{tabular}%
+}
 \caption{Comparativa de rendimiento, precisión y latencia entre distintos LLMs locales evaluados.}
 \label{tab:comparativa_modelos}
 \end{table}
 
-\section{Análisis y Discusión de los Resultados}
-
-La inclusión de diferentes Modelos de Lenguaje (LLMs) locales ha permitido evaluar no solo la viabilidad cualitativa del sistema, sino también comparar su rendimiento bajo las mismas restricciones del sistema RAG. Los datos de la Tabla \ref{tab:comparativa_modelos} revelan compromisos significativos según la arquitectura y el tamaño de cada modelo. A continuación, se detallan las conclusiones extraídas de cada métrica:
-
-\textbf{1. Rendimiento en Extracción de Entidades:} El sistema demostró una altísima fiabilidad en esta primera fase, la cual es crítica para el éxito del resto de la consulta. Si el sistema no es capaz de aislar el sujeto de la oración (por ejemplo, extraer ``Matrix'' de la consulta ``¿Quién dirigió Matrix?''), la búsqueda en la base de conocimientos fallará irremediablemente. La gran mayoría de modelos superaron el 88\% de precisión al identificar este sujeto principal. Destaca especialmente el modelo \texttt{deepseek-r1:8b}, que alcanzó un porcentaje casi perfecto del 98.36\%, demostrando una capacidad sobresaliente para comprender el contexto conversacional complejo y aislar los términos clave independientemente de cómo el usuario formule la pregunta.
-
-\textbf{2. Generación de Código SPARQL:} Traducir texto en lenguaje natural a la sintaxis estricta y tipada de SPARQL representa el mayor desafío técnico del proyecto. En este aspecto, \texttt{gemma2:9b} se posicionó como el ganador indiscutible con un 95.08\% de acierto. Esto confirma la hipótesis de que los modelos con mayor número de parámetros poseen un razonamiento lógico y algorítmico superior para escribir código sin incurrir en alucinaciones (como inventar propiedades o relaciones inexistentes). Por el contrario, los modelos excesivamente pequeños sufrieron severamente en esta tarea; el caso más extremo es \texttt{llama3.2:1b}, cuyo rendimiento colapsó al 34.43\%. Esto indica que un modelo de apenas 1 billón de parámetros no retiene en su memoria interna la capacidad suficiente para dominar la ontología de Wikidata de forma fiable, ni siquiera contando con la ayuda del contexto inyectado.
-
-\textbf{3. Análisis de Tiempos, Viabilidad y el Bucle de Reflexión:} En un sistema interactivo orientado al usuario, la latencia (tiempo de respuesta) es un factor crítico para la experiencia final. Aquí sobresalen de manera espectacular \texttt{gemma2:2b} y \texttt{llama3}, resolviendo el flujo completo de pensamiento (desde la recepción de la pregunta hasta la ejecución final en la base de datos) en apenas 3.30s y 3.66s por pregunta de media, respectivamente. 
-
-En el lado opuesto, \texttt{deepseek-r1:8b} (68.49s por pregunta) y \texttt{llama3.2:1b} (94.65s), resultan completamente inviables para un chat en tiempo real. Es importante destacar un fenómeno particular: el altísimo tiempo registrado por \texttt{llama3.2:1b} no se debe a que la inferencia del modelo sea lenta en sí misma (de hecho, es muy ligero), sino a que su baja precisión inicial provocaba que el sistema activara constantemente el ``Bucle de Reflexión''. Al generar código SPARQL erróneo con frecuencia, el sistema de corrección interceptaba el error de ejecución y obligaba al modelo a reescribir la consulta de forma repetida. Al fallar recurrentemente en corregirse a sí mismo, agotaba los intentos máximos permitidos, lo que disparó exponencialmente el tiempo total de ejecución y la media por pregunta.
-
-\section{Estudio del Impacto del Bucle de Reflexión}
-
-Para comprobar la verdadera eficacia de la arquitectura iterativa diseñada (bucle de autocorrección), se ha llevado a cabo una evaluación para medir su impacto aislado. Para ello, se evaluaron dos métricas principales:
+En esta evaluación, también se hacía uso de la arquitectura iterativa diseñada (bucle de autocorrección) para comprobar su impacto real en la corrección de consultas SPARQL erróneas. Para ello, se evaluaron dos métricas principales:
 
 \begin{itemize}
     \item \textbf{Precisión Zero-Shot:} Porcentaje de consultas SPARQL generadas correctamente al primer intento, sin retroalimentación de la base de datos.
     \item \textbf{Precisión con Reflexión (Multi-Turn):} Porcentaje de acierto final permitiendo al agente iterar y corregir sus propios errores de sintaxis o semántica (hasta un máximo de 3 intentos).
 \end{itemize}
 
-Los resultados obtenidos al comparar un modelo de lenguaje de gran capacidad (\textit{Llama 3}, de 8B parámetros) frente a un modelo ligero y eficiente (\textit{Gemma 2}, de 2B parámetros) se muestran en el Cuadro~\ref{tab:impacto}.
+La siguiente tabla muestra la diferencia de eficacia de los modelos al hacer uso de este bucle: 
 
 \begin{table}[h]
     \centering
     \begin{tabular}{|l|c|c|c|c|}
         \hline
-        \textbf{Modelo} & \textbf{Prec. Entidad} & \textbf{Prec. Zero-Shot} & \textbf{Prec. Reflexión} & \textbf{Mejora Reflexión} \\ \hline
-        Llama 3 (8B)    & 90.16\%                & 90.16\%                  & 90.16\%                  & 0.00\%                    \\ \hline
-        Gemma 2 (2B)    & 90.16\%                & 80.33\%                  & 90.16\%                  & 9.84\%                   \\ \hline
+        \textbf{Modelo}& \textbf{Prec. Zero-Shot} & \textbf{Prec. Reflexión} & \textbf{Mejora Reflexión} \\ \hline
+        llama3         & 92.2\%                   & 97.1\%                   & +4.9\%                    \\ \hline
+        llama3.2:1b    & 14.6\%                   & 21.4\%                    & +6.8\%                   \\ \hline
+        mistral        & 69.9\%                   & 73.8\%                   & +3.9\%                    \\ \hline
+        gemma2:9b      & 96.1\%                   & 97.1\%                   & +1.0\%                   \\ \hline
+        gemma2:2b      & 60.2\%                   & 74.8\%                   & +14.6\%                    \\ \hline
+        deepseek-r1:8b & 89.3\%                   & 91.3\%                   & +2.0\%                   \\ \hline
     \end{tabular}
     \vspace{0.2cm}
-    \caption{Resultados del Estudio del Impacto del Bucle de Reflexión sobre la precisión de generación SPARQL.}
+    \caption{Impacto del Bucle de Reflexión sobre la precisión de generación SPARQL.}
     \label{tab:impacto}
 \end{table}
 
-Como se observa en los resultados, el modelo de mayor tamaño (Llama 3) posee una capacidad de razonamiento \textit{Zero-Shot} lo suficientemente robusta como para generar consultas SPARQL correctas desde el primer intento (en los casos donde la entidad fue extraída con éxito). En consecuencia, el mecanismo de reflexión no llega a activarse.
+\section{Análisis y Discusión de los Resultados}
 
-Sin embargo, el verdadero impacto de la arquitectura iterativa es evidente al analizar el modelo ligero (Gemma 2 2B). Este modelo presenta inicialmente una tasa de error mayor debido a fallos de sintaxis en su primer intento. Gracias al mecanismo de autocorrección desarrollado, el agente es capaz de leer el \textit{traceback} de la base de datos y enmendar estos errores, logrando igualar la precisión final del modelo superior. 
+La inclusión de diferentes Modelos de Lenguaje (LLMs) locales ha permitido evaluar no solo la viabilidad cualitativa del sistema, sino también comparar su rendimiento bajo las mismas restricciones del sistema RAG. Los datos de la Tabla \ref{tab:comparativa_modelos} revelan compromisos significativos según la arquitectura y el tamaño de cada modelo. A continuación, se detallan las conclusiones extraídas de cada métrica:
 
-Esto demuestra empíricamente que la arquitectura iterativa compensa las limitaciones de los modelos más pequeños, abriendo la puerta al despliegue del sistema conversacional en infraestructuras de bajos recursos (Edge AI) manteniendo una alta fiabilidad.
+\textbf{1. Rendimiento en Extracción de Entidades:} El sistema demostró una altísima fiabilidad en esta primera fase, la cual es crítica para el éxito del resto de la consulta. Si el sistema no es capaz de aislar el sujeto de la oración (por ejemplo, extraer ``Matrix'' de la consulta ``¿Quién dirigió Matrix?''), la búsqueda en la base de conocimientos fallará irremediablemente. La mayoría de los modelos evaluados superaron con creces el 80\% de precisión al identificar este sujeto principal. Destacan especialmente \texttt{gemma2:9b} y \texttt{llama3}, alcanzando un excelente 98.1\% y 97.1\% respectivamente. Esto demuestra la gran capacidad de los modelos actuales de tamaño medio para comprender el contexto conversacional y aislar los términos clave independientemente de cómo el usuario formule la pregunta.
+
+\textbf{2. Generación de Código SPARQL:} Traducir texto en lenguaje natural a la sintaxis estricta y tipada de SPARQL representa el mayor desafío técnico del proyecto. En este aspecto, tanto \texttt{llama3} como \texttt{gemma2:9b} se posicionaron como los líderes con un 97.1\% de acierto final (tras el bucle de reflexión). Esto confirma la hipótesis de que los modelos con un tamaño en torno a los 8B-9B de parámetros poseen un razonamiento lógico y algorítmico superior para escribir código sin incurrir en alucinaciones (como inventar propiedades o relaciones inexistentes). Por el contrario, los modelos excesivamente pequeños sufren severamente en esta tarea; el caso más extremo es \texttt{llama3.2:1b}, cuyo rendimiento tras la reflexión cae al 21.4\%. Esto indica que un modelo de apenas 1 billón de parámetros no retiene en su memoria interna la capacidad suficiente para dominar la ontología de Wikidata de forma fiable, ni siquiera contando con la ayuda del contexto inyectado.
+
+\textbf{3. Validación de Respuesta:} Una vez que el agente ha generado una consulta SPARQL sintácticamente correcta y la ha ejecutado contra la base de datos, el paso final es validar si el resultado obtenido responde realmente a la intención original del usuario. Para esta evaluación, se consideró válida una respuesta si el modelo era capaz de generar un texto coherente y comprensible en lenguaje natural que reflejase fielmente la información extraída de la base de conocimientos.
+
+El porcentaje representado en la tabla indica el índice de aciertos en la respuesta por parte del LLM tras ejecutar el SPARQL correctamente, por ejemplo, \texttt{mistral} tiene un 73.8\% de acierto en la generación de código SPARQL, y de ese porcentaje, un 94.6\% de las respuestas extraídas del SPARQL son correctas. Se escogió esta manera de evaluar la precisión de las respuestas ya que sin una consulta válida, la interpretación de los resultados es inviable.
+
+Al observar esta métrica, se evidencia que los resultados son generalmente proporcionales a los obtenidos en la generación de código SPARQL, lo que sugiere que formular la consulta es la barrera principal. No obstante, destacan dos excepciones importantes: el modelo \texttt{llama3.2:1b} sufre una caída total en su eficacia, siendo incapaz de articular ninguna respuesta correcta (0.0\%) pese a haber formulado bien algunas consultas (21.4\%), mientras que \texttt{mistral} presenta el caso contrario, mejorando notablemente su rendimiento en esta fase final al alcanzar un 94.6\% de acierto frente a su 73.8\% en el paso anterior.
+
+\textbf{4. Análisis de Tiempos, Viabilidad y el Bucle de Reflexión:} En un sistema interactivo orientado al usuario, la latencia (tiempo de respuesta) es un factor crítico para la experiencia final. Aquí sobresalen de manera espectacular \texttt{llama3} y \texttt{gemma2:9b}, resolviendo el flujo completo de pensamiento (desde la recepción de la pregunta hasta la ejecución final en la base de datos) en tiempos sumamente competitivos de 9.51s y 9.98s por pregunta de media, respectivamente. Esto representa un equilibrio idóneo entre precisión casi perfecta y velocidad.
+
+En el lado opuesto, \texttt{deepseek-r1:8b} (35.59s por pregunta) y \texttt{llama3.2:1b} (76.78s), resultan demasiado lentos para un chat en tiempo real. Es importante destacar un fenómeno particular: el altísimo tiempo registrado por \texttt{llama3.2:1b} no se debe a que la inferencia del modelo sea lenta en sí misma (de hecho, es muy ligero), sino a que su baja precisión inicial provoca que el sistema active constantemente el ``Bucle de Reflexión''. Al generar código SPARQL erróneo con frecuencia, el sistema de corrección intercepta el error y obliga al modelo a reescribir la consulta repetidas veces. Al fallar recurrentemente en corregirse a sí mismo, agota los intentos máximos permitidos, lo que dispara el tiempo total de ejecución y la media por pregunta.
+
+\textbf{5. Eficacia del Bucle de Autocorreción:} En esta tabla se comparan los resultados de la primera consulta SPARQL generada por los modelos con la consulta definitiva y corregida. Es importante puntualizar la diferencia de precisión de los modelos con gran capacidad como \textit{Llama 3} o \textit{Deepseek-r1:8b}, de 8B parámetros cada uno, y modelos más ligeros como \textit{Llama3.2:1b} o \textit{Gemma2:2b}, de 1B y 2B parámetros respectivamente.
+
+Como se observa en los resultados, el modelo de mayor tamaño (\textit{Gemma2:9b}) posee una capacidad de razonamiento \textit{Zero-Shot} muy sólida (96.1\%), requiriendo menos asistencia del bucle para alcanzar su sobresaliente 97.1\% final.
+
+Sin embargo, el verdadero impacto de la arquitectura iterativa es evidente al analizar el modelo ligero (Gemma 2 2B). Este modelo presenta inicialmente una reducida tasa de acierto (60.2\% en \textit{Zero-Shot}) debido a frecuentes fallos de sintaxis o lógica en su primer intento, pero gracias al mecanismo de autocorrección desarrollado, el agente es capaz de leer el \textit{traceback} del error devuelto por la base de datos y reescribir la consulta, logrando una mejora del +14.6\% en su rendimiento final, superando así finalmente a \textit{mistral}, modelo de 7B parámetros.
+
+Esto demuestra empíricamente que la arquitectura iterativa compensa las limitaciones de los modelos más pequeños, permitiéndoles recuperar consultas que originalmente habrían fallado y aumentando significativamente la resiliencia general del sistema, además de mejorar también los modelos más capaces para aumentar su precisión final.
 
 \section{Conclusiones de la Evaluación}
 
-En conclusión, la elección del motor LLM para un sistema de estas características requiere un claro y delicado compromiso entre latencia y precisión. Para un balance óptimo en un entorno de producción local, \texttt{llama3} (como modelo ligero, rápido y altamente preciso) y \texttt{gemma2:9b} (si se dispone de hardware dedicado capaz de procesarlo rápidamente debido a su mayor tamaño) representan las opciones más robustas. Ambos logran dotar al Grafo de Conocimiento de una interfaz verdaderamente inteligente y fiable, ocultando por completo la complejidad técnica subyacente de la Web Semántica al usuario final.
+En conclusión, la elección del motor LLM para un sistema de estas características requiere un claro y delicado compromiso entre latencia y precisión. Para un balance óptimo en un entorno de producción local, tanto \texttt{llama3} como \texttt{gemma2:9b} representan las opciones más robustas. Ambos ofrecen un rendimiento muy parejo, superando el 93\% de precisión en la respuesta final y manteniendo tiempos de inferencia en torno a los 10 segundos por pregunta, logrando así dotar al Grafo de Conocimiento de una interfaz verdaderamente inteligente y fiable que oculta por completo la complejidad técnica de la Web Semántica al usuario.
