@@ -33,7 +33,7 @@ Para alcanzar este fin, se definen los siguientes objetivos específicos:
 
 \begin{itemize}
     \item \textbf{Precisión en la Generación de SPARQL:} Desarrollar un agente autónomo que maximice la precisión al traducir lenguaje natural a SPARQL, siendo capaz de gestionar un bucle de autocorrección (reflexión) para enmendar errores sintácticos o semánticos generados en intentos previos.
-    \item \textbf{Manejo Avanzado de Datos RDF:} Extraer, procesar y almacenar un conjunto significativo de datos provenientes de Wikidata en formato \textit{Turtle} para conformar un Grafo de Conocimiento local optimizado, demostrando soltura en el manejo de tecnologías de la Web Semántica.
+    \item \textbf{Manejo Avanzado de Datos RDF:} Extraer, procesar y almacenar un conjunto significativo de datos provenientes de Wikidata en formato \textit{N-Triples} para conformar un Grafo de Conocimiento local optimizado, demostrando soltura en el manejo de tecnologías de la Web Semántica.
     \item \textbf{Control y Restricción del LLM:} Diseñar un marco robusto de \textit{prompting} estructurado y mapeo de propiedades que permita "restringir" y guiar el razonamiento del modelo de lenguaje, minimizando las alucinaciones y forzándolo a utilizar únicamente las propiedades y entidades definidas en el contexto.
     \item \textbf{Evaluación Cuantitativa:} Implementar un marco de evaluación automática que permita medir objetivamente el rendimiento del sistema en términos de extracción de entidades correctas y generación de consultas SPARQL válidas frente a un conjunto de pruebas.
 \end{itemize}
@@ -48,7 +48,7 @@ El \textbf{Capítulo 3} detalla el Análisis del sistema, describiendo los requi
 
 El \textbf{Capítulo 4} expone el Diseño de la solución, abordando la arquitectura del sistema, el diseño del Grafo de Conocimiento y el flujo de ejecución del agente iterativo.
 
-El \textbf{Capítulo 5} describe la Implementación del proyecto, profundizando en las decisiones de programación, el entorno tecnológico utilizado (Python, LangChain, Streamlit) y el despliegue del sistema mediante Docker.
+El \textbf{Capítulo 5} describe la Implementación del proyecto, profundizando en las decisiones de programación, el entorno tecnológico utilizado (Python, Ollama, Streamlit) y el despliegue del sistema mediante Docker.
 
 En el \textbf{Capítulo 6} se presenta la Evaluación del sistema, analizando las métricas obtenidas tras someter al agente a diversas baterías de pruebas automatizadas.
 

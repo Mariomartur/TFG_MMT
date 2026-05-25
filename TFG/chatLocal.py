@@ -10,7 +10,7 @@ with open("mapeo_propiedades.json", "r", encoding="utf-8") as f:
     textoMapeo = json.dumps(mapeoProp, indent=2)
 
 def consultar_llm(prompt, modelo='llama3'):
-    url = "http://localhost:11434/api/chat"
+    url = "http://127.0.0.1:11434/api/chat"
     data = {
         "model": modelo,
         "messages": [{"role": "user", "content": prompt}],
@@ -23,7 +23,7 @@ def consultar_llm(prompt, modelo='llama3'):
     return response.json()['message']['content']
 
 def consultar_llm_stream(prompt, modelo='llama3'):
-    url = "http://localhost:11434/api/chat"
+    url = "http://127.0.0.1:11434/api/chat"
     data = {
         "model": modelo,
         "messages": [{"role": "user", "content": prompt}],
@@ -52,27 +52,27 @@ def extraer_entidad(consulta, historial, ultima_entidad=None,modelo='llama3'):
     devuelve EXACTAMENTE "{ultima_entidad}" sin traducir ni modificar ni una letra.
     """
   
-    prompt_base= f"""Tu única tarea es extraer literalmente el nombre propio (de la película, serie o persona) sobre la que el usuario está preguntando, sin responder a la pregunta.
-    Si la frase usa referencias como "él", "ella" o "la película", fíjate en el Historial para saber a qué nombre propio se refiere.
+    prompt_base = f"""Tu única tarea es extraer literalmente el nombre propio (de la película, serie o persona) sobre la que el usuario está preguntando.
+    NO respondas a la pregunta del usuario, solo extrae la entidad de la que habla.
     
-    REGLA 1: NO respondas a la pregunta. Si el usuario pide el director de una película, devuélveme el nombre de la película. Si el usuario pide la película de un actor, devuélveme el nombre del actor.
-    REGLA 2: Devuelve SOLO el nombre exacto, sin comillas, sin puntos y sin texto extra.
-    REGLA 3: Si no encuentras un nombre propio claro, devuelve "None".
-    REGLA 4: Devuelve siempre el nombre en el idioma que se ha preguntado
+    REGLA 1: Debes envolver el nombre exacto de la entidad entre las etiquetas <entidad> y </entidad>.
+    REGLA 2: Si el usuario pide el director de una película, la entidad es la película. Si pide la película de un actor, la entidad es el actor.
+    REGLA 3: Si no hay un nombre propio claro, devuelve <entidad>None</entidad>.
+    REGLA 4: No añadas ningún otro texto explicativo, solo la etiqueta con la entidad dentro.
 
     {contexto_entidad}
 
     Ejemplos:
     Frase: "¿Qué películas dirigió Quentin Tarantino?"
-    Respuesta: Quentin Tarantino
+    Respuesta: <entidad>Quentin Tarantino</entidad>
     Frase: "¿Quién protagonizó Star Wars?"
-    Respuesta: Star Wars
+    Respuesta: <entidad>Star Wars</entidad>
     Frase: "¿En qué año salió Matrix?"
-    Respuesta: Matrix
+    Respuesta: <entidad>Matrix</entidad>
     Frase: "Dime peliculas de daniel radcliffe"
-    Respuesta: daniel radcliffe
+    Respuesta: <entidad>daniel radcliffe</entidad>
     Frase: "¿Quién produjo la película Avatar?"
-    Respuesta: Avatar
+    Respuesta: <entidad>Avatar</entidad>
 
     Historial de la conversación reciente:
     {texto_historial}
@@ -80,10 +80,15 @@ def extraer_entidad(consulta, historial, ultima_entidad=None,modelo='llama3'):
     Frase actual: "{consulta}"
     Respuesta:
     """
-    entidad_buscada = consultar_llm(prompt_base, modelo).strip()
+    respuesta_llm = consultar_llm(prompt_base, modelo).strip()
     
-    if "Respuesta:" in entidad_buscada:
-        entidad_buscada = entidad_buscada.split("Respuesta:")[-1].strip()
+    match = re.search(r'<entidad>(.*?)</entidad>', respuesta_llm, re.IGNORECASE | re.DOTALL)
+    if match:
+        entidad_buscada = match.group(1).strip()
+    else:
+        # Fallback por si acaso no usó las etiquetas
+        entidad_buscada = respuesta_llm.replace("Respuesta:", "").strip()
+        
     return entidad_buscada
 
 
@@ -216,19 +221,19 @@ def procesar_consulta(consulta, historial=None, st_callback=None, ultima_entidad
         Presenta con dos puntos y lista: "Los actores son: Nombre1, Nombre2 y Nombre3."
         Si son muchos (más de 6), menciona los primeros 5 y añade "entre otros."
     - Si es una FECHA o AÑO:
-        Responde en una frase natural: "Interstellar se estrenó en 2014."
+        Responde en una frase natural: "nombrepelicula se estrenó en 2014."
     - Si es un GÉNERO:
-        "El Padrino es una película de crimen y drama."
+        "nombrepelicula es una película de crimen y drama."
     - Si es un ID o CÓDIGO (IMDb):
-        "El identificador de Inception en IMDb es tt1375666."
+        "El identificador de nombrepelicula en IMDb es tt1375666."
     - Si es una DURACIÓN:
-        Convierte los minutos a formato legible: "Titanic dura 3 horas y 14 minutos."
+        Convierte los minutos a formato legible: "nombrepelicula dura 3 horas y 14 minutos."
     - Si es un PRESUPUESTO:
-        Convierte el número a millones: "El presupuesto de Avatar fue de unos 237 millones de dólares."
+        Convierte el número a millones: "El presupuesto de nombrepelicula fue de unos 237 millones de dólares."
     - Si es un PAÍS:
-        "Amélie es una película francesa."
+        "nombrepelicula es una película francesa."
     - Si son PELÍCULAS (filmografía de alguien):
-        "Entre las películas de Nolan están: Inception, Interstellar, Tenet y Dunkirk, entre otras."
+        "Entre las películas de nombredirector están: nombrepelicula1, nombrepelicula2 y nombrepelicula3, entre otras."
 
     REGLAS:
     1. Usa SOLO los datos proporcionados. No añadas nada más.
@@ -298,7 +303,7 @@ def traducir_sparql(respuesta_llm):
     return respuesta_llm.replace('```sparql', '').replace('```', '').replace('`', '').strip()
 
 def ejecutar_sparql_local(consulta):
-    endpoint = "http://localhost:9999/blazegraph/namespace/kb/sparql"
+    endpoint = "http://127.0.0.1:9999/blazegraph/namespace/kb/sparql"
     prefijos = """
     PREFIX wd: <http://www.wikidata.org/entity/>
     PREFIX wdt: <http://www.wikidata.org/prop/direct/>
@@ -328,7 +333,7 @@ def traducir_ids(lista_valores):
     if not uris_a_traducir:
         return ", ".join(textos)
         
-    endpoint = "http://localhost:9999/blazegraph/namespace/kb/sparql"
+    endpoint = "http://127.0.0.1:9999/blazegraph/namespace/kb/sparql"
     sparql = SPARQLWrapper(endpoint)
     
     valores_sparql = " ".join(uris_a_traducir)

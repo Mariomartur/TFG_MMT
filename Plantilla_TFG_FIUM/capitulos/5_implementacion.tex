@@ -30,7 +30,7 @@ La estructura del código permite añadir entidades relevantes al grafo local. P
 
 \section{El Agente Conversacional y el Control del LLM}
 
-El componente principal, ubicado en \texttt{chatLocal.py}, inicializa el motor LangChain y funciona como el cerebro del sistema, encargándose de toda la lógica de la aplicación. El aspecto más crítico de la implementación en esta fase es el diseño de los \textit{Prompts} del sistema, ya que son los que guían al LLM en la generación de consultas SPARQL y en la respuesta a las preguntas de los usuarios. 
+El componente principal, ubicado en \texttt{chatLocal.py}, inicializa la conexión con el motor Ollama y funciona como el cerebro del sistema, encargándose de toda la lógica de la aplicación. El aspecto más crítico de la implementación en esta fase es el diseño de los \textit{Prompts} del sistema, ya que son los que guían al LLM en la generación de consultas SPARQL y en la respuesta a las preguntas de los usuarios. 
 
 Para asegurar que el modelo utilice exclusivamente las propiedades permitidas en el grafo local, se inyecta dinámicamente el JSON de mapeo mencionado en el apartado anterior en la instrucción base:
 

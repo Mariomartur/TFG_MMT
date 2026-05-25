@@ -25,7 +25,7 @@
 \contentsline {subsection}{\numberline {4.3.2}Capa de Lógica de Negocio}{15}{subsection.4.3.2}%
 \contentsline {subsection}{\numberline {4.3.3}Capa de Datos}{17}{subsection.4.3.3}%
 \contentsline {section}{\numberline {4.4}Diseño del Agente Autocorrector}{18}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Diseño del Grafo de Conocimiento Local}{19}{section.4.5}%
+\contentsline {section}{\numberline {4.5}Diseño del Grafo de Conocimiento Local}{20}{section.4.5}%
 \contentsline {chapter}{\numberline {5}Desarrollo e Implementación}{22}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Entorno de Desarrollo y Tecnologías}{22}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Extracción de Datos y Grafo Local}{22}{section.5.2}%

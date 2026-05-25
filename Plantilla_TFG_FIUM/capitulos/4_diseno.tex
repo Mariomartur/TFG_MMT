@@ -108,7 +108,7 @@ Además de la interacción conversacional habitual, la interfaz ha sido diseñad
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\textwidth]{archivos/Respuesta_no_bucle.jpeg}
+    \includegraphics[width=0.5\textwidth]{archivos/Respuesta_no_bucle.png}
     \caption{Respuesta del sistema a una consulta.}
     \label{fig:respuesta_no_bucle}
 \end{figure}
@@ -148,7 +148,7 @@ El flujo de control del agente sigue los siguientes pasos lógicos:
     \item Se realiza una búsqueda local en \textit{Blazegraph} para obtener el identificador Wikidata de dicha entidad (ej. \texttt{wd:Q83495}), sin necesidad de acceder a servicios externos.
     \item Se inyecta la pregunta, el ID de la entidad y el \textit{diccionario de propiedades} en un \textit{prompt} altamente restrictivo.
     \item El LLM genera una propuesta de consulta SPARQL.
-    \item El sistema intenta ejecutar la consulta localmente en RDFLib.
+    \item El sistema intenta ejecutar la consulta localmente en Blazegraph mediante SPARQLWrapper.
     \item \textbf{Bucle de corrección:} Si la consulta falla (error de sintaxis o error de acceso a la ontología), el sistema no aborta la operación. Captura el \textit{traceback} del error, se lo envía de vuelta al LLM y le solicita que reescriba el SPARQL corrigiendo su propio fallo. Este proceso se repite un número máximo de iteraciones.
 \end{enumerate}
 
@@ -163,7 +163,7 @@ Como se menciona anteriormente, una interacción como esta también se muestra d
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\textwidth]{archivos/Respuesta_bucle.jpeg}
+    \includegraphics[width=0.5\textwidth]{archivos/Respuesta_bucle.png}
     \caption{Respuesta del sistema con el bucle de autocorrección activado.}
     \label{fig:respuesta_bucle}
 \end{figure}

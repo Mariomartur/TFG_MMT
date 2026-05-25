@@ -6,19 +6,22 @@ def buscar_id_entidad(nombre_entidad):
     Busca una entidad por label directamente en Blazegraph local.
     Sin dependencia de red externa.
     """
-    sparql = SPARQLWrapper("http://localhost:9999/blazegraph/namespace/kb/sparql")
+    sparql = SPARQLWrapper("http://127.0.0.1:9999/blazegraph/namespace/kb/sparql")
     sparql.setReturnFormat(JSON)
 
-    # Búsqueda exacta primero (case-insensitive)
+    # Búsqueda exacta (rápida usando indexación por hash de literales)
     query_exacta = f"""
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX wd: <http://www.wikidata.org/entity/>
-    PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 
     SELECT DISTINCT ?entidad ?label WHERE {{
+        {{ ?entidad rdfs:label "{nombre_entidad}"@es }}
+        UNION
+        {{ ?entidad rdfs:label "{nombre_entidad}"@en }}
+        UNION
+        {{ ?entidad rdfs:label "{nombre_entidad}" }}
+        
         ?entidad rdfs:label ?label .
-        FILTER(LCASE(STR(?label)) = LCASE("{nombre_entidad}"))
-        ?entidad ?p ?o .
+        FILTER(LANG(?label) = "es" || LANG(?label) = "")
     }}
     LIMIT 5
     """
@@ -37,12 +40,10 @@ def buscar_id_entidad(nombre_entidad):
         
         query_parcial = f"""
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        PREFIX wd: <http://www.wikidata.org/entity/>
 
         SELECT DISTINCT ?entidad ?label WHERE {{
             ?entidad rdfs:label ?label .
             FILTER(CONTAINS(LCASE(STR(?label)), LCASE("{nombre_entidad}")))
-            ?entidad ?p ?o .
         }}
         LIMIT 5
         """
