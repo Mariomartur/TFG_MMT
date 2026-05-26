@@ -6,6 +6,89 @@
 % Contacto: pablojoserocamora@gmail.com
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Anexo I}
+\chapter{Manual de Instalación y Despliegue}
+\label{anexo:manual_instalacion}
 
-Aquí vendría el anexo I 
+En este anexo se detallan los pasos necesarios para instalar, configurar y desplegar el sistema \textit{MMT Chat} en un entorno local. El sistema está compuesto por tres pilares fundamentales: la base de datos orientada a grafos (Blazegraph), el gestor de modelos de lenguaje (Ollama) y la interfaz de usuario desarrollada en Python (Streamlit).
+
+\section{Requisitos Previos}
+
+Para garantizar el correcto funcionamiento del sistema, el entorno de despliegue debe contar con los siguientes requisitos mínimos:
+\begin{itemize}
+    \item \textbf{Docker} instalado y en ejecución en el sistema (necesario para desplegar Blazegraph).
+    \item \textbf{Python} versión 3.9 o superior.
+    \item \textbf{Ollama} instalado en el sistema operativo para la ejecución local de los modelos de lenguaje (LLMs).
+\end{itemize}
+
+\section{Despliegue de Blazegraph}
+
+Blazegraph actúa como el motor de persistencia para el grafo de conocimiento subyacente. En este proyecto se opta por su despliegue mediante contenedores para simplificar la configuración. Para su puesta en marcha:
+
+\begin{enumerate}
+    \item Asegurarse de que el demonio de Docker está activo.
+    \item Abrir una terminal y ejecutar el siguiente comando para descargar la imagen oficial y levantar el contenedor, mapeando el puerto \texttt{9999} y asignando un nombre al contenedor:
+\end{enumerate}
+
+\begin{lstlisting}[language=bash]
+docker run -p 9999:8080 -d --name mmt-blazegraph lyrasis/blazegraph:2.1.5
+\end{lstlisting}
+
+Una vez iniciado el contenedor, la interfaz de administración y el \textit{endpoint} SPARQL estarán disponibles por defecto en \url{http://127.0.0.1:9999/blazegraph/}.
+
+\section{Configuración de Ollama y Modelos Locales}
+
+Para habilitar la generación de respuestas y el funcionamiento del agente reflexivo, es necesario descargar los modelos de lenguaje locales correspondientes a través de Ollama.
+
+\begin{enumerate}
+    \item Asegurarse de que el servicio de Ollama se encuentra en ejecución en el sistema (por defecto se expone en \url{http://127.0.0.1:11434}).
+    \item Abrir una terminal y ejecutar los comandos para descargar los modelos que se vayan a utilizar (por ejemplo, Llama 3 o similares). Para el modelo principal:
+\end{enumerate}
+
+\begin{lstlisting}[language=bash]
+ollama pull llama3
+\end{lstlisting}
+
+(Nota: Se deberá hacer un \texttt{pull} adicional por cada modelo específico con el que se desee evaluar el sistema).
+
+\section{Configuración del Entorno Python}
+
+El núcleo lógico del chatbot, la orquestación del grafo y la interfaz de usuario están desarrollados en Python. Se recomienda encarecidamente el uso de un entorno virtual para mantener aisladas las dependencias del proyecto.
+
+\begin{enumerate}
+    \item Crear y activar un entorno virtual dentro de la carpeta del proyecto:
+\end{enumerate}
+
+\begin{lstlisting}[language=bash]
+# Creación del entorno virtual
+python -m venv env
+
+# Activación en sistemas Windows:
+env\Scripts\activate
+
+# Activación en sistemas Linux/macOS:
+source env/bin/activate
+\end{lstlisting}
+
+\begin{enumerate}
+    \setcounter{enumi}{1}
+    \item Con el entorno activado, instalar las dependencias requeridas leyendo el archivo \texttt{requirements.txt}:
+\end{enumerate}
+
+\begin{lstlisting}[language=bash]
+pip install -r requirements.txt
+\end{lstlisting}
+
+\section{Ejecución de la Interfaz (Streamlit)}
+
+Una vez que Blazegraph y Ollama están en ejecución, y las dependencias de Python instaladas, se puede lanzar la interfaz gráfica:
+
+\begin{enumerate}
+    \item En la terminal con el entorno virtual activado, navegar hasta el directorio raíz del código fuente.
+    \item Ejecutar el comando para iniciar la aplicación Streamlit (por defecto, el punto de entrada es \texttt{interfaz.py}, adaptarlo en caso de utilizar otro nombre):
+\end{enumerate}
+
+\begin{lstlisting}[language=bash]
+streamlit run interfaz.py
+\end{lstlisting}
+
+Tras lanzar este comando, la consola mostrará las URLs locales de acceso, y automáticamente se abrirá una nueva pestaña en el navegador web predeterminado (típicamente en \url{http://localhost:8501}), permitiendo al usuario comenzar a interactuar de forma inmediata con MMT Chat.

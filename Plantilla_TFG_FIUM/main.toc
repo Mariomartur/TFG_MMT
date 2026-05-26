@@ -41,4 +41,12 @@
 \contentsline {section}{\numberline {7.1}Consecución de Objetivos}{29}{section.7.1}%
 \contentsline {section}{\numberline {7.2}Líneas de Trabajo Futuro}{29}{section.7.2}%
 \contentsline {chapter}{\nonumberline Bibliografía}{31}{chapter*.19}%
+\contentsline {chapter}{Lista de Acrónimos y Abreviaturas}{32}{section*.20}%
+\def \@chapapp {\appendixname }
+\contentsline {chapter}{\numberline {A}Manual de Instalación y Despliegue}{33}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Requisitos Previos}{33}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Despliegue de Blazegraph}{33}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Configuración de Ollama y Modelos Locales}{33}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Configuración del Entorno Python}{34}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Ejecución de la Interfaz (Streamlit)}{34}{section.A.5}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

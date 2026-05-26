@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.3.6)  25 MAY 2026 22:38
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.3.6)  26 MAY 2026 08:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2344,27 +2344,37 @@ Underfull \hbox (badness 1259) in paragraph at lines 15--19
 ] [] [][][] [] [][] [] [][][] [] [][] []
  []
 
+) (main.acr [31
+
+]) (anexos/_anexo_I.tex [32
+
+
+]
+chapter A.
+(C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
+(C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2025/11/14 1.11b listings language file
+)
+[33
 
-Package glossaries Warning: No \printglossary or \printglossaries found. 
-(Remove \makeglossaries if you don't want any glossaries.) 
-This document will not have a glossary.
-
-[31
-
-] (main.aux)
+]
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 63.
+ [34]) [35] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 58208 strings out of 402983
- 1386004 string characters out of 5448483
- 2502578 words of memory out of 5000000
- 85946 multiletter control sequences out of 15000+600000
- 640547 words of font info for 121 fonts, out of 8000000 for 9000
+ 58200 strings out of 402983
+ 1385430 string characters out of 5448483
+ 2504000 words of memory out of 5000000
+ 85924 multiletter control sequences out of 15000+600000
+ 643480 words of font info for 134 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  113i,21n,110p,11306b,2207s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (53 pages).
+Output written on main.pdf (57 pages).

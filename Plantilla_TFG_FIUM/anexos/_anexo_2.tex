@@ -7,27 +7,42 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-% Ejemplo de páginas en horizontal y vertical
+\chapter{Manual de Usuario}
+\label{anexo:manual_usuario}
 
-\chapter{Páginas horizontales}
-Aquí se muestra cómo incluir páginas en horizontal.
+El presente anexo constituye una guía rápida para el usuario final, detallando cómo interactuar con la interfaz de MMT Chat desarrollada en Streamlit. Esta interfaz ha sido diseñada buscando la máxima simplicidad y usabilidad.
 
-Esta página está en vertical\\
-\clearpage % Nueva página
+\section{Pantalla Principal}
 
-\begin{landscape} % Inicia modo horizontal
-	
+Al iniciar la aplicación e ingresar a la URL local proporcionada por Streamlit (habitualmente \url{http://localhost:8501}), el usuario se encontrará con la pantalla principal del chat. La vista se divide en dos áreas principales:
 
-Esta página está en horizontal\\
-\clearpage % Nueva página
+\begin{itemize}
+    \item \textbf{Historial de Conversación}: Ubicado en la parte superior y central de la pantalla, muestra el registro continuo de los mensajes enviados por el usuario y las respuestas generadas por el sistema.
+    \item \textbf{Caja de Entrada de Texto}: Ubicada en la parte inferior, permite al usuario introducir nuevas preguntas mediante teclado.
+\end{itemize}
 
-Esta página también está en horizontal\\
+\begin{figure}[ht]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{archivos/figuras/captura_interfaz_principal.png}
+    \vspace{4cm} % Espacio temporal hasta que se añada la captura
+    \caption{Pantalla principal de MMT Chat. (Nota: Añadir captura de pantalla real aquí)}
+    \label{fig:interfaz_principal}
+\end{figure}
 
-\end{landscape} % Finaliza modo horizontal
-\clearpage % Nueva página
+\section{Realizar una Consulta}
 
+Para interactuar con el sistema, el usuario simplemente debe escribir su pregunta relacionada con el dominio del cine en la caja de texto inferior y pulsar la tecla \texttt{Enter} (o hacer clic en el botón de envío si estuviera disponible).
 
-Esta página está de nuevo en vertical\\
+Ejemplo de consultas válidas que el sistema puede resolver:
+\begin{itemize}
+    \item \textit{"¿Quién dirigió la película Origen?"}
+    \item \textit{"Dime en qué año se estrenó Matrix"}
+    \item \textit{"De dónde es el director de Alien?"}
+\end{itemize}
 
+\section{Visualización de Respuestas}
 
+Una vez enviada la consulta, el sistema procesará la petición, transformándola internamente en consultas SPARQL y recuperando la información de Blazegraph. Durante este proceso, se mostrará un indicador visual de carga (por ejemplo, un texto indicando "Pensando..." o un \textit{spinner}).
+
+Al finalizar, el mensaje del bot aparecerá en el historial de conversación con la respuesta en lenguaje natural. Además, dependiendo de la configuración de depuración de la interfaz, el usuario podría visualizar elementos interactivos desplegables (usando \texttt{st.expander}) para consultar cómo se tradujo su pregunta a SPARQL o cuáles fueron los razonamientos intermedios del agente LLM.
 

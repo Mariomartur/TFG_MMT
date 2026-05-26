@@ -1,0 +1,34 @@
+\glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
+\begin{theglossary}\glossaryheader
+\glsgroupheading{A}\relax \glsresetentrylist %
+\glossentry{api}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{32}}}\glsgroupskip
+\glsgroupheading{J}\relax \glsresetentrylist %
+\glossentry{json}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{32}}}\glsgroupskip
+\glsgroupheading{K}\relax \glsresetentrylist %
+\glossentry{kg}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{32}}}\glsgroupskip
+\glsgroupheading{L}\relax \glsresetentrylist %
+\glossentry{llm}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{32}}}\glsgroupskip
+\glsgroupheading{N}\relax \glsresetentrylist %
+\glossentry{nlp}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{32}}}%
+\glossentry{nt}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{32}}}\glsgroupskip
+\glsgroupheading{P}\relax \glsresetentrylist %
+\glossentry{pln}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{32}}}\glsgroupskip
+\glsgroupheading{R}\relax \glsresetentrylist %
+\glossentry{rag}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{32}}}%
+\glossentry{rdf}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{32}}}\glsgroupskip
+\glsgroupheading{S}\relax \glsresetentrylist %
+\glossentry{sparql}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{32}}}\glsgroupskip
+\glsgroupheading{U}\relax \glsresetentrylist %
+\glossentry{ui}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{32}}}%
+\end{theglossary}\glossarypostamble
