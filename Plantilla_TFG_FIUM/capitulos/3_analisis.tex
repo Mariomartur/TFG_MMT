@@ -26,6 +26,21 @@ Por ello, se ha optado por un \textbf{enfoque ágil e iterativo basado en protot
 
 Este enfoque ha permitido volver a pasos anteriores en caso de que fuera necesario, permitiendo un mayor desarrollo de las estrategias de \textit{prompting} y una mayor integración de los componentes del sistema.
 
+\subsection{Metodología de Evaluación}
+
+Dado que la calidad y utilidad del sistema recaen en la traducción precisa de lenguaje natural a lenguaje SPARQL y la consecuente recuperación correcta de información, se ha definido una metodología de evaluación estructurada y cuantitativa:
+
+\begin{enumerate}
+    \item \textbf{Construcción de un Dataset de Referencia (\textit{Ground Truth}):} Se ha confeccionado un conjunto de preguntas representativas que abarca diversas complejidades (consultas simples, uso de filtros, conteos, y caminos multi-salto) dentro del dominio cinematográfico. Para cada pregunta, se ha comprobado de forma manual que los datos existen en el Grafo de Conocimiento local, y se ha registrado la respuesta esperada.
+    \item \textbf{Ejecución Automatizada:} Mediante un script desarrollado a medida (\texttt{evaluacion.py}), el sistema procesa de manera automatizada todo el \textit{dataset} de validación. Este módulo no interactúa con la interfaz gráfica, sino directamente con el núcleo lógico del agente, lo que permite evaluar el rendimiento real del LLM aislando la latencia de red de herramientas como Streamlit.
+    \item \textbf{Métricas de Rendimiento:} Los resultados obtenidos se comparan sistemáticamente contra el \textit{Ground Truth}. La evaluación se sustenta en métricas como:
+    \begin{itemize}
+        \item La \textbf{precisión de respuesta}, midiendo si la información extraída de la base de datos local concuerda con la esperada.
+        \item El \textbf{porcentaje de éxito sintáctico}, analizando la capacidad del modelo para estructurar código SPARQL válido.
+        \item Los \textbf{tiempos medios de ejecución}, vitales para evaluar la viabilidad de un despliegue en local según el RNF-03.
+    \end{itemize}
+\end{enumerate}
+
 \section{Análisis de Requisitos}
 
 Para asegurar que el sistema cumple con los objetivos planteados, se han especificado una serie de requisitos funcionales y no funcionales.

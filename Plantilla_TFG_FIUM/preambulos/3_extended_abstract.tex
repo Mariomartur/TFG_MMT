@@ -65,7 +65,15 @@ The execution flow of the agent operates in a sophisticated multi-step pipeline:
     \item \textbf{Entity Extraction and Coreference Resolution:} The system first isolates the primary subject of the user's query using a highly restrictive prompt. Crucially, it analyzes the recent conversational history to resolve anaphoric references (e.g., accurately identifying the subject when a user asks "And what country was he born in?" immediately following a discussion about Christopher Nolan).
     \item \textbf{Local ID Resolution:} The extracted natural language entity is queried against the local Blazegraph instance to retrieve its exact Wikidata identifier (e.g., mapping "The Matrix" to \texttt{wd:Q83495}). This step operates entirely locally, avoiding external API calls.
     \item \textbf{Chain-of-Thought SPARQL Generation:} The system constructs a complex prompt containing the user's question, the resolved entity ID, and the strict JSON property dictionary. The LLM is instructed to reason step-by-step before outputting the final SPARQL code.
-    \item \textbf{Execution and Autonomous Correction:} The generated SPARQL is executed against Blazegraph. In a traditional system, a syntax error (such as a missing period, an incorrect prefix, or an invalid property) would result in a catastrophic failure and an error message shown to the user. In this agentic architecture, the runtime exception is intercepted. The system captures the raw database \textit{traceback} and feeds it back to the LLM in a specialized "reflexion prompt" alongside its original faulty query. The prompt explicitly instructs the model: "!ATTENTION! Your previous attempt failed. Here is the error... Correct the SPARQL to solve this problem."
+    \item \textbf{Execution and Autonomous Correction:} The generated SPARQL is executed against Blazegraph. In a traditional system, a syntax error (such as a missing period, an incorrect prefix, or an invalid property) would result in a catastrophic failure and an error message shown to the user. In this agentic architecture, the runtime exception is intercepted. The system captures the raw database \textit{traceback} and feeds it back to the LLM in a specialized "reflexion prompt" alongside its original faulty query. The prompt explicitly instructs the model: 
+    
+    \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{archivos/LLM_instruction.png}
+    \caption{Diagrama de Secuencia Principal}
+    \label{fig:diagrama_sec}
+\end{figure}
+
 \end{enumerate}
 
 This iterative self-correction loop—allowed to run for a maximum of three attempts—mimics human debugging. It drastically increases the overall robustness, reliability, and success rate of the system, gracefully handling edge cases and syntax anomalies without human intervention.

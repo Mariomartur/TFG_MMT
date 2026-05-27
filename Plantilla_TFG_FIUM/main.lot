@@ -4,8 +4,8 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Comparativa de rendimiento, precisión y latencia entre distintos LLMs locales evaluados.}}{25}{table.caption.17}%
-\contentsline {table}{\numberline {6.2}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Impacto del Bucle de Reflexión sobre la precisión de generación SPARQL.}}{26}{table.caption.18}%
+\contentsline {table}{\numberline {6.1}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Comparativa de rendimiento, precisión y latencia entre distintos LLMs locales evaluados.}}{26}{table.caption.18}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces \xpg@aux {}{spanish}\ignorespaces Impacto del Bucle de Reflexión sobre la precisión de generación SPARQL.}}{27}{table.caption.19}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \def \@chapapp {\appendixname }

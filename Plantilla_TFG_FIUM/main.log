@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.3.6)  26 MAY 2026 08:56
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.3.6)  27 MAY 2026 17:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1801,7 +1801,11 @@ Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 f
 File: bkm-dvipdfm.def 2023-12-10 v1.31 bookmark driver for dvipdfm (HO)
 \BKM@id=\count438
-)) (main.aux)
+)) (main.aux
+
+LaTeX Warning: Label `fig:diagrama_sec' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
@@ -2039,18 +2043,8 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 69
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-Overfull \hbox (29.69044pt too wide) in paragraph at lines 69--81
-[] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--81
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--81
-
+Overfull \hbox (52.45273pt too wide) in paragraph at lines 69--75
+[][] 
  []
 
 File: include/logos-titulaciones/FIUM-postivo-sin-fondo.png Graphic file (type 
@@ -2107,18 +2101,18 @@ Overfull \hbox (17.92543pt too wide) in paragraph at lines 21--27
  []
 
 
-Overfull \hbox (20.53343pt too wide) in paragraph at lines 32--44
+Overfull \hbox (20.53343pt too wide) in paragraph at lines 32--43
 |  $[]$ 
  []
 
 File: include/logos-titulaciones/FI-positivo.png Graphic file (type bmp)
 <include/logos-titulaciones/FI-positivo.png>
-File: include/logos-titulaciones/Logotipo_DIIC.png Graphic file (type bmp)
-<include/logos-titulaciones/Logotipo_DIIC.png>
+File: include/logos-titulaciones/Logotipo_DIS.png Graphic file (type bmp)
+<include/logos-titulaciones/Logotipo_DIS.png>
 File: include/logos-universidad/um.png Graphic file (type bmp)
 <include/logos-universidad/um.png>
 
-Overfull \hbox (20.53343pt too wide) in paragraph at lines 49--69
+Overfull \hbox (20.53343pt too wide) in paragraph at lines 48--68
 |  $[]$ 
  []
 
@@ -2192,29 +2186,39 @@ itations, Retrieval-Augmented
 Underfull \vbox (badness 1253) has occurred while \output is active []
 
  [14]
-[15] [16]) [17] (main.toc [18
+File: archivos/LLM_instruction.png Graphic file (type bmp)
+<archivos/LLM_instruction.png>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[15] [16]) [17] [18] (main.toc [19
 
 ])
 \tf@toc=\write7
 \openout7 = `main.toc'.
 
- [19] (main.lof)
+ [20] (main.lof)
 \tf@lof=\write8
 \openout8 = `main.lof'.
 
- [20
+ [21
 
 ] (main.lot)
 \tf@lot=\write9
 \openout9 = `main.lot'.
 
- [21
+ [22
 
-] (main.lol)
+]
+(main.lol)
 \tf@lol=\write10
 \openout10 = `main.lol'.
 
-[22
+ [23
+
+] [24
+
 
 ] (capitulos/1_introduccion.tex
 chapter 1.
@@ -2223,11 +2227,17 @@ Underfull \vbox (badness 1924) has occurred while \output is active []
 
  [1
 
-
-
 ])
 (capitulos/2_estado_arte.tex [2] [3]
 chapter 2.
+
+Package natbib Warning: Citation `berners2001semantic' on page 4 undefined on i
+nput line 16.
+
+
+Package natbib Warning: Citation `hogan2021knowledge' on page 4 undefined on in
+put line 18.
+
 File: archivos/Grafo_Conocimiento.pdf Graphic file (type pdf)
 <use archivos/Grafo_Conocimiento.pdf>
 
@@ -2235,31 +2245,64 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [4
 
-] [5]
-Overfull \hbox (7.24762pt too wide) in paragraph at lines 51--52
+]
+
+Package natbib Warning: Citation `zhao2023survey' on page 5 undefined on input 
+line 41.
+
+[5]
+
+Package natbib Warning: Citation `openai2023gpt4' on page 6 undefined on input 
+line 46.
+
+
+Package natbib Warning: Citation `geminoteam2023gemini' on page 6 undefined on 
+input line 46.
+
+
+Package natbib Warning: Citation `anthropic2023claude' on page 6 undefined on i
+nput line 46.
+
+
+Package natbib Warning: Citation `touvron2023llama' on page 6 undefined on inpu
+t line 47.
+
+
+Overfull \hbox (7.24762pt too wide) in paragraph at lines 62--63
 []\TU/lmr/m/n/12 La Generación Aumentada por Recuperación (\TU/lmr/m/it/12 Retr
 ieval-Augmented Generation\TU/lmr/m/n/12 , RAG)
  []
 
-) (capitulos/3_analisis.tex [6] [7]
-chapter 3.
-[8
+[6] [7]
 
-] [9]
+Package natbib Warning: Citation `yin2024text' on page 8 undefined on input lin
+e 84.
+
+) (capitulos/3_analisis.tex [8]
+chapter 3.
+
+Overfull \hbox (40.88622pt too wide) in paragraph at lines 35--36
+[]\TU/lmr/bx/n/12 Ejecución Automatizada: \TU/lmr/m/n/12 Mediante un script des
+arrollado a medida (\TU/lmtt/m/n/12 evaluacion.py\TU/lmr/m/n/12 ),
+ []
+
+[9
+
+] [10]
 File: archivos/DiagSec1.pdf Graphic file (type pdf)
 <use archivos/DiagSec1.pdf>
-) (capitulos/4_diseno.tex [10] [11]
+ [11]) (capitulos/4_diseno.tex [12]
 chapter 4.
-[12
+[13
 
-] [13]
+] [14]
 File: archivos/DiagCapas.pdf Graphic file (type pdf)
 <use archivos/DiagCapas.pdf>
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14]
+[15]
 File: archivos/Interfaz_oscuro.jpeg Graphic file (type bmp)
 <archivos/Interfaz_oscuro.jpeg>
 
@@ -2278,10 +2321,10 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 123.
-[15]
+[16]
 Underfull \vbox (badness 5563) has occurred while \output is active []
 
- [16]
+ [17]
 Overfull \hbox (3.26622pt too wide) in paragraph at lines 138--139
 []\TU/lmr/m/n/12 La resolución de entidades también opera sobre esta misma capa
 : \TU/lmtt/m/n/12 entidades_cine.py
@@ -2290,13 +2333,13 @@ Overfull \hbox (3.26622pt too wide) in paragraph at lines 138--139
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [17]
+ [18]
 Overfull \hbox (25.06628pt too wide) in paragraph at lines 151--152
 []\TU/lmr/m/n/12 El sistema intenta ejecutar la consulta localmente en Blazegra
 ph mediante SPARQLW-
  []
 
-[18]
+[19]
 File: archivos/DiagSec2.pdf Graphic file (type pdf)
 <use archivos/DiagSec2.pdf>
 File: archivos/Respuesta_bucle.png Graphic file (type bmp)
@@ -2308,8 +2351,8 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 Underfull \vbox (badness 8132) has occurred while \output is active []
 
- [19]
-[20]) (capitulos/5_implementacion.tex [21]
+ [20]
+[21]) (capitulos/5_implementacion.tex [22]
 chapter 5.
 
 Overfull \hbox (63.92232pt too wide) in paragraph at lines 25--26
@@ -2317,7 +2360,7 @@ Overfull \hbox (63.92232pt too wide) in paragraph at lines 25--26
  el archivo \TU/lmtt/m/n/12 datos_cine_limpio.nt\TU/lmr/m/n/12 ,
  []
 
-[22
+[23
 
 ]
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
@@ -2328,15 +2371,15 @@ Overfull \hbox (81.79701pt too wide) in paragraph at lines 70--71
  función \TU/lmtt/m/n/12 ejecutar_sparql_local()\TU/lmr/m/n/12 ,
  []
 
-[23]) (capitulos/6_evaluacion.tex [24]
+[24]) (capitulos/6_evaluacion.tex [25]
 chapter 6.
-[25
+[26
 
-] [26] [27]) (capitulos/7_conclusiones.tex [28]
+] [27] [28]) (capitulos/7_conclusiones.tex [29]
 chapter 7.
-[29
+[30
 
-]) (main.bbl [30]
+]) (main.bbl [31]
 chapter without number
 
 Underfull \hbox (badness 1259) in paragraph at lines 15--19
@@ -2344,9 +2387,9 @@ Underfull \hbox (badness 1259) in paragraph at lines 15--19
 ] [] [][][] [] [][] [] [][][] [] [][] []
  []
 
-) (main.acr [31
+) (main.acr [32
 
-]) (anexos/_anexo_I.tex [32
+]) (anexos/_anexo_I.tex [33
 
 
 ]
@@ -2357,24 +2400,32 @@ File: lstlang1.sty 2025/11/14 1.11b listings language file
 (C:\Users\Mario\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
-[33
+[34
 
 ]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 63.
- [34]) [35] (main.aux)
+ [35])
+
+Package natbib Warning: There were undefined citations.
+
+[36] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 58200 strings out of 402983
- 1385430 string characters out of 5448483
- 2504000 words of memory out of 5000000
- 85924 multiletter control sequences out of 15000+600000
+ 58211 strings out of 402983
+ 1385714 string characters out of 5448483
+ 2504152 words of memory out of 5000000
+ 85934 multiletter control sequences out of 15000+600000
  643480 words of font info for 134 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 113i,21n,110p,11306b,2207s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 113i,21n,110p,11306b,2213s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (57 pages).
+Output written on main.pdf (60 pages).
